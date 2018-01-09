@@ -1,0 +1,41 @@
+body {
+    font-family: 'Noto Sans', sans-serif;
+}
+
+#logo {
+	padding-left: 10px;
+}
+
+#main-content {
+	width: 100%;
+}
+
+#main-content p {
+	padding-left: 10px;
+	text-indent: 15px;
+	font-size: 20px;
+}
+
+#main-content p br{
+	margin-bottom: 10px;
+}
+
+#main-content img {
+	margin: 15px 0;
+	width: 100%;
+	height: 400px;
+}
+
+#diferenciais {
+	padding-left: 8px;
+}
+
+#diferenciais h2 {
+	margin-top: 30px;
+	margin-bottom: 0;
+}
+
+#diferenciais p {
+	margin: 0;
+	font-size: 20px;
+}
