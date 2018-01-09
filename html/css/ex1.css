@@ -1,0 +1,46 @@
+body {
+	font-family: 'Sorts Mill Goudy', serif;
+}
+
+#img-topo {
+	padding: 10px;
+	margin: 0 10px;
+
+}
+
+#img-topo img {
+	height: 200px;
+	display: block;
+	margin: 0 auto;
+}
+
+#title {
+	padding: 10px;
+	margin: 0;
+	text-align: center;
+}
+
+#title h1 {
+	color: #878787;
+	font-size: 21px;
+	font-style: italic;
+}
+
+#main-content {
+	padding: 10px 30px 10px 45px;
+	text-align: left;
+}
+
+#main-content p {
+	margin-top: 0px;
+	margin-bottom: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 560px;
+	color: #5d5d5d;
+	font-size: 17px;
+}
+
+#main-content p:last-child {
+	margin-bottom: 0;
+}
