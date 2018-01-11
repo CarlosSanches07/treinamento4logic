@@ -1,80 +1,89 @@
 body {
+	width: 100%;
 	margin: 0;
+	font-family: 'Open Sans', sans-serif;
+	background-color:  #f8f8f8;
 }
 
-/*######### HEADER ##########*/
-#header {
+.inp-btn {
+	cursor: pointer;
+}
+
+a {
+	cursor: pointer;
+}
+
+/* ####### HEADER ####### */
+
+header {
 	width: 100%;
 	height: 92px;
-	background-color: #f8f8f8;
+}
+
+header #fix {
+	width: 100%;
+	height: 92px;
+	display: flex;
+	justify-content: center;
+	background-color: #f8f8f8;	
 	position: fixed;
-	top: 0;
-	margin-bottom: 20px;
 	border-bottom: solid 1px #e7e7e7;
 }
 
-#logo {
-	float: left;
-	margin: 20px 0 5px 60px;
+header #navbar {
+	width: 86%;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	position: fixed;
 }
 
-#menu {
-	margin-left: 20px;
-	max-width: 70%;
-	height: 91px;
-	position: relative;
-	top: -15px;
-	left: 250px;
+#logo {
+	margin: 20px 0;
+}
+
+#menu ul {
+	margin: 0;
+	display: flex;
 	list-style: none;
 }
 
 #menu li {
-	margin: 5px 0;
-	float: left;
-	height: 91px;
-	margin: 30px 3px;
-}
-
-#menu li:last-child{
-	height: 91px;
-	width: 66px;
-	position: absolute;
-	top: -32px;
-	right: 10px;
+	padding-top: 20px;
+	margin: 10px 5px;
+	text-align: center;
 }
 
 #menu li a {
-	padding: 0 3px;
 	font-size: 13px;
+	letter-spacing: -1px;
 	font-weight: 700;
 	color: #777;
-	font-family: 'Open Sans', sans-serif;
-	letter-spacing: -1px;
 }
 
-/* ########## MAIN-CONTENT ########### */
+#menu a img {
+	height: 91px;
+}
 
-#main-content {
+/* ####### SECTION ####### */
+
+section {
 	width: 100%;
 }
 
-#banner {
+section #banner {
 	width: 100%;
-	height: 400px;
-	margin: 0;
-}
-
-#banner div {
+	height: 333px;
 	background-image: url('http://www.forlogic.net/wp-content/uploads/2017/03/imagem-top.png');
 	background-repeat: no-repeat;
 	background-size: cover;
-	background-position: center -200px;
-	width: 100%;
-	height: 410px;	
+	background-position: center center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-#banner figcaption p{
-	font-family:  'Open Sans', sans-serif;
+#banner h2 {
 	letter-spacing: -1px;
 	font-size: 35px;
 	font-weight: 500;
@@ -82,34 +91,223 @@ body {
 	color: #ffffff;
 }
 
-#banner figcaption {
-	position: absolute;
-	top: 185px;
-	left: 260px;
-	margin: 0 auto;
+section #aux {
+	width: 100%;
+	display: flex;
 }
 
-#content {
-	width: 100%;
-	background-color: rgb(249,249,249);
+section #main-content {
+	width: 60%;
+	background-color: #f8f8f8;
+	margin-left: 130px;
 }
 
-#content h1 {
-	margin: 0;
-	margin-left: 50px;
-	width: 100%;
+#main-content h1 {
+	font-size: 40px;
 	color: #14c5fe;
-	font-family: 'Open Sans', sans-serif;
 	letter-spacing: -1px;
 	font-weight: 500;
-	font-size: 35px;
 }
 
-#content form {
-	width: 50%;
+section form {
+	max-width: 100%;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	align-content: flex-start;
+}
+
+#form-field .inp-filed {
+	width: 46%;
+ 	display: flex;
+	flex-flow: column wrap;
+}
+
+#form-field label {
+	font-size: 14px;
+	color: #999;
+	font-weight: 700;
+}
+
+#form-field input {
+	padding: 5px 12px;
+	width: 100%;
+	height: 25px;
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+#form-field textarea {
+	width: 100%;
+	height: 100px;
+	padding: 5px 12px;
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+#form-field .btn-submit {
+	background-color: #3bb7f3;
+	width: 170px;
+	height: 70px;
+	border: 1px solid #ccc;
+	font-size: 22px;
+	color: white;
+}
+
+#form-field .inp-big {
+	width: 100%;
+}
+
+#right-content {
+	width: 20%;
+	margin-top: 60px;
+	margin-left: 80px;
+}
+
+#right-content h3 {
+	font-size: 28px;
+	font-family:'Helvetica Neue', sans-serif;
+	font-weight: 100;
+	color: #666;
+	margin-bottom: 10px;
+}
+
+#social i {
+	width: 53px;
+	height: 55px;
+	float: left;
+	background-repeat: no-repeat;
+	background-position: center;
+
+}
+
+#social .fb {
+	background-image: url('http://www.forlogic.net/wp-content/uploads/2017/03/ico-Facebook.png');
+}
+
+#social .tt {
+	background-image: url('http://www.forlogic.net/wp-content/uploads/2017/03/ico-Twitter.png');
+}
+
+#social .in {
+	background-image: url('http://www.forlogic.net/wp-content/uploads/2017/03/ico-Linkedin.png');
+}
+
+#social .gplus {
+	background-image: url('http://www.forlogic.net/wp-content/uploads/2017/03/ico-g.png');
+}
+
+#work-us {
+	border: solid 3px #d6d6d6;
+	margin-top: 150px;
+	display: flex;
+	justify-content: space-around row wrap;
+	flex-flow: row wrap;
+}
+
+#work-us img {
+	width: 81px;
+	height: 85px;
+	margin: 10px;
+}
+
+#work-us h3 {
+	font-size: 28px;
+	font-weight: 100;
+	letter-spacing: -1px;
+	color: #d6d6d6;
+	margin-top: 20px;
+	margin-left: 15px;
+	width: 80px;
+}
+
+#work-us input {
+	width: 230px;
+	height: 50px;
+	color: white;
+	background-color: #fdc00f;
+	border: solid 1px #fdc00f;
+	margin-left: 14px;
+	margin-bottom: 14px;
+	font-size: 15px;
+	cursor: pointer;
+}
+
+/* ####### FOOTER ####### */
+
+footer {
+	width: 100%;
+	background-color: #1a1a1a;
+	color: #888888;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+}
+
+footer .contact {
+	width: 35%;
+	height: 230px;
+	margin-top: 40px;
 	margin-left: 50px;
+	margin-bottom: 50px;
 }
 
-#content label {
+.contact span {
+	width: 230px;
+	height: 55px;
+	background-image: url('https://i0.wp.com/www.forlogic.net/wp-content/uploads/2017/07/LogoGrupo_Oficial-cinza.png?fit=2835%2C685&resize=210px%2C');
+	background-repeat: no-repeat;
+	background-size: cover;
+	float: left;
+	margin-left: 20px;
 }
 
+.contact p {
+	margin-left: 20px;
+	margin-top: 30px;
+	font-size: 15px;
+}
+
+footer .instagram {
+	width: 55%;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+}
+
+.instagram .one {
+	background-image: url('https://scontent.cdninstagram.com/vp/c8e37061a05cfc77fa00a3b41c978d81/5AF704E5/t51.2885-15/s150x150/e35/c135.0.809.809/26227469_1566771100068092_7125939352152047616_n.jpg');
+}
+
+.instagram .two {
+	background-image: url('https://scontent.cdninstagram.com/vp/b299045510e2653fe3a45b0d88945a60/5AEE2C26/t51.2885-15/s150x150/e35/c236.0.608.608/25035972_415910258844158_1027169084132818944_n.jpg');
+}
+
+.instagram .three {
+	background-image: url('https://scontent.cdninstagram.com/vp/a12d72e99266a43b1c05d4431dce926d/5A5A9AD1/t51.2885-15/s150x150/e35/c157.0.406.406/25022120_193213564565108_7858881611478073344_n.jpg');
+}
+
+.instagram .four {
+	background-image: url('https://scontent.cdninstagram.com/vp/1d651ea1fbb916a41cca355181eefbbb/5ADAD18C/t51.2885-15/s150x150/e35/25010006_334226340318836_1759851171519922176_n.jpg');
+}
+
+.instagram h4 {
+	margin-left: 15px;
+	padding-top: 40px;
+	width: 100%;
+	height: 10px;
+	font-weight: 500;
+}
+
+.instagram a {
+	width: 150px;
+	height: 150px;
+}
+
+footer .about {
+	font-size: 13px;
+	text-align: center;
+	width: 100%;
+	background-color: black;
+	color: white;
+}

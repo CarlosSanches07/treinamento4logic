@@ -2,93 +2,143 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="css/ex3.css">
+	<link rel="stylesheet" type="text/css" href="css/test.css">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
-
-
 	<title>ex3</title>
 </head>
 <body>
-
-	<div id="header">
-			
-			<img id="logo" src="http://www.forlogic.net/wp-content/uploads/2017/03/cropped-logo_GrupoForLogic.png">
-
-			<ul id="menu">
-				<li><a>INÍCIO</a></li>
-				<li><a>ÁREAS DE NEGÓCIO</a></li>
-				<li><a>QUEM SOMOS</a></li>
-				<li><a>CLIENTES</a></li>
-				<li><a>NOVIDADES</a></li>
-				<li><a>FALE CONOSCO</a></li>
-				<li><a>OUVIDORIA</a></li>
-				<li><a>
-					<img src="http://www.forlogic.net/wp-content/uploads/estamos-contratando.svg">
-				</a></li>
-			</ul>
-	</div>
-
-	<div id="main-content">
-		
-		<figure id="banner">
-
-			<div>
-			<figcaption>
-				<p>Entre em contato conosco, estamos à sua disposição</p>
-			</figcaption>
-		
-		</figure>
-
-		<div id="content">
-			<h1>Fale com a gente</h1>
-
-			<form>
-				<label>
-					Nome *
-					<input type="text" name="nome">
-				</label>
-				<label>
-					Email *
-					<input type="text" name="email">
-				</label>
-				<label>
-					Empresa *
-					<input type="text" name="empresa">
-				</label>
-				<label>
-					Telefone 
-					<input type="text" name="telefone">
-				</label>
-				<label>
-					Estado
-					<input type="text" name="estado">
-				</label>
-				<label>
-					Cidade
-					<input type="text" name="cidade">
-				</label>
-				<label>
-					Assunto
-					<input type="text" name="assunto">
-				</label>
-				<label>
-					Deixe uma mensagem para nós
-					<textarea></textarea> 
-				</label>
-				<label>
-					Digite dois números quaisquer *
-					<input type="text" name="numeros" placeholder="Exemplo: 22">
-				</label>
-				<input type="button">
-			</form>
-
+	<header>
+		<div id="fix">
+			<div id="navbar">
+				<div id="logo">
+					<img src="http://www.forlogic.net/wp-content/uploads/2017/03/cropped-logo_GrupoForLogic.png" alt="logo forlogic">
+				</div>
+				<div id="menu">
+					<ul>
+						<li><a>INÍCIO</a></li>
+						<li><a>ÁREAS DE NEGÓCIO</a></li>
+						<li><a>QUEM SOMOS</a></li>
+						<li><a>CLIENTES</a></li>
+						<li><a>NOVIDADES</a></li>
+						<li><a>FALE CONOSCO</a></li>
+						<li><a>OUVIDORIA</a></li>
+						<a>
+							<img src="http://www.forlogic.net/wp-content/uploads/estamos-contratando.svg">
+						</a>
+					</ul>
+				</div>
+			</div>
 		</div>
+	</header>
 
-	</div>
+	<section>
+		<div id="banner">
+			<h2>Entre em contato conosco, estamos à sua disposição</h2>
+		</div>
+		<div id="aux">
+			<div id="main-content">
+				<h1>Fale com a gente</h1>
+				<div id="form-field">
+					<form>
+						<div class="inp-filed">
+							<label for="name">
+								Nome *
+								<input id="name" type="text" name="nome">
+							</div>
+						<div  class="inp-filed">
+							<label for="email">
+								Email *
+								<input id="email" type="text" name="email">
+						</div>
+						<div  class="inp-filed">
+							<label for="empresa">
+								Empresa *
+								<input id="empresa" type="text" name="empresa">
+						</div>	
+						<div class="inp-filed">					
+							<label for="tel">
+								Telefone 
+								<input id="tel" type="text" name="telefone">
+						</div>
+						<div  class="inp-filed">					
+							<label for="estado">
+								Estado
+								<input id="estado" type="text" name="estado">
+						</div>
+						<div class="inp-filed">			
+							<label for="cidade">
+								Cidade
+								<input id="cidade" type="text" name="cidade">
+						</div>
+						<div class="inp-filed inp-big">						
+							<label for="assunto">
+								Assunto
+								<input id="assunto" type="text" name="assunto">
+						</div>
+						<div class="inp-filed inp-big">
+							<label for="msg">
+								Deixe uma mensagem para nós
+								<textarea id="msg"></textarea> 
+						</div>
+						<div  class="inp-filed inp-big">						
+							<label for="num">
+								Digite dois números quaisquer *
+								<input id="num" type="text" name="numeros" placeholder="Exemplo: 22">
+						</div>
+						<input class="btn-submit inp-btn" type="button" value="Enviar">
+					</form>
+				</div>
+			</div>
+			<div id="right-content">
+				<div id="us">
+					<div id="social">
+						<h3>JUNTE-SE À NÓS</h3>
+						<i class="fb">
+							<a href=""></a>
+						</i>
+						<i class="tt">
+							<a href=""></a>
+						</i>
+						<i class="in">
+							<a href=""></a>
+						</i>
+						<i class="gplus">
+							<a href=""></a>
+						</i>
+					</div>
+					<div id="work-us">
+						<img src="http://www.forlogic.net/wp-content/uploads/2017/03/cartao.png">
+						<h3>TRABALHE<br/>CONOSCO</h3>
+						<input class="inp-btn" type="button" value="CADASTRE SEU CURRÍCULO">
+					</div>
+				</div>
+			</div>
+			</div>
 
-	<div id="footer">
-		
-	</div>
-
+	</section>
+	
+	<footer>
+		<div class="contact">
+			<span></span>
+			<p><br/><br/>Rua Antônio Registro, 181 - Vila Seugling<br/>
+				Cornélio Procópio - Paraná<br/>
+				CEP 86.300-000
+			</p>
+			<p>
+				Telefone: 43 3133-2200<br/>
+				E-mail: contato@forlogic.net
+			</p>
+		</div>
+		<div class="instagram">
+			<h4>Instagram</h4>
+			<a class="one" href="https://www.instagram.com/p/BdTEy6SlcK6/"></a>
+			<a class="two" href="https://www.instagram.com/p/BdSr7Z2FeUS/"></a>
+			<a class="three" href="https://www.instagram.com/p/BdKtiV1gHzw/"></a>
+			<a class="four" href="https://www.instagram.com/p/Bc9zBFIAwhS/"></a>
+		</div>
+		<div class="about">
+			<p>&copy;Grupo Forlogic Software 2017</p>			
+		</div>
+	</footer>
 </body>
 </html>
