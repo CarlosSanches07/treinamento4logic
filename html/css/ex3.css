@@ -65,6 +65,11 @@ header #navbar {
 	height: 91px;
 }
 
+#menu li a:hover {
+	color: #888;
+	text-decoration: underline;
+}
+
 /* ####### SECTION ####### */
 
 section {
@@ -137,6 +142,11 @@ section form {
 	margin-bottom: 10px;
 }
 
+#form-field .txt-field {
+	border: 1px solid #bdbdbd;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+
 #form-field textarea {
 	width: 100%;
 	height: 100px;
@@ -146,12 +156,17 @@ section form {
 }
 
 #form-field .btn-submit {
+	color: white;
 	background-color: #3bb7f3;
 	width: 170px;
 	height: 70px;
 	border: 1px solid #ccc;
 	font-size: 22px;
-	color: white;
+	margin-bottom: 30px;
+}
+
+#form-field .btn-submit:hover {
+	background-color: #2484b2;
 }
 
 #form-field .inp-big {
@@ -178,23 +193,41 @@ section form {
 	float: left;
 	background-repeat: no-repeat;
 	background-position: center;
+	cursor: pointer;
 
 }
 
 #social .fb {
+
 	background-image: url('http://www.forlogic.net/wp-content/uploads/2017/03/ico-Facebook.png');
+}
+
+#social .fb:hover {
+	background-image: url('http://www.forlogic.net/wp-content/uploads/2017/03/ico-Facebook_hover.png');
 }
 
 #social .tt {
 	background-image: url('http://www.forlogic.net/wp-content/uploads/2017/03/ico-Twitter.png');
 }
 
+#social .tt:hover {
+	background-image: url('http://www.forlogic.net/wp-content/uploads/2017/03/ico-Twitter_hover.png');
+}
+
 #social .in {
 	background-image: url('http://www.forlogic.net/wp-content/uploads/2017/03/ico-Linkedin.png');
 }
 
+#social .in:hover {
+	background-image: url('http://www.forlogic.net/wp-content/uploads/2017/03/ico-Linkedin_hover.png');
+}
+
 #social .gplus {
 	background-image: url('http://www.forlogic.net/wp-content/uploads/2017/03/ico-g.png');
+}
+
+#social .gplus:hover {
+	background-image: url('http://www.forlogic.net/wp-content/uploads/2017/03/ico-g_hover.png');
 }
 
 #work-us {
@@ -233,6 +266,11 @@ section form {
 	cursor: pointer;
 }
 
+#work-us input:hover {
+	background-color: white;
+	color: #fdc00f;
+}
+
 /* ####### FOOTER ####### */
 
 footer {
@@ -242,6 +280,7 @@ footer {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: space-around;
+	margin-top: 50px;
 }
 
 footer .contact {
