@@ -38,6 +38,14 @@ header #navbar {
 	position: fixed;
 }
 
+header #btn-menu label {
+	display: none;
+}
+
+header #btn-menu input {
+	display: none;
+}
+
 #logo {
 	margin: 20px 0;
 }
@@ -86,6 +94,8 @@ section #banner {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	text-align: center;
+	text-orientation: center;
 }
 
 #banner h2 {
@@ -255,7 +265,7 @@ section form {
 }
 
 #work-us input {
-	width: 230px;
+	width: 90%;
 	height: 50px;
 	color: white;
 	background-color: #fdc00f;
@@ -350,3 +360,141 @@ footer .about {
 	background-color: black;
 	color: white;
 }
+
+/* ####### RESPONSIVE SETTINGS #######*/
+
+ @media (max-width: 992px) {
+ 	#logo {
+ 		display: none;
+ 	}
+
+ 	#btn-menu {
+ 		margin: 0 auto;
+ 	}
+
+ 	#aux {
+		display: flex;
+		flex-flow: column;
+		justify-content: center;
+		align-items: center;
+ 	}
+	
+	#main-content{
+		margin: 0 !important;
+	}
+	
+ 	#social {
+ 		display: none;
+ 	}
+
+ 	#right-content {
+ 		height: 200px;
+ 		width: 300px;
+ 		margin-left: 0;
+ 	}
+
+ 	#work-us {
+ 		margin: 0;
+ 	}
+
+ 	footer a {
+ 		margin-top: 10px;
+ 	}
+
+ 	
+ }
+
+ @media (max-width: 792px) {
+	#logo {
+		display: inline;
+	}
+
+	#btn-menu {
+		margin: 0;
+	}
+
+	#btn-menu .burguer {
+		background: -webkit-linear-gradient(#999, #999 20%, #eee 20%, #eee 40%, #999 40%, #999 60%, #eee 60%, #eee 80%, #999 80%, #999 100%);
+		background: -o-linear-gradient(#555, #555 20%, #eee 20%, #eee 40%, #555 40%, #555 60%, #eee 60%, #eee 80%, #555 80%, #555 100%);
+		background: linear-gradient(#999, #999 20%, #f8f8f8 20%, #f8f8f8 40%, #999 40%, #999 60%, #f8f8f8 60%, #f8f8f8 80%, #999 80%, #999 100%);
+		width: 25px;
+		height: 25px;
+		margin-top: 30px;
+		margin-right: 15px;
+		float: right;
+	}
+
+	#menu .contrato{
+		display: none;
+	}
+
+	#btn-menu input {
+
+		display: none;
+	}
+
+	header 	#btn-menu label {
+		display: block;
+		cursor: pointer;
+	}
+
+	#menu {
+		display: none;
+		width: 100%;
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		margin-top: 93px;
+	}
+
+	#btn-menu .btn-burguer:checked ~ #menu{
+		display: block;
+	}
+
+	#menu ul {
+		display: flex;
+		flex-flow: column wrap;
+		justify-content: center;
+		align-items: center;
+		background-color: #f8f8f8;
+		padding: 0;
+	}
+
+	#menu ul li {
+		padding-top: 10px;
+		border-bottom: 1px solid #e7e7e7;
+		width: 80%;
+	}
+
+ }
+
+ @media (max-width: 680px) {
+ 	section form {
+ 		flex-flow: column;
+ 		justify-content: center;
+ 		align-items: center;
+ 	}
+
+ 	#main-content h1 {
+ 		text-align: center;
+ 	}
+
+ 	footer {
+ 		flex-flow: column;
+ 		justify-content: center;
+ 		align-items: center;
+ 	}
+
+ 	.contact {
+ 		margin-left: 0 !important;
+ 	}
+ }
+
+ @media (max-width: 480px) {
+ 	footer {
+ 		justify-content: flex-start;
+ 		align-items: flex-start;
+ 	}
+ }
