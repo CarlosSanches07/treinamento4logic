@@ -1,0 +1,298 @@
+html {
+	width: 100%;
+}
+
+body {
+	width: 100%;
+	background-color: #f8f8f8;
+}
+
+.container {
+	width: 100%;
+	padding: 0;
+}
+
+.header {
+	height: 93px;
+	width: 100%;
+	margin-left: 0;
+}
+
+.navbar {
+	height: 93px;
+	background-color: #f8f8f8;
+	border-bottom: 1px solid #e7e7e7;
+	width: 100%;
+	margin: 0;
+	padding-left: 0;
+	padding-right: 0;
+	position: fixed;
+	z-index: 1030;
+}
+
+.menu {
+	display: flex;
+    list-style: none;
+    height: 93px;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+	margin-top: 25px;
+}
+
+.menu li {
+	border: none;
+	height: 93px;
+	text-align: center;
+	line-height: 78px;
+	letter-spacing: -1px;
+	background-color: rgba(0,0,0,0);
+	padding: 10px 10px;
+}
+
+.menu a {
+	color: #777;
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 13px;
+}
+
+.menu a:hover {
+	color: #888;
+	text-decoration: underline;
+}
+
+.menu .contratando {
+	background-image: url(http://www.forlogic.net/wp-content/uploads/estamos-contratando.svg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 65px;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.banner {
+	background-image: url(http://www.forlogic.net/wp-content/uploads/2017/03/top_novidades_blue.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 330px;
+	margin-left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.banner h1 {
+	color: white;
+}
+
+.search-container {
+	margin-left: 0;
+	margin-right: 0;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-left: 4%;
+	padding-right: 4%;
+}
+
+.news{
+	margin-left: 0;
+	margin-right: 0;
+	padding: 15px 80px;
+}
+
+.news-one{
+	background-image: url('https://i1.wp.com/www.forlogic.net/wp-content/uploads/2017/12/24327695_313796642453004_9213205810610438144_n.jpg?w=1080');
+}
+
+.news-two{
+	background-image: url('https://i0.wp.com/www.forlogic.net/wp-content/uploads/2017/12/3o-ano-do-projeto-aluno-nota-10-0.jpg?w=1911');
+}
+
+.news-three{
+	background-image: url('https://i2.wp.com/www.forlogic.net/wp-content/uploads/2017/12/aluno-destaque-2017-0.jpg?w=1024');
+}
+
+.news-four{
+	background-image: url('https://i1.wp.com/www.forlogic.net/wp-content/uploads/2017/09/forlogic-software-e-selecionada-para-o-programa-scale-up-industria-da-endeavor-1.jpg?w=700');
+}
+
+.news-container{
+	width: 430px;
+	margin-top: 30px;
+	margin-right: 10px;
+	margin-bottom: 30px;
+	padding: 0 10px;
+}
+
+.news-image {
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-end;
+	background-size: cover;
+	background-repeat: no-repeat;
+	height:180px;
+	border-bottom: 5px solid #16c5fe;
+	padding: 0;
+	border-radius: 5px 5px 0 0;
+}
+
+.caption {
+	font-size: 20px;
+	color: white;
+	background-color: #62d8fe;
+	width: 35%;
+	margin: 0;
+	padding: 10px 15px;
+}
+
+.news-title {
+	font-size: 20px;
+}
+
+.news-info {
+	padding: 15px 0 20px 0;
+	border-bottom: 1px solid #8c8c8c;
+}
+
+.right-content {
+	margin-right: 0;
+	margin-bottom: 60px;
+}
+
+.news-info a {
+	color: #8c8c8c;
+	text-decoration: none;
+}
+
+.news-info a:hover {
+	text-decoration: none;
+	color: #16c5fe;
+}
+
+.news-info span{
+	color: #16c5fe;
+	float: left;
+	width: 20px;
+	height: 20px;
+}
+
+.twitter {
+	margin-top: 30px;
+	overflow: auto;
+	height: 230px;
+}
+
+.old-news {
+	margin: 0;
+	padding-left: 5%;
+	padding-right: 5%;
+	padding-top: 40px;
+	padding-bottom: 40px;
+	border-bottom: 1px solid #8c8c8c;
+}
+
+.old-news h2 {
+	color: #68adce;
+	margin-bottom: 40px;
+	letter-spacing: -1px;
+	line-height: 1.1;
+}
+
+.old-feed {
+	padding: 0;
+}
+
+.old-feed a{
+	cursor: pointer;
+}
+
+.old-feed a:hover {
+	text-decoration: none;
+}
+
+.feed-img {
+	padding: 0px;
+}
+
+.feed-img img {
+	width: 140px;
+	height: 100px;
+	border-bottom: 5px solid #16c5fe;
+	border-radius: 5px 5px 0 0;
+	margin-bottom: 35px;
+}
+
+.media-body {
+	width: 70%;
+	height: 60px;
+	padding-right: 20px;
+	color: #8c8c8c;
+}
+
+.media-body h3 {
+	font-size: 22px;
+	font-weight: bold;
+	letter-spacing: -1px;
+/*	line-height: 1.1;*/
+}
+
+.media-body:hover {
+	color: #16c5fe;
+}
+
+.media-body p {
+	font-size: 12px;
+	letter-spacing: -1px;
+	line-height: 1.1;
+	font-weight: bold;
+}
+
+.navigation {
+	margin: 0;
+}
+
+.pagination:last-child a{
+	margin: 5px;
+	color: #8c8c8c;
+	font-size: 12px;
+}
+
+.pagination:last-child a:hover {
+	color: #8c8c8c;
+	background-color: white;
+}
+
+.footer {
+	padding: 30px;
+	margin:0;
+	background-color: #1a1a1a;
+	color: #888888;
+	font-size: 16px;
+}
+
+.logic-info {
+	padding: 20px;
+}
+
+.footer-logo {
+	width: 198px;
+	height: 50px;
+	margin-bottom: 15px;
+}
+.instagram img {
+	margin: 0 5px;
+}
+.for-logic {
+	background-color: #000000;
+	color: white;
+	font-size: 14px;
+	height: 52px;
+	text-align: center;
+	padding: 10px 0;
+	margin: 0;
+}

@@ -449,17 +449,29 @@ footer .about {
 		margin-top: 93px;
 	}
 
-	#btn-menu .btn-burguer:checked ~ #menu{
-		display: block;
-	}
+
 
 	#menu ul {
 		display: flex;
+		height: 0;
 		flex-flow: column wrap;
 		justify-content: center;
 		align-items: center;
 		background-color: #f8f8f8;
 		padding: 0;
+/*		-moz- transition: height 1s;
+		-webkit- transition: height 1s;
+		-o- transition: height 1s;*/
+		transition-property: height;
+		transition-duration: 5s;
+	}
+
+	#btn-menu .btn-burguer:checked ~ #menu{
+		display: block;
+	}
+
+	#btn-menu .btn-burguer:checked ~ #menu ul {
+		height: 378px;
 	}
 
 	#menu ul li {
