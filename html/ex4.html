@@ -9,25 +9,32 @@
 </head>
 <body>
 	<div class="container">
-		<div class="row header">
-			<div class="row navbar">
-				<div class="col-md-2 col-md-offset-1">	
-					<img class="img-responsive logo" src="http://www.forlogic.net/wp-content/uploads/2017/03/cropped-logo_GrupoForLogic.png" alt="logo forlogic">
-				</div>
-				<div class="col-md-8 col-md-offset-1">
-					<ul class="list-group menu">
-						<li class="list-group-item"><a href="">Início</a></li>
-						<li class="list-group-item"><a href="">Área de negócios</a></li>
-						<li class="list-group-item"><a href="">Quem somos</a></li>
-						<li class="list-group-item"><a href="">Clientes</a></li>
-						<li class="list-group-item"><a href="">Novidades</a></li>
-						<li class="list-group-item"><a href="">Fale conosco</a></li>
-						<li class="list-group-item"><a href="">Ouvidoria</a></li>
-						<li class="list-group-item contratando"></li>
-					</ul>
-				</div>
-			</div>
-		</div>
+		<nav class="navbar navbar-inverse">
+		  <div class="container-fluid test">
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle btn-burguer" data-toggle="collapse" data-target="#myNavbar">
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>                        
+		      </button>
+		      <a class="navbar-brand logo" href="#">
+		        <img src="http://www.forlogic.net/wp-content/uploads/2017/03/cropped-logo_GrupoForLogic.png"  alt="" class="img-responsive">
+		      </a>
+		    </div>
+		    <div class="collapse navbar-collapse" id="myNavbar">
+		      <ul class="nav navbar-nav menu">
+		        <li><a href="">Início</a></li>
+				<li class=""><a href="">Área de negócios</a></li>
+				<li class=""><a href="">Quem somos</a></li>
+				<li class=""><a href="">Clientes</a></li>
+				<li class=""><a href="">Novidades</a></li>
+				<li class=""><a href="">Fale conosco</a></li>
+				<li class=""><a href="">Ouvidoria</a></li>
+				<li class="contratando"></li>
+		      </ul>
+		    </div>
+		  </div>
+		</nav>
 		<div class="row banner img-responsive">
 				<h1>Novidades Grupo Forlogic</h1>
 		</div>
@@ -40,7 +47,7 @@
 		</div>
 		<div class="row news">
 			<div class="col-md-9">
-				<div class="row">
+				<div class="row sub-news">
 					<div class="col-md-4 left-content news-container">
 				<div class="img-responsive news-one news-image">
 					<p class="caption">26/12/2017</p>
@@ -219,7 +226,7 @@
 		</div>
 		<div class="row navigation">
 			<div class="col-md-3 col-md-offset-5">				
-				<nav aria-label="Page Navigation">
+				<nav class="page-nav" aria-label="Page Navigation">
 					<ul class="pagination">
 						<li><a href="">1</a></li>
 						<li><a href="">2</a></li>
@@ -255,4 +262,6 @@
 		<div class="row for-logic">&copy; Grupo For Logic Software 2017</div>
 	</div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
 </html>

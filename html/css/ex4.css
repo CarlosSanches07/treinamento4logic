@@ -8,26 +8,22 @@ body {
 }
 
 .container {
+	font-family: 'Open Sans', sans-serif;
 	width: 100%;
 	padding: 0;
 }
 
-.header {
-	height: 93px;
-	width: 100%;
-	margin-left: 0;
-}
-
 .navbar {
-	height: 93px;
-	background-color: #f8f8f8;
-	border-bottom: 1px solid #e7e7e7;
-	width: 100%;
-	margin: 0;
-	padding-left: 0;
-	padding-right: 0;
-	position: fixed;
-	z-index: 1030;
+  background-color: #f8f8f8 !important;
+  border-radius: 0 !important;
+  height: 93px;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: 1px solid #e7e7e7 !important;
+  position: fixed;
+  width: 100%;
+  z-index: 1030;
 }
 
 .menu {
@@ -36,32 +32,38 @@ body {
     height: 93px;
     justify-content: center;
     align-items: center;
-}
-
-.logo {
-	margin-top: 25px;
+    margin-left: 15% !important;
 }
 
 .menu li {
 	border: none;
 	height: 93px;
-	text-align: center;
+	text-align: center !important;
 	line-height: 78px;
 	letter-spacing: -1px;
 	background-color: rgba(0,0,0,0);
-	padding: 10px 10px;
+ 	padding: 20px 0; 
 }
 
 .menu a {
-	color: #777;
-	font-weight: bold;
+	color: #777 !important;
+	font-weight: bold !important;
 	text-transform: uppercase;
-	font-size: 13px;
 }
 
 .menu a:hover {
-	color: #888;
-	text-decoration: underline;
+	color: #888 !important;
+	text-decoration: underline !important;
+}
+
+.menu .contratando {
+	background-image: url(http://www.forlogic.net/wp-content/uploads/estamos-contratando.svg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 65px;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
 }
 
 .menu .contratando {
@@ -238,7 +240,6 @@ body {
 	font-size: 22px;
 	font-weight: bold;
 	letter-spacing: -1px;
-/*	line-height: 1.1;*/
 }
 
 .media-body:hover {
@@ -284,9 +285,12 @@ body {
 	height: 50px;
 	margin-bottom: 15px;
 }
+
+
 .instagram img {
 	margin: 0 5px;
 }
+
 .for-logic {
 	background-color: #000000;
 	color: white;
@@ -295,4 +299,92 @@ body {
 	text-align: center;
 	padding: 10px 0;
 	margin: 0;
+}
+
+@media (max-width: 1080px) {
+	
+	.logo { 
+		display: none;
+	 }
+
+	 .menu {
+	 	margin-left: 0 !important;
+	 }
+
+	.news-container {
+	 	width: 100%;
+	 }
+	 
+	.news-image {
+	 	height: 300px;
+	 }
+		
+	.page-nav {
+		padding: 0 30%;
+	}
+
+	.page-nav ul {
+		margin-left: 40px;
+		margin-right: 40px;	
+	}
+}
+
+@media (max-width: 1259px){
+	.menu{
+		margin-left: 0px !important;
+	}
+
+	.pagination {
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+	}
+
+	.page-nav {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 0;
+	}
+}
+
+@media (max-width: 766px){
+	.logo {
+		display: block;
+	}
+
+	.menu .contratando{
+		display: none;
+	}
+	
+	#myNavbar {
+		border-top: none;
+		height: 200px !important;
+		background-color: #f8f8f8;
+		z-index: 0;
+		margin-top: 27px;
+	}
+		
+	.menu {
+		justify-content: flex-start;
+		align-items: center;
+		flex-flow: column;
+		background-color: #f8f8f8;
+	}
+
+	.btn-burguer {
+		margin-top:  26px;
+		margin-right: 26px;
+		border: none;
+		background-color: #f8f8f8;
+		border: 1px solid #e7e7e7 !important;
+	}
+
+	.btn-burguer span {
+		background-color: #8c8c8c !important;
+	}
+
+	.btn-burguer:focus {
+		background-color: #ddd !important;
+	}
+
 }
