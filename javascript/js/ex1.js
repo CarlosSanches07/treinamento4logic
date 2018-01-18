@@ -69,7 +69,7 @@ equal.addEventListener('click', (event) => {
 		else if(signals[i] === '-')
 			result = parseInt(result) - parseInt(numbers[i+1]);
 		else if(signals[i] === '*')
-			result = parseInt(result) * parseInt(numbers[i+1]));
+			result = parseInt(result) * parseInt(numbers[i+1]);
 		else
 			if(result <= 0)
 				result = 'NaN';
