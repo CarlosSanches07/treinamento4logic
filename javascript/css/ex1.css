@@ -1,0 +1,89 @@
+html{
+	width: 100%;
+}
+
+body {
+	background-image: url('http://123hdwallpaperpic.com/download/20150511/purple-black-wallpaper-1920x1080.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	margin: 0;
+}
+
+header {
+	width: 98%;
+	background-color: rgba(45, 18, 81, .4);
+	padding: 20px 0;
+	color: #cecece;
+	text-align: center;
+}
+
+section {
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+}
+
+section .calc {
+	width: 40%;
+	height: 400px;
+	background-color: rgba(45, 18, 81, .4);
+	color: #cecece;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+	align-items: flex-start;
+	margin-top: 100px;
+	margin-bottom: 40px;
+	border-radius: 30px;
+	box-shadow: -1px -1px 100px 34px rgba(106,0,133,0.69);
+}
+
+.output {
+	margin: 20px 0;
+	width: 80%;
+	height: 60px;
+	background-color: rgba(66, 50, 186, .7);
+	border-radius: 50px;
+	font-size: 22px;
+	text-align: right;
+	padding-right: 20px; 
+}
+
+.inner-output {
+	background-color: inherit !important;
+	width: 70%;
+	height: 20px;
+	border-radius: 50px 0;
+	color: inherit;
+	font-size: 16px;
+	text-align: left;
+	margin-top: 1px;
+	margin-left: 2px;
+	padding-top: 2px;
+	padding-left: 20px;
+
+}
+
+.btn {
+	cursor: pointer;
+	background-color: rgba(66, 50, 186, .7);
+	text-align: center;
+	width: 25%;
+	height: 30px;
+	margin: 0 5px;
+	border-radius: 50px;
+	border: 4px solid rgba(106,0,133, 1);
+}
+
+.btn:hover {
+	color: white;
+	border-color: white;
+}
+
+.operator:hover {
+	color: white !important;
+}
+
+.inner-btn {
+	margin-top: 6px;
+}
