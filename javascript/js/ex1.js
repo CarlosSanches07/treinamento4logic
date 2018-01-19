@@ -50,6 +50,7 @@ equal.addEventListener('click', (event) => {
 	let signals = new Array;
 	let numbers = new Array;
 	let j = 0;
+	console.log(digits);
 	for(let i = 0; i < digits.length; i++) {
 		if(isNumeric(digits[i])) {
 			if(!numbers[j])
@@ -63,18 +64,20 @@ equal.addEventListener('click', (event) => {
 	}
 	result += parseInt(numbers[0]);
 	for(let i = 0; i < signals.length; i++) {
-		console.log(parseInt(result) + parseInt(numbers[i+1]))
 		if(signals[i] === '+')
 			result = parseInt(result) + parseInt(numbers[i+1]);
 		else if(signals[i] === '-')
 			result = parseInt(result) - parseInt(numbers[i+1]);
 		else if(signals[i] === '*')
-			result = parseInt(result) * parseInt(numbers[i+1]));
+			result = parseInt(result) * parseInt(numbers[i+1]);
 		else
 			if(result <= 0)
 				result = 'NaN';
 			else
-				result = parseInt(result) * parseInt(numbers[i+1]);
+				result = parseInt(result) / parseInt(numbers[i+1]);
 	}
-	console.log(result);
+	outerOutput.innerText = result;
+	innerOutput.innerText = '';
+	digits = [];
+	digits.push(result);
 })
