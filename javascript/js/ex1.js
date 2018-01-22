@@ -18,25 +18,25 @@ function isNumeric(n) {
 
 numerics.forEach((item) => {
 	item.addEventListener('click', (event) => {
+		if(!isNumeric(outerOutput.innerText)){
+		 	outerOutput.innerText = "";
+		}
 		btn = event.srcElement; 
 		outerOutput.innerText += btn.innerText;
 		digits.push(btn.innerText);	
 	})
 })
 
-numerics.forEach((item) => {
-	item.addEventListener('onmouseup', (event) => {
-		btn = event.srcElement;
-		btn.style.backgroundColor = '#dbe0d0';
-	})
-})
-
 operators.forEach((item) => {
 	item.addEventListener('click', (event) => {
 		btn = event.srcElement;
+		
 
 		if(outerOutput.innerText === "")
 			return;
+
+		if(!isNumeric(outerOutput.innerText))
+			outerOutput.innerText = "";
 
 		innerOutput.innerText += outerOutput.innerText + btn.innerText;
 		outerOutput.innerText = "";
@@ -79,7 +79,7 @@ equal.addEventListener('click', (event) => {
 			result = parseInt(result) * parseInt(numbers[i+1]);
 		else
 			if(result <= 0)
-				result = 'NaN';
+				result = 0;
 			else
 				result = parseInt(result) / parseInt(numbers[i+1]);
 	}
