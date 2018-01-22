@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ex2</title>
+</head>
+<body>
+	<div class="container">
+		<div class="contacts">
+			<ul class="content">
+			
+			</ul>
+			<input type="button" value="+" class="add-contact">
+		</div>
+		<form action="http://localhost:3000/v1/contacts" method="post" class="form-addcontact">
+			<label>First Nome<input type="text" class="contact-data first-name"></label>
+			<label>Last Name<input type="text" class="contact-data last-name"></label>
+			<label>Email<input type="text" class="contact-data email"></label>
+			<label>Gender<input type="text" class="contact-data gender" placeholder="m for male, f for female"></label>
+			<fieldset>
+				<legend>Info</legend>
+				<label>Company<input type="text" class="contact-data company"></label>
+				<label>Address<input type="text" class="contact-data address"></label>
+				<label>Phone<input type="text" class="contact-data phone"></label>
+				<label>Comments<input type="text" class="contact-data comments"></label>
+			</fieldset>
+			<input type="submit" class="add" value="Save">
+			<input type="button" class="back" value="back">
+		</form>
+	</div>
+	<script src=https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js></script>
+ 	<script type="text/javascript" src="js/ex2.js"></script>
+</body>
+</html>
