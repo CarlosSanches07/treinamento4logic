@@ -35,8 +35,10 @@ operators.forEach((item) => {
 		if(outerOutput.innerText === "")
 			return;
 
-		if(!isNumeric(outerOutput.innerText))
+		if(!isNumeric(outerOutput.innerText)){
 			outerOutput.innerText = "";
+			return
+		}
 
 		innerOutput.innerText += outerOutput.innerText + btn.innerText;
 		outerOutput.innerText = "";
@@ -86,5 +88,6 @@ equal.addEventListener('click', (event) => {
 	outerOutput.innerText = result;
 	innerOutput.innerText = '';
 	digits = [];
-	digits.push(result);
+	if(isNumeric(result))
+		digits.push(result);
 })
