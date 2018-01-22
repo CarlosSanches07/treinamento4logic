@@ -4,10 +4,12 @@ html{
 }
 
 body {
-	background-image: url('../img/bg-blue.jpg');
+/*	background-image: url('../img/bg-blue.jpg');
 	background-repeat: repeat;
-	background-size: cover;
+	background-size: cover;*/
 	margin: 0;
+	background-color: #979b8f
+;
 	/*color: #a0fff8;*/
 }
 
@@ -27,10 +29,10 @@ section {
 }
 
 section .calc {
-	width: 367px;
+	width: 200px;
 	height: 400px;
-	background-color: rgba(6, 0, 71, .4);
-	color: #cecece;
+	background-color: #dbe0d0;
+	color: white;
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: space-around;
@@ -38,25 +40,25 @@ section .calc {
 	margin-top: 100px;
 	margin-bottom: 40px;
 	border-radius: 30px;
-	box-shadow: -1px -1px 100px 34px rgba(2, 27, 68,0.9);
+	box-shadow: 0px 7px 30px 0px rgba(0, 0, 0, 0.75);
 }
-
 .output {
 	margin: 20px 0;
 	width: 80%;
-	height: 60px;
-	background-color: rgba(53, 107, 196, .7);
-	border-radius: 50px;
+	height: 100px;
+	background-color: #282827;
 	font-size: 22px;
 	text-align: right;
-	padding-right: 20px; 
+	padding-right: 20px;
+	box-shadow: 0px 4px rgba(0, 0, 0, 0.2);
+	overflow: hidden; 
 }
 
 .inner-output {
-	background-color: inherit !important;
+	overflow: hidden;
+	background-color: #000000;
 	width: 70%;
 	height: 20px;
-	border-radius: 50px 0;
 	color: inherit;
 	font-size: 16px;
 	text-align: left;
@@ -71,21 +73,20 @@ section .calc {
 	cursor: pointer;
 	line-height: 1.7;
 	text-align: center;
-	width: 25%;
+	width: 15%;
 	height: 30px;
-	margin: 0 5px;
-	border-radius: 50px;
-	border: 3px solid rgba(35, 119, 255, .8);
+	margin: 0;
+	border-radius: 5px;
+	border: 2px solid rgba(0, 0, 0, .8);
+	color: rgb(0, 0, 0);	
+	box-shadow: 0px 4px rgba(0, 0, 0, 0.2);
+
 }
 
-.btn:hover {
-	color: white;
-	border-color: white;
+.btn:hover{
+	background-color: #b7b9bc !important;
 }
 
-.operator:hover {
-	color: white !important;
-}
 
 .inner-btn {
 	margin-top: 6px;

@@ -1,18 +1,18 @@
-var digits = [];
+let digits = [];
 
-var outerOutput = document.querySelector('.outer-output');
+let outerOutput = document.querySelector('.outer-output');
 
-var innerOutput = document.querySelector('.inner-output');
+let innerOutput = document.querySelector('.inner-output');
 
-var numerics = Array.from(document.querySelectorAll('.numeric'));
+let numerics = Array.from(document.querySelectorAll('.numeric'));
 
-var operators = Array.from(document.querySelectorAll('.operator'));
+let operators = Array.from(document.querySelectorAll('.operator'));
 
-var clear = document.querySelector('.cls');
+let clear = document.querySelector('.cls');
 
-var equal = document.querySelector('.equal');
+let equal = document.querySelector('.equal');
 
-var isNumeric = function(n){
+function isNumeric(n) {
 	return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
@@ -21,6 +21,13 @@ numerics.forEach((item) => {
 		btn = event.srcElement; 
 		outerOutput.innerText += btn.innerText;
 		digits.push(btn.innerText);	
+	})
+})
+
+numerics.forEach((item) => {
+	item.addEventListener('onmouseup', (event) => {
+		btn = event.srcElement;
+		btn.style.backgroundColor = '#dbe0d0';
 	})
 })
 
