@@ -21,7 +21,7 @@ let searchContacts = (e) => {
 		screen.empty();
 		filtered = data.filter((item) => {
 			let name = `${item.firstName} ${item.lastName}`;
-			return name.toUpperCase().includes(text.toUpperCase());
+			return _.deburr(name).toUpperCase().includes(text.toUpperCase());
 		})
 		createList(filtered);
 		contactsClick();
