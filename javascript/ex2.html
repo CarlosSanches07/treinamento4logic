@@ -2,30 +2,81 @@
 <html>
 <head>
 	<title>ex2</title>
+	<link rel="stylesheet" type="text/css" href="css/ex2.css">
+	<link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
 </head>
 <body>
 	<div class="container">
+		<div class="header">
+			<label for="search">
+				<i class="fa fa-search search icon" aria-hidden="true"></i>
+				<input id="search" class="search" type="text">
+			</label>
+			<input type="button" value="+" class="add-contact">
+			<input type="button" class="export" value="Export">
+		</div>
 		<div class="contacts">
 			<ul class="content">
-			
+				
 			</ul>
-			<input type="button" value="+" class="add-contact">
 		</div>
-		<form action="http://localhost:3000/v1/contacts" method="post" class="form-addcontact">
-			<label>First Nome<input type="text" class="contact-data first-name"></label>
-			<label>Last Name<input type="text" class="contact-data last-name"></label>
-			<label>Email<input type="text" class="contact-data email"></label>
-			<label>Gender<input type="text" class="contact-data gender" placeholder="m for male, f for female"></label>
-			<fieldset>
-				<legend>Info</legend>
-				<label>Company<input type="text" class="contact-data company"></label>
-				<label>Address<input type="text" class="contact-data address"></label>
-				<label>Phone<input type="text" class="contact-data phone"></label>
-				<label>Comments<input type="text" class="contact-data comments"></label>
-			</fieldset>
-			<input type="submit" class="add" value="Save">
-			<input type="button" class="back" value="back">
-		</form>
+		<div class="contact">
+			<div class="form-container">
+				<h2 class="form-title">Add a Contact</h2>
+				<form class="form-addcontact">
+					<label>First Name<input type="text" class="contact-data first-name value-clear"></label>
+					<label>Last Name<input type="text" class="contact-data last-name value-clear"></label>
+					<label class="email-label">Email<input type="text" class="contact-data email value-clear"></label>
+					<label class="email-label lbl-img" title="add a image url">Photo URL
+						<input type="text" class="contact-data usr-avatar value-clear">
+					</label>
+						<div class="img-avatar"></div>
+					
+					<span>
+						Gender
+						<input id="female" type="radio" name="gender" class="contact-data gender female" value="f" checked>
+						<label for="female" class="lbl-female lbl-gender">
+							<i class="fa fa-female" aria-hidden="true"></i>
+						</label>
+						<input id="male" type="radio" name="gender" class="contact-data gender male " value="m">
+						<label for="male" class="lbl-male lbl-gender">
+							<i class="fa fa-male" aria-hidden="true"></i>
+						</label>
+						
+					</span>
+					<fieldset>
+						<legend>Info</legend>
+						<label>Company<input type="text" class="contact-data company value-clear"></label>
+						<label>Address<input type="text" class="contact-data address value-clear"></label>
+						<label>Phone<input type="text" class="contact-data phone value-clear"></label>
+						<label>Comments<input type="text" class="contact-data comments value-clear"></label>
+					</fieldset>
+					<input type="button" class="add" value="Save">
+				</form>
+			</div>
+			<div class="contact-container">
+				<div class="contact-info">
+					<h2 contenteditable="true" class="fName info"></h2>
+					<h2 contenteditable="true" class="lName info"></h2>
+					<h2 contenteditable="true" class="email-info info"></h2>
+				</div>
+				<div class="photo">
+					<img class="avatar" alt="photo" width="150px" height="100px;">
+				</div>
+				<div class="aditional-info">
+					<h3>Aditional Info</h3>
+					<p contenteditable="true" class="company-info info"></p>
+					<p contenteditable="true" class="address-info info"></p>
+					<p contenteditable="true" class="phone-info info"></p>
+					<p contenteditable="true" class="comments-info info"></p>
+					<label class="favorite"><i class="fa fa-star"></i><input type="button" class="btn-fav" data-fav=""></label>
+				</div>
+				<div class="info-buttons">
+					<!-- <input class="edit" type="button" name="save" value="save"> -->
+					<input class="delete-contact" type="button" name="delete" value="delete">
+				</div>
+			</div>
+		</div>
 	</div>
 	<script src=https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js></script>
  	<script type="text/javascript" src="js/ex2.js"></script>
