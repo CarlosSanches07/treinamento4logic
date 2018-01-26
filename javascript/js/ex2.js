@@ -9,7 +9,7 @@ let clearForms = () => {
 let searchContacts = (e) => {
 	$.ajax({
 		method: 'get',
-		url: 'http://localhost:3000/v1/contacts'
+		url: `${baseUrl}/contacts`
 	})
 	.done((data) => {
 		text = e.currentTarget.value;
