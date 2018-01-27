@@ -1,3 +1,12 @@
+body{
+	background-color: #d9efef;
+	color : white;
+}
+
+body input {
+	background-color: white; 
+}
+
 .container {
 	display: flex;
 	justify-content: space-between;
@@ -5,6 +14,8 @@
 
 
 .header {
+	z-index: 100;
+	background-color: #16a9c7; 
 	width: 40%;
 	height: 70px;
 	position: fixed;
@@ -14,11 +25,21 @@
 	align-items: center;
 	border: 1px solid black;
 }
+.header input {
+	background-color: #ff8817;
+	color: white;
+}
+
+.header label {
+	background-color: #16a9c7 !important;
+	color: #ff8817;
+}
 
 .header .search {
 	margin: 0 10px;
 	height: 20px;
 }
+
 
 .header .add-contact {
 	margin: 0 10px;
@@ -50,6 +71,7 @@ ul li {
 	border: 1px solid black;
 	padding: 5px 40px;
 	cursor: pointer;
+	background-color: #16a9c7;
 }
 
 li img {
@@ -72,6 +94,7 @@ li img {
 	height: 600px;
 	border: 1px solid black;
 	padding: 20px 20px;
+	background-color: #16a9c7;
 }
 
 .form-container { 
