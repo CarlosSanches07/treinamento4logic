@@ -160,7 +160,18 @@ let postContacts = () => {
 		return;
 	}
 
-	let avatar;
+	let fullName = `${$('.first-name').val()}${$('.last-name').val()}`.replace(/\s/, "");
+	if(!nameValidation(fullName)){
+		alert('Name must have only letters')
+		return
+	}
+
+	if(!emailValidation($('.email').val())){
+		alert('Put a valid email, ex: ______@____.___');
+		return;
+	}
+
+	 let avatar;
 
 	if(!$('.usr-avatar').val()){
 		avatar = 'https://img.gawkerassets.com/img/18bdx92z3gkiqjpg/original.jpg';
@@ -247,10 +258,21 @@ let putContact = () => {
 		alert('Name cannot be empty');
 		return;
 	}
+
+	if(!nameValidation(`${$('.fName').text()}${$('.lName').text()}`)){
+		alert('Name must have only letters');
+		return;
+	}
+
 	if($('.email-info').text() == ""){
 		alert('email cannot be empty');
 		return;
 	}
+
+	if(!emailValidation($('.email-info').text())){
+		alert('Put a valid email, ex: ______@____.___');s
+	}
+
 	let data = {
 		'firstName' : $('.fName').text(),
 		'lastName' : $('.lName').text(),
@@ -324,6 +346,39 @@ let exportList = () => {
 	}))
 }
 
+/*Form Validations*/
+
+let nameValidation = (text) => {
+	let regex = /\d|\W/;
+	return !regex.test(text);
+}
+
+let emailValidation = (text) => {
+	let regex = /\s/; // espaço em branco
+	if(regex.test(text))
+		return false;
+
+	regex = /\@/; // arroba
+
+	if(!regex.test(text))
+		return false;
+
+	regex = /\./; // ponto
+
+	if(!regex.test(text))
+		return false;
+
+	return true;
+}
+
+// let avatarUrlValidation = (text, success, err) => {
+// 	$.ajax({
+// 		method: 'get',
+// 		url: text
+// 	})
+// 	.done(success)
+// 	.fail(err)
+// }
 
 $(document).ready(()=> {
 

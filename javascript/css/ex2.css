@@ -1,5 +1,5 @@
 body{
-	background-color: #d9efef;
+	background-color: #f9fbfb;
 	color : white;
 }
 
@@ -40,15 +40,25 @@ body input {
 	height: 20px;
 }
 
+.header #search {
+	background-color: white;
+	color: #292929;
+}
 
 .header .add-contact {
 	margin: 0 10px;
-	height: 20px;
+    height: 30px;
+    width: 30px;
+    border-radius: 50px;
+    border: solid 1px #969339;
 }
 
 .header .export {
-	margin: 0 10px;
-	height: 20px;
+    margin: 0 10px;
+    height: 30px;
+    width: 60px;
+    border-radius: 10px;
+    border: 1px solid #7f9650;
 }
 
 .contacts {
@@ -97,6 +107,12 @@ li img {
 	background-color: #16a9c7;
 }
 
+.contact span {
+	font-size: 20px;
+    font-weight: bolder;
+    color: #292929;
+}
+
 .form-container { 
 	display: block;
 }
@@ -137,6 +153,10 @@ li img {
 	font-size: 30px;
 }
 
+span .gender {
+	color: inherit;
+}
+
 .form-addcontact .gender {
 	display: none;
 }
@@ -167,6 +187,10 @@ li img {
 	margin: 5px 10px;
 }
 
+.contact-info h2 {
+	margin-top: 0;
+}
+
 .contact-container {
 	display: none;
 	grid-template-columns: 60% 40%;
@@ -174,7 +198,7 @@ li img {
 }
 
 .contact .photo {
-	width: 60%;
+	width: 100%;
 	justify-self: end;
 }
 
@@ -189,20 +213,34 @@ li img {
 }
 
 .contact .aditional-info {
-	width: 400px;
-	grid-area: 2 / 1 / 2 / 2;
+	grid-area: 2 / 2 / 2 / 2;
 	align-self: center;
+	text-align: right;
 
 }
 
-.aditional-info .comments-info {
-	width: 300px;
+.aditional-info p {
+	margin-top: 0;
+}
+
+div .comments {
+	align-self: center;
 }
 
 .contact .info-buttons {
 	grid-area: 3 / 1 / 3 / 1;
 	justify-self: end;
 	align-self: end;
+}
+
+.info-buttons .delete-contact {
+	margin-left: 20px;
+    background-color: #ff8817;
+    margin: 0 10px;
+    height: 30px;
+    width: 60px;
+    border-radius: 10px;
+    border: 1px solid #7f9650;
 }
 
 .favorite input {
