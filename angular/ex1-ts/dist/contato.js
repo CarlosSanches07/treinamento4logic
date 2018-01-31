@@ -63,7 +63,13 @@ var Contato = /** @class */ (function () {
         configurable: true
     });
     Contato.prototype.getAge = function () {
-        return ((new Date().getFullYear()) - (this._birth.getFullYear()));
+        var today = new Date();
+        var age = ((today.getFullYear()) - (this._birth.getFullYear()));
+        var month = ((today.getMonth()) - (this._birth.getMonth()));
+        var day = ((today.getDay()) - (this._birth.getDay()));
+        month = (day < 0) ? month - 1 : month;
+        age = (month < 0) ? age - 1 : age;
+        return age;
     };
     return Contato;
 }());

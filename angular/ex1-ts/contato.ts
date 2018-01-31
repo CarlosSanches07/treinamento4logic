@@ -57,6 +57,14 @@ export class Contato implements ContatoInterface {
 	}
 
 	getAge() : number {
-		return ((new Date().getFullYear()) - (this._birth.getFullYear()));
+		let today : Date = new Date();
+		let age : number = ((today.getFullYear()) - (this._birth.getFullYear()));
+		let month : number = ((today.getMonth()) - (this._birth.getMonth()));
+		let day : number = ((today.getDay()) - (this._birth.getDay()));
+
+		month = (day < 0) ? month -1 : month;
+		age = (month < 0) ? age - 1 : age;
+
+		return age;
 	}
 }
