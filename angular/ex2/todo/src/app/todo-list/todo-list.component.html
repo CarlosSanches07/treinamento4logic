@@ -1,0 +1,8 @@
+
+<app-todo-item-form></app-todo-item-form>
+<ul>
+  <div *ngFor="let item of todoItems">
+    <app-todo-item [todoItem]="item"></app-todo-item>
+  </div>
+
+</ul>
