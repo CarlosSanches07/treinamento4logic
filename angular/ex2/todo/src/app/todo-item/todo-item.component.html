@@ -1,5 +1,7 @@
 <li>
-  <input type="button" (click)="done()">
-  <p>{{todoItem._name}}</p>
-  <p>{{todoItem._date}}</p>
+  <input type="button" (click)="done()" value="done">
+  <p>{{ todoItem._name }}</p>
+  <p>{{ todoItem._date}}</p>
+  <input type="button" (click)="edit()" value="edit">
+  <input type="button" (click)="delete()" value="delete">
 </li>

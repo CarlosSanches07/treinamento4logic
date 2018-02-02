@@ -1,8 +1,11 @@
 
-<app-todo-item-form></app-todo-item-form>
+
+<div *ngIf="isShowing">
+  <app-todo-item-form (sendData)="setTodoItems($event)"></app-todo-item-form>
+</div>
+<input type="button" (click)="showForm()" value="+">
 <ul>
   <div *ngFor="let item of todoItems">
-    <app-todo-item [todoItem]="item"></app-todo-item>
+    <app-todo-item (bye)="setTodoItems($event)" [todoItem]="item" [id]="item._id"></app-todo-item>
   </div>
-
-</ul>
+</ul> 

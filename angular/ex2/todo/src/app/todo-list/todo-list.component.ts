@@ -11,12 +11,23 @@ export class TodoListComponent implements OnInit {
 
   todoItems : TodoItem[];
 
-  constructor() { 
+  isShowing : boolean;
 
+  constructor() { 
   }
 
   ngOnInit() {
-    this.todoItems = [new TodoItem('sadasd', new Date(), false), new TodoItem('bola', new Date(), true)];
+    this.isShowing = false;
+    this.todoItems = JSON.parse(localStorage.getItem('todoItems'));
+  }
+
+  setTodoItems (items : any[]) {
+    this.todoItems = items;
+    this.isShowing = false;
+  }
+
+  showForm () : void {
+    this.isShowing = !this.isShowing
   }
 
 }
