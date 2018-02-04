@@ -1,9 +1,9 @@
 export class TodoItem {
 
   public id : number;
-  private _name : string;
-  private _date : Date;
-  private _isDone : boolean;
+  public _name : string;
+  public _date : Date;
+  public _isDone : boolean;
 
   constructor (id : number, name : string, date : Date, isDone : boolean) {
     this.id = id;

@@ -13,6 +13,7 @@ export class TodoItemComponent implements OnInit {
   @Input() id : number;
 
   @Output() bye : EventEmitter<any[]> = new EventEmitter();
+  @Output() sendId : EventEmitter<number> = new EventEmitter();
 
   constructor() {
   }
@@ -22,10 +23,8 @@ export class TodoItemComponent implements OnInit {
 
   delete () : void{
     let data : TodoItem[];
-    console.log(this.id);
     data = JSON.parse(localStorage.getItem('todoItems'));
     let itemIndex : number = data.findIndex((item : TodoItem) => item.id  === this.id);
-    console.log(itemIndex);
     let newData = [
       ...data.slice(0,itemIndex),
       ...data.slice(itemIndex + 1)
@@ -33,5 +32,19 @@ export class TodoItemComponent implements OnInit {
     localStorage.setItem('todoItems', JSON.stringify(newData));
     this.bye.emit(newData);
   }
+
+  edit () : void {
+    this.sendId.emit(this.id);
+  }
+
+  done () : void {
+    let data : TodoItem[];
+    data = JSON.parse(localStorage.getItem('todoItems'));
+    let itemIndex : number = data.findIndex((item : TodoItem) => item.id == this.id);
+    data[itemIndex]._isDone = !data[itemIndex]._isDone;
+    localStorage.setItem('todoItems', JSON.stringify(data));
+    this.bye.emit(data);
+  }
+
 }
 

@@ -1,0 +1,3 @@
+<label for="name">Name</label><input #name type="text" id="name">
+<label for="date">Date</label><input #date type="date" id="date">
+<input type="button" value="edit" (click)="save(name.value, date.value)">

@@ -13,6 +13,10 @@ export class TodoListComponent implements OnInit {
 
   isShowing : boolean;
 
+  isShowEdit  : boolean;
+
+  editingId : number;
+
   constructor() { 
   }
 
@@ -24,10 +28,18 @@ export class TodoListComponent implements OnInit {
   setTodoItems (items : any[]) {
     this.todoItems = items;
     this.isShowing = false;
+    this.isShowEdit = false;
   }
 
   showForm () : void {
-    this.isShowing = !this.isShowing
+    this.isShowEdit = false;
+    this.isShowing = !this.isShowing;
+  }
+
+  showEdit (id : number) : void {
+    this.isShowing = false;
+    this.editingId = id;
+    this.isShowEdit = !this.isShowEdit;
   }
 
 }
