@@ -6,6 +6,6 @@
 <input type="button" (click)="showForm()" value="+">
 <ul>
   <div *ngFor="let item of todoItems">
-    <app-todo-item (bye)="setTodoItems($event)" [todoItem]="item" [id]="item._id"></app-todo-item>
+    <app-todo-item (bye)="setTodoItems($event)" [todoItem]="item" [id]="item.id"></app-todo-item>
   </div>
 </ul> 

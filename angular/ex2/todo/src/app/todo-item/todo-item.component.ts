@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { TodoItem } from 'app/Models/todo-item';
+import { TodoItem } from '../Models/todo-item';
 
 @Component({
   selector: 'app-todo-item',
@@ -22,8 +22,10 @@ export class TodoItemComponent implements OnInit {
 
   delete () : void{
     let data : TodoItem[];
+    console.log(this.id);
     data = JSON.parse(localStorage.getItem('todoItems'));
-    let itemIndex : number = data.findIndex((item) => item._id  === this.id);
+    let itemIndex : number = data.findIndex((item : TodoItem) => item.id  === this.id);
+    console.log(itemIndex);
     let newData = [
       ...data.slice(0,itemIndex),
       ...data.slice(itemIndex + 1)

@@ -1,24 +1,24 @@
 export class TodoItem {
 
-  private _id : number;
+  public id : number;
   private _name : string;
   private _date : Date;
   private _isDone : boolean;
 
   constructor (id : number, name : string, date : Date, isDone : boolean) {
-    this._id = id;
+    this.id = id;
     this._name = name;
     this._date = date;
     this._isDone = isDone;
   }
 
-  set id(id : number){
+  /*set id(id : number){
     this._id = id;
   }
 
   get id() : number {
     return this._id;
-  }
+  }*/
 
   set name(name: string){
     this._name = name;
