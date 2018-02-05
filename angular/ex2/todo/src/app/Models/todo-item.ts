@@ -12,13 +12,13 @@ export class TodoItem {
     this._isDone = isDone;
   }
 
-  /*set id(id : number){
-    this._id = id;
-  }
+  // set id(id : number){
+  //   this._id = id;
+  // }
 
-  get id() : number {
-    return this._id;
-  }*/
+  // get id() : number {
+  //   return this._id;
+  // }
 
   set name(name: string){
     this._name = name;

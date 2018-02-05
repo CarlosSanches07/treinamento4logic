@@ -1,4 +1,4 @@
 <h2>Edit Todo</h2>
-<label for="edit-name">Name</label><input #name type="text" id="edit-name">
-<label for="edit-date">Date</label><input #date type="date" id="edit-date">
+<label for="edit-name">Name</label><input #name type="text" id="edit-name" [value]="getItemName()">
+<label for="edit-date">Date</label><input #date type="date" id="edit-date" [value]="getItemDate()">
 <input type="button" value="edit" (click)="save(name.value, date.value)">

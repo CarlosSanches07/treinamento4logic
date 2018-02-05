@@ -20,19 +20,19 @@ export class TodoItemComponent implements OnInit {
   
 
   ngOnInit() {
-    const items : Element[] = Array.from(document.querySelectorAll('.item-container'));
-    const data = JSON.parse(localStorage.getItem('todoItems'));
-    for(let i = 0; i < data.length; i++) {
-      let input = items[i].children[0] as HTMLInputElement;
-      let li = items[i] as HTMLLIElement;
-      if(data[i]._isDone){ 
-        li.style.backgroundColor = '#4efccb';
-        input.value = 'undone';
-      } else {
-        input.value = 'done';
-        li.style.backgroundColor = '#e8e8e8';
-      }
-    }
+    // const items : Element[] = Array.from(document.querySelectorAll('.item-container'));
+    // const data = JSON.parse(localStorage.getItem('todoItems'));
+    // for(let i = 0; i < data.length; i++) {
+    //   let input = items[i].children[0] as HTMLInputElement;
+    //   let li = items[i] as HTMLLIElement;
+    //   if(data[i]._isDone){ 
+    //     li.style.backgroundColor = '#4efccb';
+    //     input.value = 'undone';
+    //   } else {
+    //     input.value = 'done';
+    //     li.style.backgroundColor = '#e8e8e8';
+    //   }
+    // }
   }
 
   delete () : void{

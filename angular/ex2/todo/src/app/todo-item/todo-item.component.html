@@ -1,5 +1,5 @@
-<li class="item-container">
-  <input  class="item-content" type="button" (click)="done()" value="done">
+<li class="item-container" [style.backgroundColor]="(todoItem._isDone ? '#4efccb' : '#e8e8e8')">
+  <input  class="item-content" type="button" (click)="done()" [value]="(todoItem._isDone ? 'undone' : 'done')">
   <p class="item-content" >{{ todoItem._name }}</p>
   <p class="item-content" >{{ todoItem._date}}</p>
   <input  class="item-content" type="button" (click)="edit()" value="edit">

@@ -9,20 +9,11 @@ import { TodoItem } from '../Models/todo-item'
 })
 export class EditTodoComponent implements OnInit {
 
-	// itemName: string;
-	// itemDate: Date;
-
 	@Input() itemId : number;
 
 	@Output() edited : EventEmitter<any []> = new EventEmitter();
 
   constructor() { 
-	  // let name = document.getElementById('edit-name');
-   //  let date = document.getElementById('edit-date');
-   //  let data : TodoItem[] = JSON.parse(localStorage.getItem('todoItems'));
-   //  let itemIndex : number = data.findIndex((item : TodoItem) => item.id == this.itemId);
-   //  name.value = data[itemIndex]._name;
-   //  date.value = data[itemIndex]._date;
   }
 
   ngOnInit() {
@@ -34,8 +25,21 @@ export class EditTodoComponent implements OnInit {
   	data[itemIndex]._name = name;
   	data[itemIndex]._date = TodoItem.formatDate(date);
   	localStorage.setItem('todoItems', JSON.stringify(data));
-  	console.log(data[itemIndex]);
   	this.edited.emit(data);
+  }
+
+  getItemName () : string {
+    let data : TodoItem[] = JSON.parse(localStorage.getItem('todoItems'));
+    let itemIndex : number = data.findIndex((i) => i.id == this.itemId);
+    return data[itemIndex]._name;
+  }
+
+  getItemDate () : string {
+    let data : TodoItem[] = JSON.parse(localStorage.getItem('todoItems'));
+    let itemIndex : number = data.findIndex((i) => i.id == this.itemId);
+    let date = data[itemIndex]._date;
+    date = `${date[6]}${date[7]}${date[8]}${date[9]}-${date[3]}${date[4]}-${date[0]}${date[1]}`;
+    return date; 
   }
 
 }
