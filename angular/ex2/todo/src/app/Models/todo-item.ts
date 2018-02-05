@@ -2,10 +2,10 @@ export class TodoItem {
 
   public id : number;
   public _name : string;
-  public _date : Date;
+  public _date : string;
   public _isDone : boolean;
 
-  constructor (id : number, name : string, date : Date, isDone : boolean) {
+  constructor (id : number, name : string, date : string, isDone : boolean) {
     this.id = id;
     this._name = name;
     this._date = date;
@@ -28,11 +28,11 @@ export class TodoItem {
     return this._name;
   }
 
-  set date(date : Date) {
+  set date(date : string) {
     this._date = date;
   }
 
-  get date() : Date {
+  get date() : string {
     return this._date;
   }
 
@@ -47,4 +47,11 @@ export class TodoItem {
   // getFormatedDate () : string {
   //   return `${this._date.getDay}/${this._date.getMonth}/${this._date.getFullYear}`
   // }
+  public static formatDate (date : string) : string {
+    let tDate : Date = new Date(date);
+    tDate.setDate(tDate.getDate() + 1);
+    return tDate.toLocaleDateString();
+
+  }
+
 }

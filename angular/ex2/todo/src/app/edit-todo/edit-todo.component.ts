@@ -17,23 +17,22 @@ export class EditTodoComponent implements OnInit {
 	@Output() edited : EventEmitter<any []> = new EventEmitter();
 
   constructor() { 
-		// this.itemName = data[itemIndex]._name;
-		// this.itemDate = new Date(data[itemIndex]._date);
+	  // let name = document.getElementById('edit-name');
+   //  let date = document.getElementById('edit-date');
+   //  let data : TodoItem[] = JSON.parse(localStorage.getItem('todoItems'));
+   //  let itemIndex : number = data.findIndex((item : TodoItem) => item.id == this.itemId);
+   //  name.value = data[itemIndex]._name;
+   //  date.value = data[itemIndex]._date;
   }
 
   ngOnInit() {
-		// let data: TodoItem[] = JSON.parse(localStorage.getItem('todoItems'));
-		// let itemIndex: number = data.findIndex((i) => i.id == this.itemId);
-		// console.log(this.itemId);
-		// console.log(data);
-		// console.log(itemIndex);
   }
 
   save (name : string, date : string) {
   	let data : TodoItem[] = JSON.parse(localStorage.getItem('todoItems'));
   	let itemIndex : number = data.findIndex((i) => i.id == this.itemId);
   	data[itemIndex]._name = name;
-  	data[itemIndex]._date = new Date(date);
+  	data[itemIndex]._date = TodoItem.formatDate(date);
   	localStorage.setItem('todoItems', JSON.stringify(data));
   	console.log(data[itemIndex]);
   	this.edited.emit(data);

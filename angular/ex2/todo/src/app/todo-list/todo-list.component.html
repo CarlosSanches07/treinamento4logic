@@ -1,12 +1,11 @@
 
-
 <div *ngIf="isShowing">
   <app-todo-item-form (sendData)="setTodoItems($event)"></app-todo-item-form>
 </div>
 <div *ngIf="isShowEdit">
 	<app-edit-todo (edited)="setTodoItems($event)" [itemId]="editingId"></app-edit-todo>
 </div>
-<input type="button" (click)="showForm()" value="+">
+<input id="add-item" type="button" (click)="showForm()" value="Add Todo" style="margin: 20px 0;">
 <ul>
   <div *ngFor="let item of todoItems">
     <app-todo-item (sendId)="showEdit($event)" (bye)="setTodoItems($event)" [todoItem]="item" [id]="item.id"></app-todo-item>

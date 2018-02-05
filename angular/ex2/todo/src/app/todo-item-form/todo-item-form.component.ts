@@ -29,7 +29,7 @@ export class TodoItemFormComponent implements OnInit{
     let data : TodoItem[] = JSON.parse(localStorage.getItem('todoItems'));
     let lastId : number = (data !== null  && data[0] !== undefined) ? data[data.length - 1].id : 0;
     let id = (localStorage.length < 1) ? 1 : lastId + 1;
-    this.todoItem = new TodoItem(id, name, new Date(date), false);
+    this.todoItem = new TodoItem(id, name, TodoItem.formatDate(date), false);
     let todoItems : TodoItem[] = new Array();
     
     if(!localStorage.length){
