@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { TodoItem } from '../Models/todo-item';
 
@@ -17,10 +18,12 @@ export class TodoListComponent implements OnInit {
 
   editingId : number;
 
-  constructor() { 
-  }
+  constructor(
+    private router : Router
+    ) {}
 
-  ngOnInit() {
+  ngOnInit() 
+  { 
     this.isShowing = false;
     this.todoItems = JSON.parse(localStorage.getItem('todoItems'));
   }
@@ -32,8 +35,14 @@ export class TodoListComponent implements OnInit {
   }
 
   showForm () : void {
-    this.isShowEdit = false;
-    this.isShowing = !this.isShowing;
+    let url = this.router.url;
+    console.log(url);
+    if(url.includes('newItem')){
+      url = '/todoList'
+    }else {
+      url = '/todoList/newItem'
+    }
+    this.router.navigateByUrl(url);
   }
 
   showEdit (id : number) : void {
