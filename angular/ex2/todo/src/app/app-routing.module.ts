@@ -4,6 +4,8 @@ import { Routes, RouterModule } from '@angular/router'
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoItemFormComponent } from './todo-item-form/todo-item-form.component';
 import { EditTodoComponent } from './edit-todo/edit-todo.component';
+import { LoginComponent } from './login/login.component';
+import {RegisterComponent} from './register/register.component';
 
 const routes : Routes = [
   { path : 'todoList',
@@ -13,6 +15,8 @@ const routes : Routes = [
       { path : 'editItem/:id', component: EditTodoComponent }
     ]
   },
+  {path : 'login', component: LoginComponent},
+  {path : 'register', component: RegisterComponent}
   { path : '', redirectTo : 'todoList', pathMatch: 'full' }
 ];
 
