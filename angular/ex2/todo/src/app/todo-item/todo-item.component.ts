@@ -1,6 +1,8 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
+import { Router } from '@angular/router';
 
 import { TodoItem } from '../Models/todo-item';
+import { TodoListComponent } from '../todo-list/todo-list.component'
 
 @Component({
   selector: 'app-todo-item',
@@ -10,54 +12,38 @@ import { TodoItem } from '../Models/todo-item';
 export class TodoItemComponent implements OnInit {
 
   @Input() todoItem: TodoItem;
-  @Input() id : number;
 
-  @Output() bye : EventEmitter<any[]> = new EventEmitter();
-  @Output() sendId : EventEmitter<number> = new EventEmitter();
-
-  constructor() {
-  }
-  
+  constructor(
+    private todoList : TodoListComponent,
+    private router : Router
+    ) { }
 
   ngOnInit() {
-    // const items : Element[] = Array.from(document.querySelectorAll('.item-container'));
-    // const data = JSON.parse(localStorage.getItem('todoItems'));
-    // for(let i = 0; i < data.length; i++) {
-    //   let input = items[i].children[0] as HTMLInputElement;
-    //   let li = items[i] as HTMLLIElement;
-    //   if(data[i]._isDone){ 
-    //     li.style.backgroundColor = '#4efccb';
-    //     input.value = 'undone';
-    //   } else {
-    //     input.value = 'done';
-    //     li.style.backgroundColor = '#e8e8e8';
-    //   }
-    // }
   }
 
   delete () : void{
-    let data : TodoItem[];
-    data = JSON.parse(localStorage.getItem('todoItems'));
-    let itemIndex : number = data.findIndex((item : TodoItem) => item.id  === this.id);
-    let newData = [
-      ...data.slice(0,itemIndex),
-      ...data.slice(itemIndex + 1)
-    ];
-    localStorage.setItem('todoItems', JSON.stringify(newData));
-    this.bye.emit(newData);
+    TodoItem.deleteData(TodoItem.findItemById(this.todoItem.id));
+    TodoItem.readData((data) => {
+      this.todoList.setTodoItems(data);
+    })
+    this.router.navigateByUrl('/todoList');
   }
 
   edit () : void {
-    this.sendId.emit(this.id);
+    let url : string;
+    if(this.router.url.includes('edit'))
+      url = '/todoList'
+    else 
+      url = `/todoList/editItem/${this.todoItem.id}`;
+    this.router.navigateByUrl(url);
   }
 
   done () : void {
-    let data : TodoItem[];
-    data = JSON.parse(localStorage.getItem('todoItems'));
-    let itemIndex : number = data.findIndex((item : TodoItem) => item.id == this.id);
-    data[itemIndex]._isDone = !data[itemIndex]._isDone;
-    localStorage.setItem('todoItems', JSON.stringify(data));
-    this.bye.emit(data);
+    this.todoItem._isDone = !this.todoItem._isDone;
+    TodoItem.updateData(this.todoItem.id, this.todoItem._name, this.todoItem._date, this.todoItem._isDone);
+    TodoItem.readData((data) => {
+      this.todoList.setTodoItems(data);
+    })
   }
 
 }

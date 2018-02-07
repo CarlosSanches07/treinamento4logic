@@ -1,6 +1,8 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
-import { TodoItem } from '../Models/todo-item'
+import { TodoItem } from '../Models/todo-item';
+import { TodoListComponent } from '../todo-list/todo-list.component'
 
 @Component({
   selector: 'app-edit-todo',
@@ -9,37 +11,37 @@ import { TodoItem } from '../Models/todo-item'
 })
 export class EditTodoComponent implements OnInit {
 
-	@Input() itemId : number;
+  itemId : number;
 
-	@Output() edited : EventEmitter<any []> = new EventEmitter();
-
-  constructor() { 
-  }
+  constructor(
+    private router : Router,
+    private activatedRoute : ActivatedRoute,
+    private todoList : TodoListComponent
+    )
+  { }
 
   ngOnInit() {
+    this.activatedRoute.params.subscribe((params : Params) => {
+      this.itemId = Number(params['id']);
+    })
   }
 
   save (name : string, date : string) {
-  	let data : TodoItem[] = JSON.parse(localStorage.getItem('todoItems'));
-  	let itemIndex : number = data.findIndex((i) => i.id == this.itemId);
-  	data[itemIndex]._name = name;
-  	data[itemIndex]._date = TodoItem.formatDate(date);
-  	localStorage.setItem('todoItems', JSON.stringify(data));
-  	this.edited.emit(data);
+    TodoItem.updateData(this.itemId, name, date);
+    TodoItem.readData((data) => {
+      this.todoList.setTodoItems(data);
+    })
+    this.router.navigateByUrl('/todoList');
   }
 
   getItemName () : string {
-    let data : TodoItem[] = JSON.parse(localStorage.getItem('todoItems'));
-    let itemIndex : number = data.findIndex((i) => i.id == this.itemId);
-    return data[itemIndex]._name;
+    return TodoItem.findItemById(this.itemId)._name;
   }
 
   getItemDate () : string {
-    let data : TodoItem[] = JSON.parse(localStorage.getItem('todoItems'));
-    let itemIndex : number = data.findIndex((i) => i.id == this.itemId);
-    let date = data[itemIndex]._date;
+    let date = TodoItem.findItemById(this.itemId)._date;
     date = `${date[6]}${date[7]}${date[8]}${date[9]}-${date[3]}${date[4]}-${date[0]}${date[1]}`;
-    return date; 
+    return date;
   }
 
 }

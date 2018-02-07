@@ -1,4 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router'
 
 import {TodoItem} from '../Models/todo-item'
 import {TodoListComponent} from '../todo-list/todo-list.component'
@@ -11,38 +12,23 @@ import {TodoListComponent} from '../todo-list/todo-list.component'
 export class TodoItemFormComponent implements OnInit{
 
   todoItem : TodoItem;
-  @Output() sendData : EventEmitter<any[]> = new EventEmitter();
 
-  constructor() {
-   }
+  constructor(
+    private todoListComponent : TodoListComponent,
+    private router : Router
+    ) {}
 
   ngOnInit() {
   }
 
-  test(x : any[]) {
-      this.sendData.emit(x);
-  }
-
   save(name : string, date : string){
-    if (name == '' || !date)      
+    if(!name || !date)
       return;
-    let data : TodoItem[] = JSON.parse(localStorage.getItem('todoItems'));
-    let lastId : number = (data !== null  && data[0] !== undefined) ? data[data.length - 1].id : 0;
-    let id = (localStorage.length < 1) ? 1 : lastId + 1;
-    this.todoItem = new TodoItem(id, name, TodoItem.formatDate(date), false);
-    let todoItems : TodoItem[] = new Array();
-    
-    if(!localStorage.length){
-      todoItems.push(this.todoItem);
-      localStorage.setItem('todoItems', JSON.stringify(todoItems));
-    } else {
-      todoItems = JSON.parse(localStorage.getItem('todoItems'));
-      todoItems.push(this.todoItem);
-      localStorage.setItem('todoItems', JSON.stringify(todoItems));
-    }
-    this.test(todoItems);
+
+    this.todoItem = new TodoItem(TodoItem.generateId(), name, TodoItem.formatDate(date), false);
+    this.todoListComponent.todoItems.push(this.todoItem);
+    TodoItem.createData(this.todoListComponent.todoItems);
+    this.router.navigateByUrl('/todoList');
   }
-
-
 
 }

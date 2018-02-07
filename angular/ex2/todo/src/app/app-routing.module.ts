@@ -13,9 +13,7 @@ const routes : Routes = [
       { path : 'editItem/:id', component: EditTodoComponent }
     ]
   },
-  // { path : 'newItem', component: TodoItemFormComponent },
   { path : '', redirectTo : 'todoList', pathMatch: 'full' }
-  // { path : '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({

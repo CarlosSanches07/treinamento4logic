@@ -1,3 +1,5 @@
+import { TodoListComponent } from '../todo-list/todo-list.component';
+
 export class TodoItem {
 
   public id : number;
@@ -12,46 +14,68 @@ export class TodoItem {
     this._isDone = isDone;
   }
 
-  // set id(id : number){
-  //   this._id = id;
-  // }
+  /*______UTILS______*/
 
-  // get id() : number {
-  //   return this._id;
-  // }
-
-  set name(name: string){
-    this._name = name;
-  }
-
-  get name() : string {
-    return this._name;
-  }
-
-  set date(date : string) {
-    this._date = date;
-  }
-
-  get date() : string {
-    return this._date;
-  }
-
-  set isDone(isDone : boolean) {
-    this._isDone = isDone;
-  }
-
-  get isDone() : boolean {
-    return this._isDone;
-  }
-
-  // getFormatedDate () : string {
-  //   return `${this._date.getDay}/${this._date.getMonth}/${this._date.getFullYear}`
-  // }
   public static formatDate (date : string) : string {
     let tDate : Date = new Date(date);
     tDate.setDate(tDate.getDate() + 1);
     return tDate.toLocaleDateString();
 
   }
+
+  public static generateId() : number {
+    let data : TodoItem[];
+    this.readData(res => {
+      data = res;
+    });
+      let lastId : number = (data !== null  && data[0] !== undefined) ? data[data.length - 1].id : 0;
+      let id = (localStorage.length < 1) ? 1 : lastId + 1;
+      return id;
+  }
+
+  public static findItemById(id : number) : TodoItem {
+    let item : TodoItem;
+    this.readData((data) => {
+      item = data[data.findIndex(i => i.id === id)];
+    })
+    return item;
+  }
+
+  /*______CRUD______*/
+
+  public static createData(data : TodoItem[]) {
+      localStorage.setItem('todoItems', JSON.stringify(data));
+  }
+
+  public static readData (callback : (data : TodoItem[]) => void) {
+    const data : TodoItem[] = JSON.parse(localStorage.getItem('todoItems'));
+    callback(data);
+  }
+
+  public static updateData (id: number, name : string, date : string, isDone ?: boolean ) {
+      this.readData((data => {
+        const index = data.findIndex((i) => i.id === id);
+        if (isDone !== undefined){
+          data[index]._isDone = isDone;
+          this.createData(data);
+          return;
+        }
+        data[index]._name = name;
+        data[index]._date = this.formatDate(date);
+        this.createData(data);
+      }))  
+  }
+
+  public static deleteData (item : TodoItem) {
+    this.readData((data) => {
+      let index : number = data.findIndex((i) => i.id === item.id);
+      let newData = [
+        ...data.slice(0, index),
+        ...data.slice(index + 1)
+      ];
+      this.createData(newData);
+    })   
+  }
+
 
 }
