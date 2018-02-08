@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { User } from '../Models/user'
 
 @Component({
   selector: 'app-register',
@@ -7,9 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router : Router 
+    ) { }
 
   ngOnInit() {
   }
 
+  back () {
+    this.router.navigateByUrl('/login');
+  }
+
+  newUser (username : string, password : string) {
+    const user : User = new User(username, password);
+    if(!User.verifyUser(user)){
+      user.id = User.generateId()
+      User.createUser(user)
+      alert('User successfully created')
+      this.router.navigateByUrl('/login');
+    } else {
+      alert('This UserName already exits');
+    }
+  }
 }

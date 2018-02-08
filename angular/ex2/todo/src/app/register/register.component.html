@@ -3,4 +3,5 @@
 <input #username id="username" type="text">
 <label for="password">Password</label>
 <input #password id="password" type="text">
-<input type="button" value="Register">
+<input type="button" value="Register" (click)="newUser(username.value, password.value)">
+<div><input type="button" value="<- Back" (click)="back()"></div>

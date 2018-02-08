@@ -6,12 +6,14 @@ export class TodoItem {
   public _name : string;
   public _date : string;
   public _isDone : boolean;
+  public userId : number;
 
-  constructor (id : number, name : string, date : string, isDone : boolean) {
+  constructor (id : number, name : string, date : string, isDone : boolean, userId : number) {
     this.id = id;
     this._name = name;
     this._date = date;
     this._isDone = isDone;
+    this.userId = userId;
   }
 
   /*______UTILS______*/
@@ -28,8 +30,10 @@ export class TodoItem {
     this.readData(res => {
       data = res;
     });
+      if(data === null)
+        return 1;
       let lastId : number = (data !== null  && data[0] !== undefined) ? data[data.length - 1].id : 0;
-      let id = (localStorage.length < 1) ? 1 : lastId + 1;
+      let id = (JSON.parse(localStorage.getItem('todoItems')).length < 1) ? 1 : lastId + 1;
       return id;
   }
 

@@ -24,10 +24,17 @@ export class TodoItemFormComponent implements OnInit{
   save(name : string, date : string){
     if(!name || !date)
       return;
-
-    this.todoItem = new TodoItem(TodoItem.generateId(), name, TodoItem.formatDate(date), false);
-    this.todoListComponent.todoItems.push(this.todoItem);
-    TodoItem.createData(this.todoListComponent.todoItems);
+    const userId = Number(localStorage.getItem('id'));
+    let newData : TodoItem[];
+    this.todoItem = new TodoItem(TodoItem.generateId(), name, TodoItem.formatDate(date), false, userId);
+    TodoItem.readData( data => {
+      newData = data;
+    })
+    newData.push(this.todoItem);
+    TodoItem.createData(newData);
+    this.todoListComponent.setTodoItems(newData);
+    // this.todoListComponent.todoItems.push(this.todoItem);
+    // TodoItem.createData(this.todoListComponent.todoItems);
     this.router.navigateByUrl('/todoList');
   }
 

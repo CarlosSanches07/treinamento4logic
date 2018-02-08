@@ -3,6 +3,6 @@
 <input #username id="username" type="text">
 <label for="password">Password</label>
 <input #password id="password" type="text">
-<input type="button" value="Login">
-<p>Or Register</p>
-<input type="button" value="Register">
+<input type="button" value="Login" (click)="login(username.value, password.value)">
+<p>or register</p>
+<input type="button" value="Register" (click)="register()">

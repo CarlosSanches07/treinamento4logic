@@ -24,7 +24,8 @@ export class TodoListComponent implements OnInit {
   }
 
   setTodoItems (items : any[]) {
-    this.todoItems = items;
+    const userData : TodoItem[] = items.filter( ( item ) => item.userId === Number(localStorage.getItem('id')));
+    this.todoItems = userData;
   }
 
   showForm () : void {
