@@ -28,7 +28,8 @@ export class TodoItemFormComponent implements OnInit{
     let newData : TodoItem[];
     this.todoItem = new TodoItem(TodoItem.generateId(), name, TodoItem.formatDate(date), false, userId);
     TodoItem.readData( data => {
-      newData = data;
+      if(data !== null)
+        newData = data;
     })
     newData.push(this.todoItem);
     TodoItem.createData(newData);
