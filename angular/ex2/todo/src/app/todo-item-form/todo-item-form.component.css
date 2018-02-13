@@ -1,0 +1,39 @@
+.newTodo {
+	display : flex;
+	align-items: center;
+	flex-flow: column;
+}
+
+.newTodo input{
+	color: white;
+	text-align: center;
+	width: 20%;
+	height: 25px;
+	margin : 5px 0;
+	background-color: rgba(255, 255, 255, .2);
+	border: 1px solid rgba(255, 255, 255, .4);
+	transition-duration: 0.25s;
+}
+
+.newTodo input:hover {
+	background-color: rgba(255, 255, 255, .4);
+}
+
+.newTodo input:focus {
+	width: 30%;
+	color: #7FC7C7;
+	background-color: white;
+}
+
+.newTodo input[type=button] {
+	margin-top: 25px;
+	width: 20%;
+	height: 35px;
+	border: 1px solid white;
+	background-color: rgb(255, 255, 255);
+	color: #7fc7c7;
+}
+
+.newTodo input[type=button]:hover {
+	background-color: rgba(255,255,255,.8);
+}

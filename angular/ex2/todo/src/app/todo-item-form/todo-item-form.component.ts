@@ -30,6 +30,8 @@ export class TodoItemFormComponent implements OnInit{
     TodoItem.readData( data => {
       if(data !== null)
         newData = data;
+      else
+        newData = [];
     })
     newData.push(this.todoItem);
     TodoItem.createData(newData);

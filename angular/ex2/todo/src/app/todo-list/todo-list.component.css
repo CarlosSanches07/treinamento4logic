@@ -1,4 +1,18 @@
 input #add-item{
+	display: none;
+}
+
+.button-container {
+	display: flex;
+}
+
+.fa-plus-circle {
+	font-size: 60px;
+	position: relative;
+	align-self: flex-start;
+	margin: 10px 35px;
+	bottom: 20px;
+	z-index: 1000;
 }
 
 ul {

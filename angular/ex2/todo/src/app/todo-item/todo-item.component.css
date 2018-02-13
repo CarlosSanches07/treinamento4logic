@@ -5,7 +5,8 @@
   justify-content: space-between;
   align-items: center;
   margin: 30px 0;
-  background-color: #e8e8e8;
+  background-color: rgba(255, 255, 255, .2);
+  border: 1px solid rgba(255, 255, 255, .4);
   box-shadow: 5px 5px 5px #8f939b;
   font-size: 18px;
 }
@@ -20,11 +21,12 @@
 }
 
 .item-container input {
-  border-radius: 5px;
-  width: 7%;
-  background-color: #1ed5ed;
-  border-color: #1c91a0;
-  margin: 0 15px;
+  display: none;
+}
+
+.item-container i {
+  font-size: 22px;
+  margin: 0 30px;
 }
 
 .item-content:hover{

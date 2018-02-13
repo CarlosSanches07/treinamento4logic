@@ -30,6 +30,7 @@ export class TodoItemComponent implements OnInit {
   }
 
   edit () : void {
+    console.log(TodoItem.formatDate(this.todoItem._date));
     let url : string;
     if(this.router.url.includes('edit'))
       url = '/todoList'
