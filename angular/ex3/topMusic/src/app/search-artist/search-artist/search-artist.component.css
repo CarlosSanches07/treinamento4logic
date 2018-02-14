@@ -1,0 +1,16 @@
+.song {
+  border: 1px solid black;
+  margin: 25px;
+  width: 20%;
+  padding: 10px;
+}
+
+.song p {
+  background-color: #e8e8e8;
+  margin: 10px;
+}
+
+.song a {
+  background-color: #e8e8e8;
+  margin: 10px 10px;
+}

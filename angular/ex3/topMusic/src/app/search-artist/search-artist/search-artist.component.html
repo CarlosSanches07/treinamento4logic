@@ -1,0 +1,10 @@
+  <h3>Search a song</h3>
+  <input #song type="text">
+  <button (click)="getSongs(song.value)">Search</button>
+  <div *ngFor="let song of songs">
+    <div class="song">
+      <p>Song : {{song.title}}</p>
+      <p>Band : {{song.band}}</p>
+      <a [href]="('https://www.vagalume.com.br/'+song.url)">Lyrics + Song</a>
+    </div>
+  </div>
