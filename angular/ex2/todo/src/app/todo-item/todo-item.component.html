@@ -1,7 +1,18 @@
-<li class="item-container" [style.backgroundColor]="(todoItem._isDone ? '#4efccb' : '#e8e8e8')">
-  <input  class="item-content" type="button" (click)="done()" [value]="(todoItem._isDone ? 'undone' : 'done')">
+<li class="item-container">
+  <div class="flag" [style.backgroundColor]="(todoItem._isDone ? '#1be25f' : '#ffffff')" ></div>
+	<label for="done">
+  	<i class="fa fa-check-square button"></i>
+  	<input id="done" class="item-content" type="button" (click)="done()" [value]="(todoItem._isDone ? 'undone' : 'done')">
+  </label>
   <p class="item-content" >{{ todoItem._name }}</p>
   <p class="item-content" >{{ todoItem._date}}</p>
-  <input  class="item-content" type="button" (click)="edit()" value="edit">
-  <input  class="item-content" type="button" (click)="delete()" value="delete">
+  <label for="edit">
+  	<i class="fa fa-edit button"></i>
+  	<input  id="edit" class="item-content" type="button" (click)="edit()" value="edit">
+  </label>
+  <label for="delete">
+  	<i class="fa fa-trash button"></i>
+  	<input id="delete" class="item-content" type="button" (click)="delete()" value="delete">
+	</label>
 </li>
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>

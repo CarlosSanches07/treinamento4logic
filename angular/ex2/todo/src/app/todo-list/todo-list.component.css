@@ -1,4 +1,25 @@
 input #add-item{
+	display: none;
+}
+
+.button-container {
+	display: flex;
+}
+
+.fa-plus-circle {
+	color: #0d262d;
+	font-size: 60px;
+	position: relative;
+	align-self: flex-start;
+	margin: 10px 35px;
+	bottom: 20px;
+	z-index: 1000;
+	cursor: pointer;
+	transition: color 0.25s;
+}
+
+.fa-plus-circle:hover {
+	color : white;
 }
 
 ul {

@@ -1,8 +1,8 @@
-<h2>Login</h2>
-<label for="username">Username</label>
-<input #username id="username" type="text">
-<label for="password">Password</label>
-<input #password id="password" type="text">
-<input type="button" value="Login" (click)="login(username.value, password.value)">
-<p>or register</p>
-<input type="button" value="Register" (click)="register()">
+<div class="login container">
+	<h2>Login</h2>
+	<input #username id="username" class="login-input" type="text" placeholder="Username">
+	<input #password id="password" type="password" class="login-input" placeholder="Password">
+	<input type="button" class="login-button" value="Login" (click)="login(username.value, password.value)">
+	<p>or register</p>
+	<input type="button" class="login-button register" value="Register" (click)="register()">
+</div>

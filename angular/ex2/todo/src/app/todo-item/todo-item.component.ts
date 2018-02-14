@@ -22,6 +22,8 @@ export class TodoItemComponent implements OnInit {
   }
 
   delete () : void{
+    if(!confirm('Do you really wanna delete this ?'))
+      return
     TodoItem.deleteData(TodoItem.findItemById(this.todoItem.id));
     TodoItem.readData((data) => {
       this.todoList.setTodoItems(data);
@@ -30,6 +32,7 @@ export class TodoItemComponent implements OnInit {
   }
 
   edit () : void {
+    console.log(TodoItem.formatDate(this.todoItem._date));
     let url : string;
     if(this.router.url.includes('edit'))
       url = '/todoList'

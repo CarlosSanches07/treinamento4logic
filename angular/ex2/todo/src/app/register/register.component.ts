@@ -15,6 +15,21 @@ export class RegisterComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    const input = Array.from(document.querySelectorAll('.login-input'));
+    let placeholder : string;
+    input.forEach((item) => {
+      item.addEventListener('click', () => {
+        if(item.hasAttribute('placeholder')){
+          placeholder = item.getAttribute('placeholder')
+          item.removeAttribute('placeholder')
+        }
+      })
+    })
+    input.forEach((item) => {
+      item.addEventListener('blur', () => {
+        item.setAttribute('placeholder', placeholder);
+      })
+    })
   }
 
   back () {
@@ -22,6 +37,11 @@ export class RegisterComponent implements OnInit {
   }
 
   newUser (username : string, password : string) {
+    if(!username || !password){
+      const input = Array.from(document.querySelectorAll('.login-input'));
+      input.forEach(item => item.classList.add('login-error'));
+      return;
+    }
     const user : User = new User(username, password);
     if(!User.verifyUser(user)){
       user.id = User.generateId()

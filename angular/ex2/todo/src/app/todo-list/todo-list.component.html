@@ -1,9 +1,12 @@
 <router-outlet></router-outlet>
-<div>
-  <input id="add-item" type="button" (click)="showForm()" value="Add Todo" style="margin: 20px 0;">
-</div>
 <ul>
   <div *ngFor="let item of todoItems">
     <app-todo-item [todoItem]="item"></app-todo-item>
   </div>
 </ul>
+<div class="button-container">
+	<label for="add-item">
+		<i class="fa fa-plus-circle"></i>
+  	<input id="add-item" type="button" (click)="showForm()" value="Add Todo" style="display: none">
+	</label>
+</div>
