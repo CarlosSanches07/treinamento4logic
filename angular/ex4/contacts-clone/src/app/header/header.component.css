@@ -1,0 +1,10 @@
+.search {
+  border: 1px solid #000000;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+}
+
+.seach > * {
+  display: flex;
+}
