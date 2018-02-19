@@ -1,9 +1,9 @@
 <mat-list class="contact-list">
   <mat-list-item *ngFor="let contact of contacts">
-    <div class="contact" (click)="edit(contact.test)">
-      <i>isFav</i>
-       Name 
-      <img src="">Photo
+    <div class="contact" (click)="edit(contact._id)">
+      <i>{{contact.isFavorite}}</i>
+       {{contact.firstName}} 
+      <img [src]="contact.info.avatar" width="25px" height="25px">
     </div>
   </mat-list-item>
 </mat-list>

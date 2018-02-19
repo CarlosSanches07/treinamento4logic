@@ -1,32 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { ContactsService } from '../contacts.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-contact-list',
   templateUrl: './contact-list.component.html',
   styleUrls: ['./contact-list.component.css']
 })
-export class ContactListComponent implements OnInit {
+export class ContactListComponent implements OnInit, OnDestroy {
 
   constructor(
-    private router : Router
+    private router : Router,
+    private service : ContactsService
     ) { }
 
+  subscribe : Subscription;
   contacts : any[];
 
   ngOnInit() {
-    this.contacts = [
-                    {test : 1},
-                    {test : 2},
-                    {test : 3},
-                    {test : 4},
-                    {test : 5},
-                    {test : 6},
-                    {test : 7},
-                    {test : 8},
-                    {test : 9},
-                    {test : 0}
-                    ];
+    this.subscribe = this.service.getContacts().subscribe((res) => {
+      this.contacts = res;
+    });
+  }
+
+  ngOnDestroy() {
+    if(this.subscribe)
+      this.subscribe.unsubscribe();
   }
 
   edit (id : any) {

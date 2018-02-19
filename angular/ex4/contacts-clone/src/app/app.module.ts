@@ -4,7 +4,7 @@ import { NgModule }                         from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule }          from '@angular/platform-browser/animations';
 import { AppRoutingModule }                 from './app-routing.module';
-import { HttpClientModule }                 from '@angular/common/http';
+import { HttpModule }                       from '@angular/http'
 
 /*ANGULAR COMPONENTS*/
 import { AppComponent }         from './app.component';
@@ -18,6 +18,9 @@ import { MatButtonModule }    from '@angular/material/button';
 import { MatListModule }      from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
+/*SERVICES*/
+import { ContactsService } from './contacts.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +33,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    HttpClientModule,
+    HttpModule,
 
     /*FORM IMPORTS*/
     ReactiveFormsModule,
@@ -42,7 +45,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatListModule,
     MatFormFieldModule
   ],
-  providers: [],
+  providers: [ContactsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

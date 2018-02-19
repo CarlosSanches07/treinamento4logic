@@ -1,6 +1,6 @@
-<form [formGroup] = "contactForm" (ngSubmit)="addContact(contactForm.value)">
+<form [formGroup]="contactForm" (ngSubmit)="addContact(contactForm.value)">
   <mat-form-field>
-    <input matInput formControlName="name" required>
+    <input matInput formControlName="firstName" required>
   </mat-form-field>
 
   <mat-form-field>
@@ -12,7 +12,7 @@
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput formControlName="imgUrl">
+    <input matInput formControlName="avatar">
   </mat-form-field>
 
   <button mat-raised-button color="primary">test</button>

@@ -1,17 +1,17 @@
 export class Model {
   
-  public name     :  string;
+  public firstName     :  string;
   public lastName :  string;
   public email    :  string;
   // public imgUrl   :  string;
-/*  public info     :  {
-    
-    company  :  string,
-    address  :  string,
-    phone    :  string,
-    comments :  string
+  public info     :  {
+    avatar : string;    
+    // company  :  string,
+    // address  :  string,
+    // phone    :  string,
+    // comments :  string
   
-  }*/;
+  };
 
 
   constructor (
@@ -19,6 +19,9 @@ export class Model {
     name     : string,
     lastName : string,
     email    : string,
+    info     : {
+        avatar   : string
+    }
     // imgUrl   : string,
     /*info     : {
       company  :  string,
@@ -30,10 +33,10 @@ export class Model {
       )
     {
 
-      this.name       =  name;
+      this.firstName  =  name;
       this.lastName   =  lastName;
       this.email      =  email;
-/*      this.info       =  info;*/
+      this.info       =  info;
 
     }
 }
