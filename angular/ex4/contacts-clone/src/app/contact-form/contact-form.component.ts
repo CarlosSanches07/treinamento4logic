@@ -24,6 +24,7 @@ export class ContactFormComponent implements OnInit, OnDestroy {
     ) 
     {
       this.createForm();
+      this.verifyContent();
     }
 
   ngOnInit() {
@@ -35,13 +36,14 @@ export class ContactFormComponent implements OnInit, OnDestroy {
       this.subscribe.unsubscribe();
   }
 
-  async createForm () {
-      await this.contactForm = this.verifyContent();
+  createForm () {
       this.contactForm = this.builder.group({        
         'firstName'  : [null, Validators.required],
         'lastName'   : [null, Validators.required],
         'email'      : [null, Validators.required],
-        'avatar'     : [null]        
+        info     : this.builder.group({
+          'avatar' : [null]
+        })        
       })
 /*        'info'     : this.builder.group({        
           'company'  : [null],
@@ -56,7 +58,7 @@ export class ContactFormComponent implements OnInit, OnDestroy {
       this.model = model;
   }
 
-  verifyContent () : Model {
+  verifyContent () {
     let model : Model;
 
     if(this.router.url.includes('edit')){  
@@ -65,9 +67,9 @@ export class ContactFormComponent implements OnInit, OnDestroy {
       console.log(id);
       this.subscribe = this.service.getContactById(id).subscribe((res) => {
         console.log(res);
-        return res;
-      
+        this.contactForm.patchValue(res);
       })
+
     } else {
       model = { 
 
@@ -79,7 +81,7 @@ export class ContactFormComponent implements OnInit, OnDestroy {
         }
 
       }
-      return model;
+      this.contactForm.patchValue(model);
     }
   }
 

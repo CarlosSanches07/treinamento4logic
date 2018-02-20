@@ -1,20 +1,21 @@
 <form [formGroup]="contactForm" (ngSubmit)="addContact(contactForm.value)">
   <mat-form-field>
-    <input matInput formControlName="firstName" required>
+    <input placeholder="First Name" matInput formControlName="firstName" required>
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput formControlName="lastName" required>
+    <input placeholder="Last Name" matInput formControlName="lastName" required>
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput formControlName="email" required>
+    <input placeholder="Email" matInput formControlName="email" required>
   </mat-form-field>
-
-  <mat-form-field>
-    <input matInput formControlName="avatar">
-  </mat-form-field>
-
+  
+  <div formGroupName="info">
+    <mat-form-field>
+      <input placeholder="Avatar" matInput formControlName="avatar">
+    </mat-form-field>
+  </div>
   <button mat-raised-button color="primary">test</button>
 </form>
 <p>Form value: {{ contactForm.value | json }}</p>
