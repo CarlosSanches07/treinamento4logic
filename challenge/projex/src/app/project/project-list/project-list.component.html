@@ -1,3 +1,12 @@
-<p>
-  project-list works!
-</p>
+<div class="project-list" fxLayout="column" fxLayoutAlign="center">
+  <mat-list>
+    <div *ngFor="let project of projectList">
+      <mat-list-item>
+        <p>{{project.name}}</p>
+        <br/>
+        <p>{{project.description}}</p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </div>
+  </mat-list>
+</div>

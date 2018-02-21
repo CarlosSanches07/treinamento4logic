@@ -21,7 +21,7 @@ export class ControllerService {
   getById(id : string, route : string) : Observable<any> {
   	return this.http.get(`${environment.apiUrl}${route}/${id}`)
   		.map((res : Response) => res.json())
-  		.catch((err : any) => err.json().errot || "Service Error")
+  		.catch((err : any) => err.json().error || "Service Error")
   }
 
   update(data : any, route : string) : Observable<any> {

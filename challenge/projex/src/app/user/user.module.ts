@@ -8,9 +8,12 @@ import { UserListComponent } from './user-list/user-list.component';
 
 import { ControllerService } from '../controller.service';
 
+import { AngularMaterialModule } from '../angular-material/angular-material.module';
+
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    AngularMaterialModule
   ],
   providers : [ControllerService],
   declarations: [UserInfoComponent, UserFormComponent, UserDeleteComponent, UserListComponent]

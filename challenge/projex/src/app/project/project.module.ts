@@ -7,12 +7,14 @@ import { ProjectFormComponent } from './project-form/project-form.component';
 import { ProjectDeleteComponent } from './project-delete/project-delete.component';
 import { ProjectListComponent } from './project-list/project-list.component';
 
+import { AngularMaterialModule } from '../angular-material/angular-material.module';
 
 import { ControllerService } from '../controller.service';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    AngularMaterialModule
   ],
   providers: [ControllerService],
   declarations: [ProjectInfoComponent, ProjectFormComponent, ProjectDeleteComponent, ProjectListComponent]

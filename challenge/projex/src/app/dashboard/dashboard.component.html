@@ -1,0 +1,19 @@
+<div class="header">
+  <div class="title" fxLayoutAlign="center">
+    <h1>Projex</h1>
+  </div>
+  <div class="button-container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign.xs="space-evenly center" fxLayoutAlign="space-evenly center">
+    <a [routerLink]="['/user']">
+      <div class="user button" fxLayoutAlign="center">
+        USER
+      </div>
+    </a>
+    <a [routerLink]="['/project']">
+      <div class="project button " fxLayoutAlign="center">
+        PROJECT
+      </div>
+    </a>
+  </div>
+</div>
+<router-outlet></router-outlet>
+

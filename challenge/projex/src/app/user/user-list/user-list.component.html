@@ -1,3 +1,11 @@
-<p>
-  user-list works!
-</p>
+<div class="user-list" fxLayout="column" fxLayoutAlign="center" >
+  <mat-list>
+    <div *ngFor="let user of userList">
+      <mat-list-item>
+        <p>{{user.name}}</p>
+        <p>{{user.email}}</p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </div>
+  </mat-list>
+</div>
