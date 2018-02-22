@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } 				from 'rxjs/Subscription';
-import { ControllerService } 			from '../../controller.service';
-import { ProjectModel } 				from '../project-model';
+import { Subscription } 				        from 'rxjs/Subscription';
+import { ControllerService } 			      from '../../controller.service';
+import { ProjectModel } 				        from '../project-model';
+import { Router }                       from '@angular/router';
 @Component({
   selector: 'app-project-list',
   templateUrl: './project-list.component.html',
@@ -10,7 +11,8 @@ import { ProjectModel } 				from '../project-model';
 export class ProjectListComponent implements OnInit, OnDestroy {
 
   constructor(
-  	private controller : ControllerService
+  	private controller : ControllerService,
+    private router : Router
   	) { }
 
   subscriber : Subscription;
@@ -26,6 +28,16 @@ export class ProjectListComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
   	if(this.subscriber)
   		this.subscriber.unsubscribe();
+  }
+
+  edit (id : string) {
+    const url : string = `${this.router.url}/edit/${id}`;
+    this.router.navigateByUrl(url);
+  }
+
+  delete (id : string) {
+    const url : string = `${this.router.url}/delete/${id}`;
+    this.router.navigateByUrl(url);
   }
 
 }

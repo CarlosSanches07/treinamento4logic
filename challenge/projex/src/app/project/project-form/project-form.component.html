@@ -1,3 +1,30 @@
-<p>
-  project-form works!
-</p>
+<form [formGroup]="projForm">
+  <mat-form-field>
+    <input matInput placeholder="Name" formControlName="name" required>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [matDatepicker]="start" formControlName="start" placeholder="Start Date" required>
+    <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+    <mat-datepicker #start></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [matDatepicker]="finish" formControlName="finish" placeholder="Finish Date" required>
+    <mat-datepicker-toggle matSuffix [for]="finish"></mat-datepicker-toggle>
+    <mat-datepicker #finish></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Team Leader" formControlName="boss" required>
+  </mat-form-field>
+  <mat-form-field>
+    <textarea matInput placeholder="Description" formControlName="description" required></textarea>
+  </mat-form-field>
+  <div formGroupName="team">
+    <mat-form-field>
+      <input matInput placeholder="Member Email" formControlName="member" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Workload" formControlName="timeSpend" required>
+    </mat-form-field>
+  </div>
+</form>
+<p>Form Value : {{ projForm.value | json }}</p>

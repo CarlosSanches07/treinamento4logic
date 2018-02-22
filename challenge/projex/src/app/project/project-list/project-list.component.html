@@ -1,10 +1,14 @@
 <div class="project-list" fxLayout="column" fxLayoutAlign="center">
+  <a [routerLink]="['/project/new']">add New</a>
+  <router-outlet></router-outlet>
   <mat-list>
     <div *ngFor="let project of projectList">
       <mat-list-item>
+        <a (click)="edit(project._id)">Edit</a>
         <p>{{project.name}}</p>
         <br/>
         <p>{{project.description}}</p>
+        <a (click)="delete(project._id)">Delete</a>
       </mat-list-item>
       <mat-divider></mat-divider>
     </div>

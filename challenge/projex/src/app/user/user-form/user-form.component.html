@@ -1,3 +1,20 @@
-<p>
-  user-form works!
-</p>
+<form [formGroup]="userForm">
+  <mat-form-field>
+    <input matInput placeholder="Name" formControlName="name" required>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Email" formControlName="email" required>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Phone" formControlName="phone" required>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="birth" formControlName="birth" required>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Work Load" formControlName="workload" required>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Scholarity" formControlName="scholarity" required>
+  </mat-form-field>
+</form>

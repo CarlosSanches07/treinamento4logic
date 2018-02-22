@@ -29,7 +29,7 @@ const routes = [
 					{path : 'new', 		  	  component : UserFormComponent},
 					{path : 'edit/:id',   	  component : UserFormComponent},
 					{path : 'info/:id',   	  component : UserInfoComponent},
-					{path : 'deleteUser/:id', component : UserDeleteComponent}
+					{path : 'delete/:id', component : UserDeleteComponent}
 				]
 			},
 			{

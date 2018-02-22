@@ -1,9 +1,13 @@
 <div class="user-list" fxLayout="column" fxLayoutAlign="center" >
+  <a [routerLink]="['/user/new']">Add New</a>
+  <router-outlet></router-outlet>
   <mat-list>
     <div *ngFor="let user of userList">
       <mat-list-item>
+        <a (click)="edit(user._id)">Edit</a>
         <p>{{user.name}}</p>
         <p>{{user.email}}</p>
+        <a (click)="delete(user._id)">Delete</a>
       </mat-list-item>
       <mat-divider></mat-divider>
     </div>
