@@ -1,3 +1,5 @@
-<p>
-  project-delete works!
-</p>
+<h3>Type Project Leader Email</h3>
+<mat-form-field>
+  <input #email matInput placeholder="Leader Email">
+</mat-form-field>
+<button mat-raised-button (click)="delete(email.value)" color="warn">Delete</button>

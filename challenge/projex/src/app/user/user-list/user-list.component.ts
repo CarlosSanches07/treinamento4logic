@@ -5,7 +5,7 @@ import { Subscription } 	 			        from 'rxjs/Subscription';
 import { UserModel }                    from '../user-model';
 import { MatDialog }                    from '@angular/material/dialog';
 import { UserDeleteComponent}           from '../user-delete/user-delete.component';
-}
+
  
 @Component({
   selector: 'app-user-list',
@@ -24,15 +24,19 @@ export class UserListComponent implements OnInit, OnDestroy {
   userList 	 : UserModel[];
 
   ngOnInit() {
-	this.subscriber = this.controller.listAll('users')
-		.subscribe((data) => {
-			this.userList = data;
-		})  	
+  	this.getElements();
   }
 
   ngOnDestroy(){
   	if(this.subscriber)
   		this.subscriber.unsubscribe();
+  }
+
+  getElements() {
+    this.subscriber = this.controller.listAll('users')
+      .subscribe((data) => {
+        this.userList = data;
+      })    
   }
 
   edit (id : string) {
@@ -42,10 +46,12 @@ export class UserListComponent implements OnInit, OnDestroy {
 
   delete (id : string) {
     const dialogRef = this.dialog.open(UserDeleteComponent, {
-      height : '290px'
+     
     });
+    if(id)
+      dialogRef.componentInstance.identifier = id;
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-    })
+        this.getElements();
+      })
   }
 }

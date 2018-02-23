@@ -1,7 +1,17 @@
 <div class="project-list" fxLayout="column" fxLayoutAlign="center">
-  <a [routerLink]="['/project/new']">add New</a>
-  <router-outlet></router-outlet>
+  <a >add New</a>
+  <!-- <router-outlet></router-outlet> -->
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" [(opened)]="opened">
+      <p>EOQ!!!!</p>
+      <router-outlet></router-outlet>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div (click)="sidenav.toggle()" [routerLink]="['/project/new']">CLICA!!!!</div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
   <mat-list>
+
     <div *ngFor="let project of projectList">
       <mat-list-item>
         <a (click)="edit(project._id)">Edit</a>

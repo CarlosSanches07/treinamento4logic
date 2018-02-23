@@ -10,8 +10,10 @@ import { UserDeleteComponent } from './user-delete/user-delete.component';
 import { UserListComponent } from './user-list/user-list.component';
 
 import { ControllerService } from '../controller.service';
+import { MatSnackBar }       from '@angular/material';
 
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
+
 
 @NgModule({
   imports: [
@@ -22,7 +24,7 @@ import { AngularMaterialModule } from '../angular-material/angular-material.modu
     BrowserAnimationsModule,
     Router
   ],
-  providers : [ControllerService],
+  providers : [ControllerService, MatSnackBar],
   declarations: [UserInfoComponent, UserFormComponent, UserDeleteComponent, UserListComponent]
 })
 export class UserModule { }

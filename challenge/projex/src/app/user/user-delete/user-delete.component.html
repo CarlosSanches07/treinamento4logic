@@ -1,1 +1,5 @@
-<p>COROLHO!!!!!!</p>
+<h3>Type the User email to delete</h3>
+<mat-form-field>
+  <input #email matInput placeholder="User Email">
+</mat-form-field>
+<button mat-raised-button (click)="delete(email.value)" color="warn">Delete</button>

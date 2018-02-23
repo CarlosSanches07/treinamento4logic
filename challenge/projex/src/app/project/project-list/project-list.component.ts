@@ -3,6 +3,9 @@ import { Subscription } 				        from 'rxjs/Subscription';
 import { ControllerService } 			      from '../../controller.service';
 import { ProjectModel } 				        from '../project-model';
 import { Router }                       from '@angular/router';
+import { MatDialog }                    from '@angular/material/dialog';
+import { ProjectDeleteComponent }       from '../project-delete/project-delete.component';
+
 @Component({
   selector: 'app-project-list',
   templateUrl: './project-list.component.html',
@@ -12,22 +15,27 @@ export class ProjectListComponent implements OnInit, OnDestroy {
 
   constructor(
   	private controller : ControllerService,
-    private router : Router
+    private router : Router,
+    private dialog : MatDialog
   	) { }
 
   subscriber : Subscription;
   projectList : ProjectModel[];
 
   ngOnInit() {
-  	this.subscriber = this.controller.listAll('projects')
-  		.subscribe((data) => {
-  			this.projectList = data;
-  		})
+    this.getElements();
   }
 
   ngOnDestroy() {
   	if(this.subscriber)
   		this.subscriber.unsubscribe();
+  }
+
+  getElements(){
+    this.subscriber = this.controller.listAll('projects')
+      .subscribe((data) => {
+        this.projectList = data;
+      })
   }
 
   edit (id : string) {
@@ -36,8 +44,11 @@ export class ProjectListComponent implements OnInit, OnDestroy {
   }
 
   delete (id : string) {
-    const url : string = `${this.router.url}/delete/${id}`;
-    this.router.navigateByUrl(url);
+    const dialogRef = this.dialog.open(ProjectDeleteComponent);
+    if(id)
+      dialogRef.componentInstance.identifier = id;
+    dialogRef.afterClosed().subscribe(result => {
+      this.getElements();
+    })
   }
-
 }

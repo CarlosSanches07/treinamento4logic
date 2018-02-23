@@ -25,15 +25,21 @@ export class ControllerService {
   }
 
   update(data : any, route : string) : Observable<any> {
-  	return this.http.put(`${environment.apiUrl}/${route}/${data.id}`, data)
+  	return this.http.put(`${environment.apiUrl}${route}/${data.id}`, data)
   		.map((res : Response) => res.json())
   		.catch((err) => err.json().error || "Service Error");
   }
 
   create(data : any, route : string) : Observable<any> {
-  	return this.http.post(`${environment.apiUrl}/${route}/${data.id}`, data)
+  	return this.http.post(`${environment.apiUrl}${route}/${data.id}`, data)
   		.map((res : Response) => res.json())
   		.catch((err) => err.json().error || "Service Error");
+  }
+
+  delete(id : string, route : string) : Observable<any> {
+    return this.http.delete(`${environment.apiUrl}${route}/${id}`)
+      .map((res : Response) => res.json())
+      .catch((err) => err.json().error || "Service Error");
   }
 
 }
