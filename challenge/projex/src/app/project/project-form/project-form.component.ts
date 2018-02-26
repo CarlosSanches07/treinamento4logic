@@ -1,9 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy }       from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { ControllerService } from '../../controller.service';
-import { ProjectModel } from '../project-model';
-import { Subscription } from 'rxjs/Subscription';
+import { Router }                             from '@angular/router';
+import { ControllerService }                  from '../../controller.service';
+import { ProjectModel }                       from '../project-model';
+import { Subscription }                       from 'rxjs/Subscription';
+import { ActivatedRoute }                     from '@angular/router';
+
 
 @Component({
   selector: 'app-project-form',
@@ -15,19 +17,21 @@ export class ProjectFormComponent implements OnInit, OnDestroy {
   constructor(
   	private builder    : FormBuilder,
     private router     : Router,
-    private controller :  ControllerService
-  	) { 
-  		
-  	  }
+    private controller : ControllerService,
+    private actRouter  : ActivatedRoute
+  	) {  }
   subscribe : Subscription
   project : ProjectModel;
   projForm : FormGroup;
 
   ngOnInit() {
-  	this.createForm();
-    if(this.router.url.includes('edit')){
-      this.editChanges();
-    }
+    this.subscribe =  this.actRouter.params.subscribe((params : any) => {
+    	console.log(params);
+      this.createForm();
+      if(this.router.url.includes('edit')){
+        this.editChanges();
+      }      
+    })
 
   } 
 
@@ -41,7 +45,7 @@ export class ProjectFormComponent implements OnInit, OnDestroy {
   	this.projForm = this.builder.group({
   		name		: [null, Validators.required],
 		  start		: [null, Validators.required],
-		  finish		: [null, Validators.required],
+		  finish		: [null],
 		  boss		: [null, Validators.required],
 		  description : [null, Validators.required],
 		  team		: this.builder.group({
@@ -53,10 +57,15 @@ export class ProjectFormComponent implements OnInit, OnDestroy {
 
   editChanges () {
     const id : string = this.router.url.split('/')[3];
+    console.log(id);
     this.subscribe = this.controller.getById(id, 'projects')
       .subscribe((data) => {
         this.projForm.patchValue(data);
       })
+  }
+
+  submit (data : ProjectModel) {
+      console.log(data);
   }
 
 }

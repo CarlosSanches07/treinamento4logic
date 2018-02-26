@@ -5,6 +5,7 @@ import { ProjectModel } 				        from '../project-model';
 import { Router }                       from '@angular/router';
 import { MatDialog }                    from '@angular/material/dialog';
 import { ProjectDeleteComponent }       from '../project-delete/project-delete.component';
+import { environment }                  from '../../../environments/environment';
 
 @Component({
   selector: 'app-project-list',
@@ -38,10 +39,10 @@ export class ProjectListComponent implements OnInit, OnDestroy {
       })
   }
 
-  edit (id : string) {
-    const url : string = `${this.router.url}/edit/${id}`;
-    this.router.navigateByUrl(url);
-  }
+  // edit (id : string) {
+  //   const url : string = `project/edit/${id}`;
+  //   this.router.navigateByUrl(url);
+  // }
 
   delete (id : string) {
     const dialogRef = this.dialog.open(ProjectDeleteComponent);

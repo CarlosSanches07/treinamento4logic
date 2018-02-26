@@ -1,24 +1,30 @@
-<div class="project-list" fxLayout="column" fxLayoutAlign="center">
-  <a >add New</a>
-  <!-- <router-outlet></router-outlet> -->
-  <mat-sidenav-container>
-    <mat-sidenav #sidenav mode="side" [(opened)]="opened">
-      <p>EOQ!!!!</p>
+<div class="project-list">
+  <a [routerLink]="['/project/new']">add New</a>
       <router-outlet></router-outlet>
-    </mat-sidenav>
-    <mat-sidenav-content>
-      <div (click)="sidenav.toggle()" [routerLink]="['/project/new']">CLICA!!!!</div>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
   <mat-list>
 
-    <div *ngFor="let project of projectList">
+    <div *ngFor="let project of projectList" fxLayout="row">
+      <mat-list-item>        
+        <div>
+          <p>{{project.name}}</p>
+        </div>
+        <div style="display: none;">
+          <p>{{project.description}}</p>
+        </div>
+      </mat-list-item>
       <mat-list-item>
-        <a (click)="edit(project._id)">Edit</a>
-        <p>{{project.name}}</p>
-        <br/>
-        <p>{{project.description}}</p>
-        <a (click)="delete(project._id)">Delete</a>
+          <span routerLink="/project/edit/{{project._id}}">  
+            <div class="btn edit">
+              
+                <mat-icon>create</mat-icon>
+              
+            </div>
+          </span>
+      </mat-list-item>
+      <mat-list-item>
+          <div class="btn del" (click)="delete(project._id)">
+            <mat-icon>delete</mat-icon>
+          </div>
       </mat-list-item>
       <mat-divider></mat-divider>
     </div>

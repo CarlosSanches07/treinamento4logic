@@ -1,18 +1,21 @@
-<div class="header">
-  <div class="title" fxLayoutAlign="center">
-    <h1>Projex</h1>
-  </div>
-  <div class="button-container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign.xs="space-evenly center" fxLayoutAlign="space-evenly center">
-    <a [routerLink]="['/user']">
-      <div class="user button" fxLayoutAlign="center">
-        USER
-      </div>
-    </a>
-    <a [routerLink]="['/project']">
-      <div class="project button " fxLayoutAlign="center">
-        PROJECT
-      </div>
-    </a>
+<div class="header" fxLayout="row" fxLayoutAlign="start center">
+  <button class="btn-menu" mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>more_vertical</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>work</mat-icon>
+      <span><a [routerLink]="['/project']">Projects</a></span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>account_box</mat-icon>
+      <span><a [routerLink]="['/user']">Employee</a></span>
+    </button>
+  </mat-menu>
+  <div>
+    <div class="title" fxFlexAlign="center" fxFlexOffset="150px">
+      <a [routerLink]="['']">Projex</a>
+    </div>
   </div>
 </div>
 <router-outlet></router-outlet>

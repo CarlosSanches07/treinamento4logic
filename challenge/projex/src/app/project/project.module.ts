@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { Router }                from '../router.module';
 import { ControllerService } from '../controller.service';
+import { FlexLayoutModule }  from '@angular/flex-layout';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { ControllerService } from '../controller.service';
     Router,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FlexLayoutModule,
   ],
   providers: [ControllerService],
   declarations: [ProjectInfoComponent, ProjectFormComponent, ProjectDeleteComponent, ProjectListComponent]

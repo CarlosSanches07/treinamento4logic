@@ -13,6 +13,7 @@ import { ControllerService } from '../controller.service';
 import { MatSnackBar }       from '@angular/material';
 
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { AngularMaterialModule } from '../angular-material/angular-material.modu
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    Router
+    Router,
+    FlexLayoutModule
   ],
   providers : [ControllerService, MatSnackBar],
   declarations: [UserInfoComponent, UserFormComponent, UserDeleteComponent, UserListComponent]

@@ -10,6 +10,9 @@ import { MatExpansionModule }   from '@angular/material/expansion';
 import { MatButtonModule }      from '@angular/material/button';
 import { MatSnackBarModule }    from '@angular/material/snack-bar';
 import { MatSidenavModule}      from '@angular/material/sidenav';
+import { MatIconModule }        from '@angular/material/icon';
+import {MatMenuModule}          from '@angular/material/menu';
+
 
 
 @NgModule({
@@ -23,7 +26,9 @@ import { MatSidenavModule}      from '@angular/material/sidenav';
     MatExpansionModule,
     MatButtonModule,
     MatSnackBarModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatIconModule,
+    MatMenuModule
   ],
   exports: [
     MatDividerModule,
@@ -35,7 +40,9 @@ import { MatSidenavModule}      from '@angular/material/sidenav';
     MatExpansionModule,
     MatButtonModule,
     MatSnackBarModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatIconModule,
+    MatMenuModule
   ],
   declarations: []
 })

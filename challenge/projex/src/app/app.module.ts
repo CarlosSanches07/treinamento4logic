@@ -27,7 +27,7 @@ import { AngularMaterialModule } from './angular-material/angular-material.modul
     ProjectModule,
     HttpModule,
     Router,
-    FlexLayoutModule  ,
+    FlexLayoutModule,
     AngularMaterialModule,
     BrowserAnimationsModule
   ],
