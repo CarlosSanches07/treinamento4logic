@@ -1,0 +1,19 @@
+.usr-search {
+	height: 100px;
+	font-size: 24px;
+}
+
+.usr-card {
+	width: 350px;
+    height: 100px;
+	margin: 20px;
+}
+
+.title{
+	margin: 5px 0 ;
+}
+	
+.btn-card {
+	margin : 3px;
+}
+

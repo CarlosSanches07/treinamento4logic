@@ -1,32 +1,69 @@
 <div class="project-list">
-  <a [routerLink]="['/project/new']">add New</a>
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav mode="over">
+      <span (click)="sidenav.toggle()">
+        <mat-icon>cancel</mat-icon>
+      </span>
       <router-outlet></router-outlet>
-  <mat-list>
-
-    <div *ngFor="let project of projectList" fxLayout="row">
-      <mat-list-item>        
-        <div>
-          <p>{{project.name}}</p>
-        </div>
-        <div style="display: none;">
-          <p>{{project.description}}</p>
-        </div>
-      </mat-list-item>
-      <mat-list-item>
-          <span routerLink="/project/edit/{{project._id}}">  
-            <div class="btn edit">
-              
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <a [routerLink]="['/project/new']" (click)="sidenav.toggle()">add New</a>
+      <div fxLayoutAlign="center">
+        <h1>Projects</h1>
+      </div>
+      <div class="prj-search" fxLayoutAlign="center">
+        <mat-form-field fxFlex="40">
+          <input #inpSearch matInput (keyup)="search(inpSearch.value)" placeholder="Search">
+        </mat-form-field>
+      </div>
+      <div class="projects-container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutAlign="center">
+        <div *ngFor="let project of projectList">
+          <mat-card class="prj-card" fxLayout="row" fxLayoutAlign="space-between">
+            <mat-card-header class="btn-info" routerLink="/project/info/{{project._id}}" (click)="sidenav.toggle()">
+              <mat-card-title>
+                <p class="title">
+                  Project name
+                </p>
+              </mat-card-title>
+              <mat-card-subtitle>
+                  {{project.name}}
+              </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-actions fxLayoutAlign="end" fxLayout="column">
+              <button class="btn-card" mat-mini-fab color="primary" (click)="sidenav.toggle()" routerLink="/project/edit/{{project._id}}">
                 <mat-icon>create</mat-icon>
-              
-            </div>
-          </span>
-      </mat-list-item>
-      <mat-list-item>
-          <div class="btn del" (click)="delete(project._id)">
-            <mat-icon>delete</mat-icon>
+              </button>
+              <button class="btn-card" mat-mini-fab color="primary" (click)="delete(project._id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+      <!-- <mat-list>
+        <div *ngFor="let project of projectList">
+          <div fxLayout="row">
+            <mat-list-item fxFlex="80" fxLayoutAlign="end">        
+              <div routerLink="/project/info/{{project._id}}" (click)="sidenav.toggle()">
+                <p>{{project.name}}</p>
+              </div>
+            </mat-list-item>
+            <mat-list-item fxFlex="10" fxLayoutAlign="end">
+                <span routerLink="/project/edit/{{project._id}}" (click)="sidenav.toggle()">  
+                  <div class="btn edit">    
+                      <mat-icon>create</mat-icon>
+                  </div>
+                </span>
+            </mat-list-item>
+            <mat-list-item fxFlex="10" fxLayoutAlign="center">
+                <div class="btn del" (click)="delete(project._id)">
+                  <mat-icon>delete</mat-icon>
+                </div>
+            </mat-list-item>
           </div>
-      </mat-list-item>
-      <mat-divider></mat-divider>
-    </div>
-  </mat-list>
+          <mat-divider></mat-divider>
+        </div>
+      </mat-list> -->
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>

@@ -11,7 +11,9 @@ import { MatButtonModule }      from '@angular/material/button';
 import { MatSnackBarModule }    from '@angular/material/snack-bar';
 import { MatSidenavModule}      from '@angular/material/sidenav';
 import { MatIconModule }        from '@angular/material/icon';
-import {MatMenuModule}          from '@angular/material/menu';
+import { MatMenuModule }        from '@angular/material/menu';
+import { MatCardModule }		from '@angular/material/card';
+import { MatChipsModule }       from '@angular/material/chips';
 
 
 
@@ -28,7 +30,9 @@ import {MatMenuModule}          from '@angular/material/menu';
     MatSnackBarModule,
     MatSidenavModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
+    MatCardModule,
+    MatChipsModule
   ],
   exports: [
     MatDividerModule,
@@ -42,7 +46,9 @@ import {MatMenuModule}          from '@angular/material/menu';
     MatSnackBarModule,
     MatSidenavModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
+    MatCardModule,
+    MatChipsModule
   ],
   declarations: []
 })

@@ -39,11 +39,6 @@ export class ProjectListComponent implements OnInit, OnDestroy {
       })
   }
 
-  // edit (id : string) {
-  //   const url : string = `project/edit/${id}`;
-  //   this.router.navigateByUrl(url);
-  // }
-
   delete (id : string) {
     const dialogRef = this.dialog.open(ProjectDeleteComponent);
     if(id)
@@ -51,5 +46,14 @@ export class ProjectListComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(result => {
       this.getElements();
     })
+  }
+
+  search (name : string) {
+    let newList = new Array;
+    this.controller.listAll('projects')
+      .subscribe((data) => {
+        newList = data;
+        this.projectList = newList.filter(project => project.name.toLowerCase().includes(name.toLowerCase()));
+      })
   }
 }

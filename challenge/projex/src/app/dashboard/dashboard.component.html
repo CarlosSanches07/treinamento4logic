@@ -3,20 +3,25 @@
     <mat-icon>more_vertical</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item>
-      <mat-icon>work</mat-icon>
-      <span><a [routerLink]="['/project']">Projects</a></span>
-    </button>
-    <button mat-menu-item>
-      <mat-icon>account_box</mat-icon>
-      <span><a [routerLink]="['/user']">Employee</a></span>
-    </button>
+    <a [routerLink]="['/project']">
+      <button mat-menu-item>
+        <mat-icon>work</mat-icon>
+        <span>Projects</span>
+      </button>
+    </a>
+    <a [routerLink]="['/user']">
+      <button mat-menu-item>
+        <mat-icon>account_box</mat-icon>
+        <span>Employee</span>
+      </button>
+    </a>
   </mat-menu>
-  <div>
-    <div class="title" fxFlexAlign="center" fxFlexOffset="150px">
+  <div class="title-container">
+    <div class="title" fxLayoutAlign="center">
       <a [routerLink]="['']">Projex</a>
     </div>
   </div>
 </div>
+<div class="header-container"></div>
 <router-outlet></router-outlet>
 

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy }       from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription }                       from 'rxjs/Subscription';
-import { Router }                             from '@angular/router';
+import { Router, ActivatedRoute }             from '@angular/router';
 import { ControllerService }                  from '../../controller.service';
 
 @Component({
@@ -12,9 +12,10 @@ import { ControllerService }                  from '../../controller.service';
 export class UserFormComponent implements OnInit, OnDestroy {
 
   constructor(
-  	private builder : FormBuilder,
-    private router  : Router,
-    private controller : ControllerService
+  	private builder    : FormBuilder,
+    private router     : Router,
+    private controller : ControllerService,
+    private actRoute   : ActivatedRoute 
   	) { }
 
   userForm  : FormGroup;
@@ -22,10 +23,12 @@ export class UserFormComponent implements OnInit, OnDestroy {
   
 
   ngOnInit() {
-  	this.createForm();
-    if(this.router.url.includes('edit')){
-      this.editChanges();
-    }
+    this.subscribe = this.actRoute.params.subscribe((params : any)=> {
+    	this.createForm();
+      if(this.router.url.includes('edit')){
+        this.editChanges();
+      }
+    })
   }
 
   ngOnDestroy() {

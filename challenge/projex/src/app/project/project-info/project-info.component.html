@@ -1,3 +1,26 @@
-<p>
-  project-info works!
-</p>
+<div class="project-info">
+  <mat-card tab-index="-1">
+    <mat-card-header>
+      <mat-card-title>
+        <p><b>Name:</b> {{proj?.name}}</p>
+      </mat-card-title>
+      <mat-card-subtitle>
+        <p><b>Leader:</b> {{proj?.boss}}</p>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="start">
+        <p><b>Start: </b>{{proj?.start}}</p>
+      </div>
+      <div class="finish">
+        <p><b>Finish: </b>{{proj?.finish}}</p>
+      </div>
+      <div class="description">
+        <p><b>Description: </b><br/>{{proj?.description}}</p>
+      </div>
+      <div class="workload">
+        <a>Team</a>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

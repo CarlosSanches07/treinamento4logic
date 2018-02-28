@@ -5,6 +5,7 @@ import { Subscription } 	 			        from 'rxjs/Subscription';
 import { UserModel }                    from '../user-model';
 import { MatDialog }                    from '@angular/material/dialog';
 import { UserDeleteComponent}           from '../user-delete/user-delete.component';
+import * as _ from 'lodash';
 
  
 @Component({
@@ -54,4 +55,14 @@ export class UserListComponent implements OnInit, OnDestroy {
         this.getElements();
       })
   }
+
+  search (name : string) {
+    let newList = new Array;
+    this.controller.listAll('users')
+      .subscribe((data) => {
+        newList = data;
+        this.userList = newList.filter(user => user.name.toLowerCase().includes(name.toLowerCase()));
+      })
+  }
+
 }

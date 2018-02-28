@@ -1,3 +1,26 @@
 .btn {
 	cursor : pointer ;
 }
+
+.prj-search {
+	height: 100px;
+	font-size: 24px;
+}
+
+.prj-card {
+	width: 350px;
+    height: 100px;
+	margin: 20px;
+}
+
+.title{
+	margin: 5px 0 ;
+}
+	
+.btn-card {
+	margin : 3px;
+}
+
+.btn-info {
+	cursor : pointer;
+}

@@ -1,3 +1,26 @@
-<p>
-  user-info works!
-</p>
+<div class="user-info">
+  <mat-card tab-index="-1">
+    <mat-card-header>
+      <mat-card-title>
+        <p><b>Name:</b> {{user?.name}}</p>
+      </mat-card-title>
+      <mat-card-subtitle>
+        <p><b>E-mail:</b> {{user?.email}}</p>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="phone">
+        <p><b>Phone: </b>{{user?.phone}}</p>
+      </div>
+      <div class="birth">
+        <p><b>Birth: </b>{{user?.birth}}</p>
+      </div>
+      <div class="scholarity">
+        <p><b>Scholarity: </b>{{user?.scholarity}}</p>
+      </div>
+      <div class="workload">
+        <p><b>Workload: </b>{{user?.workload}}</p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
