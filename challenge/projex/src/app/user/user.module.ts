@@ -11,10 +11,12 @@ import { UserListComponent } from './user-list/user-list.component';
 
 import { ControllerService } from '../controller.service';
 import { MatSnackBar }       from '@angular/material';
+import { ValidatorService }  from '../shared/validator/validator.service';
+import { UserService }       from './shared/services/user.service';
 
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
-import { FlexLayoutModule } from '@angular/flex-layout';
-
+import { FlexLayoutModule }      from '@angular/flex-layout';
+import { TextMaskModule }        from 'angular2-text-mask';
 
 @NgModule({
   imports: [
@@ -24,9 +26,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     Router,
-    FlexLayoutModule
+    FlexLayoutModule,
+    TextMaskModule
   ],
-  providers : [ControllerService, MatSnackBar],
+  providers : [ControllerService, MatSnackBar, ValidatorService, UserService],
   declarations: [UserInfoComponent, UserFormComponent, UserDeleteComponent, UserListComponent]
 })
 export class UserModule { }

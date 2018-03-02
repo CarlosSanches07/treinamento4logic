@@ -3,17 +3,18 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 /*COMPONENTS*/
-import { ProjectInfoComponent } from './project-info/project-info.component';
-import { ProjectFormComponent } from './project-form/project-form.component';
+import { ProjectInfoComponent }   from './project-info/project-info.component';
+import { ProjectFormComponent }   from './project-form/project-form.component';
 import { ProjectDeleteComponent } from './project-delete/project-delete.component';
-import { ProjectListComponent } from './project-list/project-list.component';
+import { ProjectListComponent }   from './project-list/project-list.component';
 
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { Router }                from '../router.module';
+import { Router }            from '../router.module';
 import { ControllerService } from '../controller.service';
 import { FlexLayoutModule }  from '@angular/flex-layout';
+import { ProjectService }    from './shared/services/project.service';
 
 @NgModule({
   imports: [
@@ -25,7 +26,7 @@ import { FlexLayoutModule }  from '@angular/flex-layout';
     BrowserAnimationsModule,
     FlexLayoutModule,
   ],
-  providers: [ControllerService],
+  providers: [ControllerService, ProjectService],
   declarations: [ProjectInfoComponent, ProjectFormComponent, ProjectDeleteComponent, ProjectListComponent]
 })
 export class ProjectModule { }

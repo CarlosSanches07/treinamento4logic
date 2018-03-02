@@ -1,10 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ControllerService } 			      from '../../controller.service';
-import { Router }                       from '@angular/router';
-import { Subscription } 	 			        from 'rxjs/Subscription';
-import { UserModel }                    from '../user-model';
-import { MatDialog }                    from '@angular/material/dialog';
-import { UserDeleteComponent}           from '../user-delete/user-delete.component';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { ControllerService } 			                 from '../../controller.service';
+import { Router, ActivatedRoute }                  from '@angular/router';
+import { Subscription } 	 			                   from 'rxjs/Subscription';
+import { UserModel }                               from '../user-model';
+import { MatDialog }                               from '@angular/material/dialog';
+import { UserDeleteComponent}                      from '../user-delete/user-delete.component';
+import { UserService }                             from '../shared/services/user.service';
+import { MatSidenav }                              from '@angular/material';
 import * as _ from 'lodash';
 
  
@@ -16,16 +18,21 @@ import * as _ from 'lodash';
 export class UserListComponent implements OnInit, OnDestroy {
 
   constructor(
-  	private controller : ControllerService,
-    private router     : Router,
-    private dialog     : MatDialog 
+  	private controller   : ControllerService,
+    private router       : Router,
+    private dialog       : MatDialog,
+    private actRouter    : ActivatedRoute,
+    private userService  : UserService 
   	) { }
 
+  @ViewChild('sidenav') sidenav : MatSidenav;
   subscriber : Subscription;
-  userList 	 : UserModel[];
-
+  close : boolean;
+  
   ngOnInit() {
-  	this.getElements();
+    this.subscriber = this.actRouter.params.subscribe((params : any) => {
+  	  this.getElements();       
+    })
   }
 
   ngOnDestroy(){
@@ -36,8 +43,8 @@ export class UserListComponent implements OnInit, OnDestroy {
   getElements() {
     this.subscriber = this.controller.listAll('users')
       .subscribe((data) => {
-        this.userList = data;
-      })    
+        this.userService.setList(data);
+      })
   }
 
   edit (id : string) {
@@ -61,8 +68,13 @@ export class UserListComponent implements OnInit, OnDestroy {
     this.controller.listAll('users')
       .subscribe((data) => {
         newList = data;
-        this.userList = newList.filter(user => user.name.toLowerCase().includes(name.toLowerCase()));
+        console.log(newList)
+        this.userService.setList(newList.filter(user => user.name.toLowerCase().includes(name.toLowerCase())));
       })
+  }
+
+  test(test : boolean) {
+     return test;
   }
 
 }

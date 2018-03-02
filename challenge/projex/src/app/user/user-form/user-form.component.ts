@@ -1,8 +1,14 @@
-import { Component, OnInit, OnDestroy }       from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subscription }                       from 'rxjs/Subscription';
-import { Router, ActivatedRoute }             from '@angular/router';
-import { ControllerService }                  from '../../controller.service';
+import { Component, OnInit, OnDestroy }                  from '@angular/core';
+import { FormBuilder, FormGroup, Validators }            from '@angular/forms';
+import { Subscription }                                  from 'rxjs/Subscription';
+import { Router, ActivatedRoute }                        from '@angular/router';
+import { ControllerService }                             from '../../controller.service';
+import { ValidatorService }                              from '../../shared/validator/validator.service';
+import { MatSnackBar }                                   from '@angular/material';
+import { UserModel }                                     from '../user-model';
+import { UserService }                                   from '../shared/services/user.service';
+import { UserListComponent }                             from '../user-list/user-list.component'; 
+
 
 @Component({
   selector: 'app-user-form',
@@ -12,15 +18,49 @@ import { ControllerService }                  from '../../controller.service';
 export class UserFormComponent implements OnInit, OnDestroy {
 
   constructor(
-  	private builder    : FormBuilder,
-    private router     : Router,
-    private controller : ControllerService,
-    private actRoute   : ActivatedRoute 
+  	private builder      : FormBuilder,
+    private router       : Router,
+    private controller   : ControllerService,
+    private actRoute     : ActivatedRoute,
+    private valid        : ValidatorService,
+    private snack        : MatSnackBar,
+    private userService  : UserService,
+    private userList     : UserListComponent
   	) { }
 
   userForm  : FormGroup;
   subscribe : Subscription;
   
+
+  public phoneMask = ['+', /[0-9]/, /\d/, ' ', '(', /[0-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/,'-', /\d/, /\d/, /\d/, /\d/];
+  
+  day = [
+    "00:30",
+    "01:00",
+    "01:30",
+    "02:00",
+    "02:30",
+    "03:00",
+    "03:30",
+    "04:00",
+    "04:30",
+    "05:00",
+    "05:30",
+    "06:00",
+    "06:30",
+    "07:00",
+    "07:30",
+    "08:00"
+  ];
+
+  scholarity = [
+    "Primary school",
+    "High school",
+    "College",
+    "Postgraduate",
+    "Master's degrees",
+    "Research doctorates"
+  ];
 
   ngOnInit() {
     this.subscribe = this.actRoute.params.subscribe((params : any)=> {
@@ -38,8 +78,8 @@ export class UserFormComponent implements OnInit, OnDestroy {
 
   createForm () {
   	this.userForm = this.builder.group({
-  		name 		    : [null, Validators.required],
-		  email 		  : [null, Validators.required],
+  		name 		    : [null, [Validators.required, this.valid.name]]  ,
+		  email 		  : [null, [Validators.required, this.valid.email]],
 		  phone 		  : [null, Validators.required],
 		  birth 		  : [null, Validators.required],
 		  workload 	  : [null, Validators.required],
@@ -53,6 +93,71 @@ export class UserFormComponent implements OnInit, OnDestroy {
         .subscribe((data) => {
           this.userForm.patchValue(data);
     })
+  }
+
+  submit(data : any) { 
+    if(data.status.includes("INVALID")){
+      this.snack.open("ERROR", "Please fill all the required fields",{
+        duration : 2000
+      });
+      return;
+
+    }
+    const user : UserModel = data.value;
+
+    const checkArray = this.userService.userList.filter((i) => i.email.includes(user.email));
+
+    if(checkArray.length > 0) {
+      this.snack.open("ERROR", "This EMAIL is already beeing used", {
+        duration : 2000
+      });
+      return;
+    }
+    if(this.router.url.includes('edit')){
+      const id : string = this.router.url.split('/')[3];
+      user._id = id;
+      this.subscribe = this.controller.update(user, 'users')
+        .subscribe((data) => {
+          if(data !== "#"){
+            this.snack.open("SUCCESS", "Employee successfully updated", {
+              duration : 2000
+            })
+            const newList = this.userService.getList();
+            newList.push(user);
+            this.userService.setList(newList);
+            this.userList.sidenav.close();
+            return;
+          } else {
+            this.snack.open("ERROR", "SERVER ERROR", {
+              duration : 2000
+            })
+            this.userList.sidenav.close();
+            return;
+          }
+        })
+    }else {
+      this.subscribe = this.controller.create(user, 'users')
+        .subscribe((data) => {
+          if(data !== "#"){
+            this.snack.open("SUCCESS", "Employee created", {
+              duration : 2000
+            });
+            user._id = data;
+            let newList = this.userService.getList();
+            newList.push(user)
+            console.log(newList);
+            this.userService.setList(newList);
+            this.userList.sidenav.close();
+          } else {
+            this.snack.open("ERROR", "SERVER ERROR", {
+              duration : 2000
+            });
+            this.userList.sidenav.close();
+            return;
+          }  
+        })
+    }
+    
   }
 
 }

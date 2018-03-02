@@ -1,4 +1,4 @@
-<form [formGroup]="userForm" class="usr-form" fxLayout="row" fxLayoutWrap fxLayoutAlign="space-around">
+<form [formGroup]="userForm" class="usr-form" fxLayout="row" fxLayoutWrap fxLayoutAlign="space-around" (ngSubmit)="submit(userForm)">
   <mat-form-field class="form-item">
     <input matInput  placeholder="Name" formControlName="name" required>
   </mat-form-field>
@@ -6,15 +6,28 @@
     <input matInput  placeholder="Email" formControlName="email" required>
   </mat-form-field>
   <mat-form-field class="form-item">
-    <input matInput placeholder="Phone" formControlName="phone" required>
+    <input type="tel" matInput type="phone" [textMask]="{mask: phoneMask}" placeholder="Phone" formControlName="phone" required>
+  </mat-form-field>
+  <mat-form-field>    
+    <input class="form-item" matInput [matDatepicker]="birth" formControlName="birth" placeholder="Birth">
+    <mat-datepicker-toggle matSuffix [for]="birth"></mat-datepicker-toggle>
+    <mat-datepicker #birth></mat-datepicker>
   </mat-form-field>
   <mat-form-field class="form-item">
-    <input matInput placeholder="birth" formControlName="birth" required>
+    <mat-select formControlName="workload" placeholder="Workload">
+      <mat-option *ngFor="let hours of day" [value]="hours">
+        {{ hours }}
+      </mat-option>
+    </mat-select>
   </mat-form-field>
-  <mat-form-field class="form-item">
-    <input matInput placeholder="Work Load" formControlName="workload" required>
+  <mat-form-field>
+    <mat-select class="form-item" formControlName="scholarity" placeholder="Scholarity">
+      <mat-option *ngFor="let level of scholarity" [value]="level">
+        {{level}}
+      </mat-option>
+    </mat-select>
   </mat-form-field>
-  <mat-form-field class="form-item">
-    <input matInput placeholder="Scholarity" formControlName="scholarity" required>
-  </mat-form-field>
+  <div fxFlexAlign="end">
+    <button fxFlex="50" mat-raised-button color="primary">Submit</button>
+  </div>
 </form>

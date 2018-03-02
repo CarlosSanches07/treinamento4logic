@@ -1,6 +1,6 @@
 export class UserModel {
 	
-	public id		  : string;
+	public _id		  : string;
 	public name  	  : string;
 	public email 	  : string;
 	public phone 	  : string;
@@ -19,7 +19,7 @@ export class UserModel {
 
 		) 
 	{
-		this.id			= id;
+		this._id			= id;
 		this.name 		= name;
 		this.email 		= email; 
 		this.phone 		= phone; 

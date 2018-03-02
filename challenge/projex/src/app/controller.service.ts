@@ -15,31 +15,32 @@ export class ControllerService {
   listAll(route : string) : Observable<any> {
   	return this.http.get(`${environment.apiUrl}${route}`)
   		.map((res : Response) => res.json())
-  		.catch((err : any) => err.json().error || "Service Error")
+  		.catch(err => err.json().error || "#")
   }
 
   getById(id : string, route : string) : Observable<any> {
   	return this.http.get(`${environment.apiUrl}${route}/${id}`)
   		.map((res : Response) => res.json())
-  		.catch((err : any) => err.json().error || "Service Error")
+  		.catch(err => err.json().error || "#")
   }
 
   update(data : any, route : string) : Observable<any> {
-  	return this.http.put(`${environment.apiUrl}${route}/${data.id}`, data)
+  	return this.http.put(`${environment.apiUrl}${route}/${data._id}`, data)
   		.map((res : Response) => res.json())
-  		.catch((err) => err.json().error || "Service Error");
+  		.catch(err => err.json().error || "#");
   }
 
   create(data : any, route : string) : Observable<any> {
-  	return this.http.post(`${environment.apiUrl}${route}/${data.id}`, data)
+    console.log(data);
+  	return this.http.post(`${environment.apiUrl}${route}`, data)
   		.map((res : Response) => res.json())
-  		.catch((err) => err.json().error || "Service Error");
+  		.catch(err => err.json().error || "#");
   }
 
   delete(id : string, route : string) : Observable<any> {
     return this.http.delete(`${environment.apiUrl}${route}/${id}`)
       .map((res : Response) => res.json())
-      .catch((err) => err.json().error || "Service Error");
+      .catch(err => err.json().error || "#");
   }
 
 }

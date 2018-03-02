@@ -14,6 +14,7 @@ import { MatIconModule }        from '@angular/material/icon';
 import { MatMenuModule }        from '@angular/material/menu';
 import { MatCardModule }		from '@angular/material/card';
 import { MatChipsModule }       from '@angular/material/chips';
+import { MatSelectModule }      from '@angular/material/select';
 
 
 
@@ -32,7 +33,8 @@ import { MatChipsModule }       from '@angular/material/chips';
     MatIconModule,
     MatMenuModule,
     MatCardModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSelectModule
   ],
   exports: [
     MatDividerModule,
@@ -48,7 +50,8 @@ import { MatChipsModule }       from '@angular/material/chips';
     MatIconModule,
     MatMenuModule,
     MatCardModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSelectModule
   ],
   declarations: []
 })

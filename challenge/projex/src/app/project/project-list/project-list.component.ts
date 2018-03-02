@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } 				        from 'rxjs/Subscription';
 import { ControllerService } 			      from '../../controller.service';
-import { ProjectModel } 				        from '../project-model';
 import { Router }                       from '@angular/router';
 import { MatDialog }                    from '@angular/material/dialog';
 import { ProjectDeleteComponent }       from '../project-delete/project-delete.component';
+import { ProjectService }               from '../shared/services/project.service';
 import { environment }                  from '../../../environments/environment';
 
 @Component({
@@ -16,12 +16,12 @@ export class ProjectListComponent implements OnInit, OnDestroy {
 
   constructor(
   	private controller : ControllerService,
-    private router : Router,
-    private dialog : MatDialog
+    private router   : Router,
+    private dialog   : MatDialog,
+    private projServ : ProjectService
   	) { }
 
   subscriber : Subscription;
-  projectList : ProjectModel[];
 
   ngOnInit() {
     this.getElements();
@@ -35,7 +35,7 @@ export class ProjectListComponent implements OnInit, OnDestroy {
   getElements(){
     this.subscriber = this.controller.listAll('projects')
       .subscribe((data) => {
-        this.projectList = data;
+        this.projServ.setList(data);
       })
   }
 
@@ -53,7 +53,7 @@ export class ProjectListComponent implements OnInit, OnDestroy {
     this.controller.listAll('projects')
       .subscribe((data) => {
         newList = data;
-        this.projectList = newList.filter(project => project.name.toLowerCase().includes(name.toLowerCase()));
+        this.projServ.setList(newList.filter(project => project.name.toLowerCase().includes(name.toLowerCase())));
       })
   }
 }
