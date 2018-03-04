@@ -1,17 +1,12 @@
 export class ProjectModel {
 	
-	public id 		: string;
+	public _id 		: string;
 	public name 		: string;
 	public start 		: Date;
 	public finish 		: Date;
 	public boss			: string;
 	public description  : string;
-	public team			: [
-							{
-								member    : string,
-								timeSpend : Date
-							}
-						  ];
+	public team	: Team[];
 
 	constructor(
 		id			: string,
@@ -20,15 +15,10 @@ export class ProjectModel {
 		finish 		: Date,
 		boss 		: string,
 		description : string,
-		team 		: [
-						{
-							member 	  : string,
-							timeSpend : Date
-						}
-					  ]
+		team 		: Team[]
 		)
 	{
-		this.id 	 	 = id;
+		this._id 	 	 = id;
 		this.name 	 	 = name;
 		this.start 	 	 = start;
 		this.finish 	 = finish;
@@ -37,4 +27,10 @@ export class ProjectModel {
 		this.team 		 = team;
 	}
 
+
+}
+
+export class Team {
+	member : any;
+	timeSpend : string
 }

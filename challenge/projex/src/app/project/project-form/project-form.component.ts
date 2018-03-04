@@ -2,11 +2,14 @@ import { Component, OnInit, OnDestroy, ViewChild }       from '@angular/core';
 import { FormBuilder, FormGroup, Validators }            from '@angular/forms';
 import { Router }                                        from '@angular/router';
 import { ControllerService }                             from '../../controller.service';
-import { ProjectModel }                                  from '../project-model';
+import { ProjectModel, Team }                            from '../project-model';
 import { Subscription }                                  from 'rxjs/Subscription';
 import { ActivatedRoute }                                from '@angular/router';
 import { ValidatorService }                              from '../../shared/validator/validator.service';
 import { MatSnackBar }                                   from '@angular/material';
+import { ProjectService }                                from '../shared/services/project.service';
+import { ProjectListComponent }                          from '../project-list/project-list.component'
+import * as moment                                       from 'moment';
 
 @Component({
   selector: 'app-project-form',
@@ -24,13 +27,14 @@ export class ProjectFormComponent implements OnInit, OnDestroy {
     private controller : ControllerService,
     private actRouter  : ActivatedRoute,
     private valid      : ValidatorService,
-    private snack      : MatSnackBar
+    private snack      : MatSnackBar,
+    private projServ   : ProjectService,
+    private projList   : ProjectListComponent
     /*private projValid: ProjectValidatorService*/
   	) {  }
 
   // startDateMax  = this.finish.value;
   // finishDateMin = this.start.value;
-
   userList : any[];
 
   subscribe  : Subscription;
@@ -60,7 +64,9 @@ export class ProjectFormComponent implements OnInit, OnDestroy {
 
   workload = [];
 
-  team = [];
+ 
+
+  team = new Array<Team>();
 
   ngOnInit() {
     this.subscribe =  this.actRouter.params.subscribe((params : any) => {
@@ -103,11 +109,31 @@ export class ProjectFormComponent implements OnInit, OnDestroy {
     this.subscribe = this.controller.getById(id, 'projects')
       .subscribe((data) => {
         this.projForm.patchValue(data);
+        this.team = data.team;
       })
   }
 
-  submit (data : ProjectModel) {
-      console.log(data);
+  submit (data : any) {
+      if(data.status.includes("INVALID")){
+        this.snack.open("ERROR", "Please fill all the required fields", {
+          duration : 2000
+        })
+        return;
+      }
+      this.project = data.value;
+      this.project.team = this.team;
+      if(this.checkDate(this.project)) {
+        this.snack.open("ERROR", "Start date needs to be lesser than finish date", {
+          duration : 2000
+        })
+        return;
+      }
+      
+      if(this.router.url.includes("edit")){
+        this.editData(this.project);
+      } else {
+        this.createData(this.project);
+      }
   }
 
   setWorkload(user : any) {
@@ -138,6 +164,60 @@ export class ProjectFormComponent implements OnInit, OnDestroy {
     const index = this.team.findIndex(i => i.member._id === id);
     this.team.splice(index, 1);
     console.log(this.team);
+  }
+
+  createData(project : ProjectModel) {
+    this.subscribe = this.controller.create(project, "projects")
+      .subscribe((data) => {
+        if(data !== '#'){
+          this.snack.open("SUCCESS", "Project created", {
+            duration : 2000
+          });
+          project._id = data;
+          let newList : ProjectModel[] = this.projServ.getList();
+          newList.push(project);
+          this.projServ.setList(newList);
+          this.projList.sidenav.close();
+          return;
+        } else {
+          this.snack.open("ERROR", "SERVER ERROR", {
+            duration : 2000
+          });
+          this.projList.sidenav.close();
+          return;
+        }
+      })
+  }
+
+  editData(project : ProjectModel) {
+    const id : string = this.router.url.split('/')[3];
+    project._id = id;
+    this.subscribe = this.controller.update(project, "projects")
+      .subscribe((data) => {
+        if(data !== '#') {
+          this.snack.open("SUCCESS", "Project successfully updated", {
+            duration: 2000
+          });
+          let newList : ProjectModel[] = this.projServ.getList();
+          let index : number = newList.findIndex(i => i._id === project._id);
+          newList[index] = project;
+          this.projServ.setList(newList);
+          this.projList.sidenav.close();
+          return;
+        } else {
+          this.snack.open("ERROR", "SERVER ERROR", {
+            duration : 2000
+          });
+          this.projList.sidenav.close();
+          return;
+        }
+      });
+  }
+
+  checkDate (project : ProjectModel) {
+    const start   = moment(project.start);
+    const finish  = moment(project.finish);
+    return finish.isBefore(start)
   }
 
 }

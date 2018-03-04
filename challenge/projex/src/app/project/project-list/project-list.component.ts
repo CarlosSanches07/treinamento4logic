@@ -1,11 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } 				        from 'rxjs/Subscription';
-import { ControllerService } 			      from '../../controller.service';
-import { Router }                       from '@angular/router';
-import { MatDialog }                    from '@angular/material/dialog';
-import { ProjectDeleteComponent }       from '../project-delete/project-delete.component';
-import { ProjectService }               from '../shared/services/project.service';
-import { environment }                  from '../../../environments/environment';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Subscription } 				                   from 'rxjs/Subscription';
+import { ControllerService } 			                 from '../../controller.service';
+import { Router }                                  from '@angular/router';
+import { MatDialog }                               from '@angular/material/dialog';
+import { ProjectDeleteComponent }                  from '../project-delete/project-delete.component';
+import { ProjectService }                          from '../shared/services/project.service';
+import { environment }                             from '../../../environments/environment';
+import { MatSidenav }                              from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-project-list',
@@ -20,7 +21,7 @@ export class ProjectListComponent implements OnInit, OnDestroy {
     private dialog   : MatDialog,
     private projServ : ProjectService
   	) { }
-
+  @ViewChild('sidenav') sidenav : MatSidenav;
   subscriber : Subscription;
 
   ngOnInit() {

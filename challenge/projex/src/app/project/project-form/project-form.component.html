@@ -1,25 +1,25 @@
-<form [formGroup]="projForm" class="prj-form" fxLayout.xs="column" fxLayout="row" fxLayoutWrap fxLayoutAlign="space-between" (ngSubmit)="submit(projForm.value)" >
+<form [formGroup]="projForm" class="prj-form" fxLayout.xs="column" fxLayout="row" fxLayoutWrap fxLayoutAlign="space-between" (ngSubmit)="submit(projForm)" >
   <mat-form-field>
     <input matInput placeholder="Name" formControlName="name" required>
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Team Leader Email" formControlName="boss" required>
+    <mat-select placeholder="Team Leader Email" formControlName="boss" required>
+      <mat-option *ngFor="let user of userList" [value]="user.email">
+        {{user.email}}
+      </mat-option>
+    </mat-select>
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput #inpStart [max]="inpFinish.value" [matDatepicker]="start" formControlName="start" placeholder="Start Date" required>
+    <input matInput #inpStart [min]="minStart" [matDatepicker]="start" formControlName="start" placeholder="Start Date" required>
     <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
     <mat-datepicker #start></mat-datepicker>
   </mat-form-field>
-
-  {{inpFinish.value}}<br/>
-  {{inpStart.value}}
-  
   <mat-form-field>
-    <input matInput #inpFinish [min]="inpStart.value" [matDatepicker]="finish" formControlName="finish" placeholder="Finish Date" required>
+    <input matInput #inpFinish  [matDatepicker]="finish" formControlName="finish" placeholder="Finish Date" required>
     <mat-datepicker-toggle matSuffix [for]="finish"></mat-datepicker-toggle>
-    <mat-datepicker #finish></mat-datepicker>
+    <mat-datepicker (click)="test()" #finish></mat-datepicker>
   </mat-form-field>
 
   <mat-form-field  fxFlex="100">
