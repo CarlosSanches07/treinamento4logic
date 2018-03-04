@@ -105,59 +105,86 @@ export class UserFormComponent implements OnInit, OnDestroy {
     }
     const user : UserModel = data.value;
 
-    const checkArray = this.userService.userList.filter((i) => i.email.includes(user.email));
-
-    if(checkArray.length > 0) {
-      this.snack.open("ERROR", "This EMAIL is already beeing used", {
+    if(this.router.url.includes('edit')){
+      if(this.checkEditedEmail(user)){
+        this.snack.open("ERROR", "This EMAIL is already beeing used", {
+          duration : 2000
+        });
+        return;
+      } else {
+        this.editData(user);
+      }
+    }else {
+      if(this.checkEmail(user)) {
+        this.snack.open("ERROR", "This EMAIL is already beeing used", {
         duration : 2000
       });
       return;
     }
-    if(this.router.url.includes('edit')){
-      const id : string = this.router.url.split('/')[3];
-      user._id = id;
-      this.subscribe = this.controller.update(user, 'users')
-        .subscribe((data) => {
-          if(data !== "#"){
-            this.snack.open("SUCCESS", "Employee successfully updated", {
-              duration : 2000
-            })
-            const newList = this.userService.getList();
-            newList.push(user);
-            this.userService.setList(newList);
-            this.userList.sidenav.close();
-            return;
-          } else {
-            this.snack.open("ERROR", "SERVER ERROR", {
-              duration : 2000
-            })
-            this.userList.sidenav.close();
-            return;
-          }
-        })
-    }else {
-      this.subscribe = this.controller.create(user, 'users')
-        .subscribe((data) => {
-          if(data !== "#"){
-            this.snack.open("SUCCESS", "Employee created", {
-              duration : 2000
-            });
-            user._id = data;
-            let newList = this.userService.getList();
-            newList.push(user)
-            console.log(newList);
-            this.userService.setList(newList);
-            this.userList.sidenav.close();
-          } else {
-            this.snack.open("ERROR", "SERVER ERROR", {
-              duration : 2000
-            });
-            this.userList.sidenav.close();
-            return;
-          }  
-        })
+      this.createData(user);
     }
     
   }
 
+  checkEmail(user : UserModel) : boolean {
+    const checkArray = this.userService.userList.filter((i) => i.email.includes(user.email));
+    return checkArray.length > 0;
+  }
+
+  checkEditedEmail(user : UserModel) : boolean{
+    const id = this.router.url.split('/')[3];
+    const oldUser : UserModel[] = this.userService.userList.filter(i => i._id.includes(id));
+    if(oldUser[0].email === user.email)
+      return false;
+    else {
+      return this.checkEmail(user);
+    }
+  }
+
+  editData(user : UserModel) {
+    const id : string = this.router.url.split('/')[3];
+    user._id = id;
+    this.subscribe = this.controller.update(user, 'users')
+      .subscribe((data) => {
+        if (data !== "#") {
+          this.snack.open("SUCCESS", "Employee successfully updated", {
+            duration : 2000
+          })
+          let newList : UserModel[] = this.userService.getList();
+          let index = newList.findIndex(i => i._id === user._id);
+          newList[index] = user;
+          this.userService.setList(newList);
+          this.userList.sidenav.close();
+        } else {
+          this.snack.open("ERROR", "SERVER ERROR", {
+            duration : 2000
+          })
+          this.userList.sidenav.close();
+            return;
+        }
+      })
+  }
+
+  createData(user : UserModel) {
+    this.subscribe = this.controller.create(user, 'users')
+      .subscribe((data) => {
+        if(data !== "#"){
+          this.snack.open("SUCCESS", "Employee created", {
+            duration : 2000
+          });
+          user._id = data;
+          let newList = this.userService.getList();
+          newList.push(user)
+          console.log(newList);
+          this.userService.setList(newList);
+          this.userList.sidenav.close();
+        } else {
+          this.snack.open("ERROR", "SERVER ERROR", {
+            duration : 2000
+          });
+          this.userList.sidenav.close();
+          return;
+        }  
+    })
+  }
 }

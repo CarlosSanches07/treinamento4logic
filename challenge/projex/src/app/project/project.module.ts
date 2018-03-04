@@ -11,10 +11,11 @@ import { ProjectListComponent }   from './project-list/project-list.component';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { Router }            from '../router.module';
-import { ControllerService } from '../controller.service';
-import { FlexLayoutModule }  from '@angular/flex-layout';
-import { ProjectService }    from './shared/services/project.service';
+import { Router }                    from '../router.module';
+import { ControllerService }         from '../controller.service';
+import { FlexLayoutModule }          from '@angular/flex-layout';
+import { ProjectService }            from './shared/services/project.service';
+/*import { ProjectValidatorService } from './shared/validator/project-validator.service';*/
 
 @NgModule({
   imports: [
@@ -26,7 +27,7 @@ import { ProjectService }    from './shared/services/project.service';
     BrowserAnimationsModule,
     FlexLayoutModule,
   ],
-  providers: [ControllerService, ProjectService],
+  providers: [ControllerService, ProjectService/*, ProjectValidatorService*/],
   declarations: [ProjectInfoComponent, ProjectFormComponent, ProjectDeleteComponent, ProjectListComponent]
 })
 export class ProjectModule { }

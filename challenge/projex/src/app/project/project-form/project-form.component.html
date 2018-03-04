@@ -2,39 +2,48 @@
   <mat-form-field>
     <input matInput placeholder="Name" formControlName="name" required>
   </mat-form-field>
+
   <mat-form-field>
     <input matInput placeholder="Team Leader Email" formControlName="boss" required>
   </mat-form-field>
+
   <mat-form-field>
     <input matInput #inpStart [max]="inpFinish.value" [matDatepicker]="start" formControlName="start" placeholder="Start Date" required>
     <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
     <mat-datepicker #start></mat-datepicker>
   </mat-form-field>
+
   {{inpFinish.value}}<br/>
   {{inpStart.value}}
+  
   <mat-form-field>
     <input matInput #inpFinish [min]="inpStart.value" [matDatepicker]="finish" formControlName="finish" placeholder="Finish Date" required>
     <mat-datepicker-toggle matSuffix [for]="finish"></mat-datepicker-toggle>
     <mat-datepicker #finish></mat-datepicker>
   </mat-form-field>
+
   <mat-form-field  fxFlex="100">
     <textarea matInput placeholder="Description" formControlName="description" required></textarea>
   </mat-form-field>
-  <div formGroupName="team" fxLayout="row" fxLayoutAlign="space-between" fxFlex="100">
+  
+  <form fxLayout="row" fxLayoutAlign="space-between" fxFlex="100">
     <mat-form-field fxFlex="45">
-      <mat-select placeholder="Team Member">
-        <mat-option *ngFor="let user of userList" [value]="user">
+      <mat-select placeholder="Team Member" #member>
+        <mat-option *ngFor="let user of userList" [value]="user" (click)="setWorkload(user)">
           {{user.email}}
         </mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field fxFlex="45">
-      <mat-select placeholder="Workload">
-        <mat-option *ngFor="let hours of day" [value]="hours">
+      <mat-select #hour placeholder="Workload" [disabled]="member.value == null ? true : false">
+        <mat-option *ngFor="let hours of workload" [value]="hours">
           {{hours}}
         </mat-option>
       </mat-select>
     </mat-form-field>
+    <button mat-mini-fab color="primary" (click)="addMember(member.value, hour.value)">
+      <mat-icon>add</mat-icon>
+    </button>
     <!-- <mat-form-field fxFlex="50">
       <input matInput placeholder="Member Email" formControlName="member">
     </mat-form-field>
@@ -44,5 +53,26 @@
     <div fxFLex="50" fxLayoutWrap>
       <button fxFlex="50" mat-raised-button color="primary">Submit</button>
     </div> -->
+  </form>
+  <div fxFlex="100">
+    <mat-list style=";max-height: 200px; overflow: auto;" fxLayout="column" fxLayoutAlign="space-between center" fxFlex="100">
+      <h3 mat-subheader>Team</h3>
+      <mat-list-item *ngFor="let member of team" fxFlexAlign="start" fxFlex="100" style="width: 100%">
+        <h4 mat-line>
+          <mat-icon>person</mat-icon>
+          {{member.member.name}}
+          </h4>
+        <p mat-line>
+          <mat-icon>alarm</mat-icon>
+          {{member.timeSpend}}
+        </p> 
+        <p style="cursor: pointer;" (click)="removeMember(member.member.email)">
+          <mat-icon>delete</mat-icon>
+        </p>
+      </mat-list-item>
+    </mat-list>
   </div>
+  <button mat-raised-button color="primary">
+    Submit
+  </button>
 </form>

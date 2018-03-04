@@ -6,6 +6,7 @@ import { ProjectModel }                                  from '../project-model'
 import { Subscription }                                  from 'rxjs/Subscription';
 import { ActivatedRoute }                                from '@angular/router';
 import { ValidatorService }                              from '../../shared/validator/validator.service';
+import { MatSnackBar }                                   from '@angular/material';
 
 @Component({
   selector: 'app-project-form',
@@ -22,7 +23,9 @@ export class ProjectFormComponent implements OnInit, OnDestroy {
     private router     : Router,
     private controller : ControllerService,
     private actRouter  : ActivatedRoute,
-    private valid      : ValidatorService
+    private valid      : ValidatorService,
+    private snack      : MatSnackBar
+    /*private projValid: ProjectValidatorService*/
   	) {  }
 
   // startDateMax  = this.finish.value;
@@ -55,6 +58,9 @@ export class ProjectFormComponent implements OnInit, OnDestroy {
     "08:00"
   ];
 
+  workload = [];
+
+  team = [];
 
   ngOnInit() {
     this.subscribe =  this.actRouter.params.subscribe((params : any) => {
@@ -84,10 +90,10 @@ export class ProjectFormComponent implements OnInit, OnDestroy {
 		  finish		: [null],
 		  boss		: [null, [Validators.required, this.valid.email]],
 		  description : [null, Validators.required],
-		  team		: this.builder.group({
+		  team		: this.builder.group([{
 			  member : [null],
 			  timeSpend :[null]
-		  })
+		  }])
   	})
   }
 
@@ -102,6 +108,36 @@ export class ProjectFormComponent implements OnInit, OnDestroy {
 
   submit (data : ProjectModel) {
       console.log(data);
+  }
+
+  setWorkload(user : any) {
+    this.workload = [];
+    let time = user.workload;
+    let index = this.day.findIndex(i => i == time);
+    for(let i = 0; i <= index; i++) {
+      this.workload[i] = this.day[i];
+    }
+  }
+
+  addMember(user : any, time : string){
+    if(!user || !time)
+      return;
+    const member = {member : user, timeSpend : time}
+    const test = this.team.filter(i => i.member.email === user.email);
+    if(test.length > 0){
+      this.snack.open("ERROR", "Employee's already in this project",{
+        duration : 2000
+      });;
+      return;
+    }else {
+      this.team.push(member);
+    }
+  }
+
+  removeMember(id : string) {
+    const index = this.team.findIndex(i => i.member._id === id);
+    this.team.splice(index, 1);
+    console.log(this.team);
   }
 
 }
