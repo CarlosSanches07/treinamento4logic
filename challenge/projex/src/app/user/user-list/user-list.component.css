@@ -17,3 +17,38 @@
 	margin : 3px;
 }
 
+.content {
+	min-height: 600px;
+}
+
+.close {
+	cursor: pointer;
+	width: 100%;
+	height: 10px;
+}
+
+.side {
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	width: 35%;
+}
+
+.btn-add {
+	margin: 5px;
+	position: fixed;
+	z-index: 100;
+}
+
+@media screen and (max-width: 800px) {
+	.side {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.usr-card {
+		width: 80%;
+	}
+}
+

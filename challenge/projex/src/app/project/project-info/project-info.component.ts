@@ -3,6 +3,7 @@ import { Subscription }					from 'rxjs/Subscription';
 import { ProjectModel }					from '../project-model';
 import { ControllerService }			from '../../controller.service';
 import { Router, ActivatedRoute }		from '@angular/router';
+import * as moment                  from 'moment';
 
 @Component({
   selector: 'app-project-info',
@@ -13,6 +14,8 @@ export class ProjectInfoComponent implements OnInit, OnDestroy {
 
   subscribe : Subscription;
   proj		: ProjectModel;
+  start;
+  finish;
 
   constructor(
   	private controller	: ControllerService,
@@ -36,6 +39,8 @@ export class ProjectInfoComponent implements OnInit, OnDestroy {
   	this.subscribe = this.controller.getById(id, 'projects')
   		.subscribe((data : ProjectModel) => {
   			this.proj = data;
+        this.start = moment(this.proj.start).format("DD/MM/YYYY");
+        this.finish = moment(this.proj.finish).format("DD/MM/YYYY");
   		})
   }
 

@@ -1,13 +1,15 @@
 <div class="user-list">
   <mat-sidenav-container>
-    <mat-sidenav #sidenav mode="over">
-      <span (click)="sidenav.toggle()">
+    <mat-sidenav #sidenav mode="over" class="side">
+      <span class="close" (click)="sidenav.toggle()">
         <mat-icon>cancel</mat-icon>
       </span>
       <router-outlet (done)="test($event) ? sidenav.toggle() : sidenav.toggle()"></router-outlet>
     </mat-sidenav>
-    <mat-sidenav-content>
-      <a routerLink="/user/new" (click)="sidenav.toggle()">Add New</a>
+    <mat-sidenav-content class="content">
+      <button class="btn-add" mat-fab color="primary" routerLink="/user/new" (click)="sidenav.toggle()">
+        <mat-icon>add</mat-icon>
+      </button>
       <div fxLayoutAlign="center">  
         <h1>Employee</h1>
       </div>
@@ -16,8 +18,7 @@
           <input #inpSearch matInput (keyup)="search(inpSearch.value)" placeholder="Search">
         </mat-form-field>
       </div>
-      <div class="users-container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutAlign="center">
-        <div *ngFor="let user of userService.userList">
+      <div class="users-container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutAlign.xs="center" fxLayoutAlign="center">       <div *ngFor="let user of userService.userList">
           <mat-card class="usr-card" fxLayout="row" fxLayoutAlign="space-between">
             <mat-card-header class="btn-info" routerLink="/user/info/{{user._id}}" (click)="sidenav.toggle()">
               <mat-card-title>

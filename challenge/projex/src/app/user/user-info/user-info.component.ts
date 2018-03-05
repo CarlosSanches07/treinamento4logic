@@ -3,6 +3,7 @@ import { UserModel }		 			          from '../user-model';
 import { Subscription }		 			        from 'rxjs/Subscription';
 import { ControllerService } 			      from '../../controller.service';
 import { Router, ActivatedRoute }       from '@angular/router'; 
+import * as moment                      from 'moment';
 
 @Component({
   selector: 'app-user-info',
@@ -13,6 +14,7 @@ export class UserInfoComponent implements OnInit, OnDestroy {
 
   subscribe : Subscription;
   user : UserModel;
+  birth;
 
   constructor(
   	private controller  : ControllerService,
@@ -36,7 +38,8 @@ export class UserInfoComponent implements OnInit, OnDestroy {
     this.subscribe = this.controller.getById(id, 'users')
       .subscribe((data : UserModel) => {
        this.user = data;
-    console.log(this.user)
+       this.birth = moment(this.user.birth).format("DD/MM/YYYY");
+       console.log(this.birth);
 
     })
   }

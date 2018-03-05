@@ -1,13 +1,15 @@
 <div class="project-list">
   <mat-sidenav-container>
-    <mat-sidenav #sidenav mode="over">
+    <mat-sidenav #sidenav mode="over" class=side>
       <span (click)="sidenav.toggle()">
         <mat-icon>cancel</mat-icon>
       </span>
       <router-outlet></router-outlet>
     </mat-sidenav>
-    <mat-sidenav-content style="min-height: 592px">
-      <a [routerLink]="['/project/new']" (click)="sidenav.toggle()">add New</a>
+    <mat-sidenav-content class="content">
+      <button class="btn-add" mat-fab color="primary" [routerLink]="['/project/new']" (click)="sidenav.toggle()">
+        <mat-icon>add</mat-icon>
+      </button>
       <div fxLayoutAlign="center">
         <h1>Projects</h1>
       </div>

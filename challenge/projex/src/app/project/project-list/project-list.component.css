@@ -9,7 +9,7 @@
 
 .prj-card {
 	width: 350px;
-    height: 100px;
+  height: 100px;
 	margin: 20px;
 }
 
@@ -23,4 +23,33 @@
 
 .btn-info {
 	cursor : pointer;
+}
+
+.content {
+	min-height: 600px
+}
+
+.side {
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	width: 35%;
+}
+
+.btn-add {
+	margin: 5px;
+	position: fixed;
+	z-index: 100;
+}
+
+@media screen and (max-width: 800px) {
+	.side {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.prj-card {
+		width: 80%;
+	}
 }

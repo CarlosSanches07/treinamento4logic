@@ -1,7 +1,9 @@
 .usr-form {
-	width: 480px;
+	width: 88%;
+	margin: 10px;
 }
 
 .form-item {
 	margin: 10px;
+	width: 90%
 }

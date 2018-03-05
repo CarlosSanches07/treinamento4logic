@@ -1,5 +1,5 @@
 <div class="project-info">
-  <mat-card tab-index="-1">
+  <mat-card tab-index="-1" class="info">
     <mat-card-header>
       <mat-card-title>
         <p><b>Name:</b> {{proj?.name}}</p>
@@ -10,17 +10,17 @@
     </mat-card-header>
     <mat-card-content>
       <div class="start">
-        <p><b>Start: </b>{{proj?.start}}</p>
+        <p><b>Start: </b>{{start}}</p>
       </div>
       <div class="finish">
-        <p><b>Finish: </b>{{proj?.finish}}</p>
+        <p><b>Finish: </b>{{finish}}</p>
       </div>
       <div class="description">
         <p><b>Description: </b><br/>{{proj?.description}}</p>
       </div>
       <div class="workload">
         <div fxFlex="100">
-          <mat-list style=";max-height: 200px; overflow: auto;" fxLayout="column" fxLayoutAlign="space-between center" fxFlex="100">
+          <mat-list class="crew" fxLayout="column" fxLayoutAlign="space-between center" fxFlex="100">
             <h3 mat-subheader>Team</h3>
             <mat-list-item *ngFor="let member of proj?.team" fxFlexAlign="start" fxFlex="100" style="width: 100%">
               <h4 mat-line>

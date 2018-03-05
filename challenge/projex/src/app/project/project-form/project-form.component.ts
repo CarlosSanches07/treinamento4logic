@@ -128,6 +128,13 @@ export class ProjectFormComponent implements OnInit, OnDestroy {
         })
         return;
       }
+
+      if(this.checkLeader(this.project)) {
+        this.snack.open("ERROR", "The project leader is not avaliable for this dates", {
+          duration : 2000
+        })
+        return;
+      }
       
       if(this.router.url.includes("edit")){
         this.editData(this.project);
@@ -214,10 +221,22 @@ export class ProjectFormComponent implements OnInit, OnDestroy {
       });
   }
 
-  checkDate (project : ProjectModel) {
+  checkDate (project : ProjectModel) : boolean {
     const start   = moment(project.start);
     const finish  = moment(project.finish);
     return finish.isBefore(start)
   }
 
+  checkLeader(project : ProjectModel) : boolean {
+     const leaderProjects = this.projServ.projList.filter(i => i.boss === project.boss);
+     let isValid : boolean = false;
+     leaderProjects.forEach((i) => {
+       let start = moment(project.start).isBetween(moment(i.start), moment(i.finish))
+       let finish = moment(project.finish).isBetween(moment(i.start), moment(i.finish)) 
+       if(start || finish){ 
+         isValid = true;
+       }
+     })
+     return isValid;
+  }
 }

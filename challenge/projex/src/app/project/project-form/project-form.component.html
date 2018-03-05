@@ -1,9 +1,9 @@
-<form [formGroup]="projForm" class="prj-form" fxLayout.xs="column" fxLayout="row" fxLayoutWrap fxLayoutAlign="space-between" (ngSubmit)="submit(projForm)" >
-  <mat-form-field>
+<form [formGroup]="projForm" class="prj-form" fxLayout.xs="column" fxLayout="row" fxLayoutWrap fxLayoutAlign="space-around" (ngSubmit)="submit(projForm)" >
+  <mat-form-field class="form-item">
     <input matInput placeholder="Name" formControlName="name" required>
   </mat-form-field>
 
-  <mat-form-field>
+  <mat-form-field class="form-item">
     <mat-select placeholder="Team Leader Email" formControlName="boss" required>
       <mat-option *ngFor="let user of userList" [value]="user.email">
         {{user.email}}
@@ -11,30 +11,30 @@
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field>
+  <mat-form-field class="form-item">
     <input matInput #inpStart [min]="minStart" [matDatepicker]="start" formControlName="start" placeholder="Start Date" required>
     <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
     <mat-datepicker #start></mat-datepicker>
   </mat-form-field>
-  <mat-form-field>
+  <mat-form-field class="form-item">
     <input matInput #inpFinish  [matDatepicker]="finish" formControlName="finish" placeholder="Finish Date" required>
     <mat-datepicker-toggle matSuffix [for]="finish"></mat-datepicker-toggle>
     <mat-datepicker (click)="test()" #finish></mat-datepicker>
   </mat-form-field>
 
-  <mat-form-field  fxFlex="100">
+  <mat-form-field  fxFlex="100" class="form-item">
     <textarea matInput placeholder="Description" formControlName="description" required></textarea>
   </mat-form-field>
   
   <form fxLayout="row" fxLayoutAlign="space-between" fxFlex="100">
-    <mat-form-field fxFlex="45">
+    <mat-form-field fxFlex="45" class="form-item">
       <mat-select placeholder="Team Member" #member>
         <mat-option *ngFor="let user of userList" [value]="user" (click)="setWorkload(user)">
           {{user.email}}
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field fxFlex="45">
+    <mat-form-field fxFlex="45" class="form-item">
       <mat-select #hour placeholder="Workload" [disabled]="member.value == null ? true : false">
         <mat-option *ngFor="let hours of workload" [value]="hours">
           {{hours}}
@@ -55,7 +55,7 @@
     </div> -->
   </form>
   <div fxFlex="100">
-    <mat-list style=";max-height: 200px; overflow: auto;" fxLayout="column" fxLayoutAlign="space-between center" fxFlex="100">
+    <mat-list class="members" fxLayout="column" fxLayoutAlign="space-between center" fxFlex="100">
       <h3 mat-subheader>Team</h3>
       <mat-list-item *ngFor="let member of team" fxFlexAlign="start" fxFlex="100" style="width: 100%">
         <h4 mat-line>
