@@ -146,7 +146,7 @@ create database ex1;
 		create table contents.assessements_students 
 			(
 				id_assessement_student		int 			primary key identity,
-				id_course_class 			int 			not null,
+				id_course_class_student		int 			not null,
 				id_assessement 				int 			not null,
 				note						decimal(5,1)	not null,
 				removed 					int 			not null default(0)
