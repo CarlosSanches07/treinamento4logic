@@ -18,7 +18,7 @@ from (select top(10) dbo.stored_files.length as length
 		order by length desc) as d;
 
 -- 4
-select s.name
+select s.nam
 from ( select count(s.id) as cnt, s.name as name 
 	   from dbo.states as s join dbo.cities as c 
 			on (s.id = c.id_state)
