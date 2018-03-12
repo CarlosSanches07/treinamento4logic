@@ -6,10 +6,10 @@ order by login_month;
 
 -- 2
 select avg(p.id) as media
-from (	select distinct TOP(30) DAY(logins.login_date) as login_, count(dbo.logins.id) as id
+from (	select distinct TOP(30) count(dbo.logins.id) as id, convert(date, logins.login_date) as login_
 		from dbo.logins	
-		group by DAY(logins.login_date)
-		order by login_ desc) as p;
+		group by convert(date, logins.login_date)
+		order by convert(date, logins.login_date) desc) as p;
 
 -- 3
 select sum(d.length) as 'espaço total'

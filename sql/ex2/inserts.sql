@@ -175,3 +175,79 @@ insert into Contents.courses_classes_activities(id_course_class, description, sc
 			('10'	,'teste de mira'		,'2020-08-04'),
 			('6'	,'socorros na overdose'	,'2020-06-29'),
 			('12'	,'teste de headshot'	,'2020-09-02');
+
+/*contents.courses_classes_activities_students*/
+
+insert into contents.courses_classes_activities_students(id_activity, id_course_class_student, delivery_date)
+		values 	('1'	,'16'	,'2020-07-09'),
+				('2'	,'20'	,'2020-04-02'),
+				('3'	,'34'	,'2020-05-06'),
+				('4'	,'32'	,'2020-02-01'),
+				('5'	,'28'	,'2020-08-03');
+
+/*Entrega adiantada*/
+
+select id_course_class_student
+from	contents.courses_classes_activities as a 
+		join
+		contents.courses_classes_activities_students as b
+		on (a.id_activity = b.id_activity)
+
+where a.scheduled_date > b.delivery_date;
+
+/*Dentro do prazo*/
+
+select id_course_class_student
+from	contents.courses_classes_activities as a
+		join
+		contents.courses_classes_activities_students as b
+		on (a.id_activity = b.id_activity)
+
+where a.scheduled_date >= b.delivery_date;
+
+/*Atrasado*/
+
+select id_course_class_student
+from	contents.courses_classes_activities as a
+		join
+		contents.courses_classes_activities_students as b
+		on (a.id_activity = b.id_activity)
+
+where a.scheduled_date < b.delivery_date;
+
+
+/*Add column student_score to table classes.courses_classes_students*/
+
+alter table classes.courses_classes_students add student_score int not null  default(0);
+
+/*Update the student score column*/
+
+	/*Delivered out of time*/
+
+update classes.courses_classes_students
+	set student_score = -1
+	from
+		contents.courses_classes_activities as a
+		join
+		contents.courses_classes_activities_students as b
+		on (a.id_activity = b.id_activity),
+		classes.courses_classes_students as c
+	where
+		c.id_course_class_student = b.id_course_class_student
+		and 
+		a.scheduled_date > b.delivery_date;
+
+	/*Delivered in time*/
+
+update classes.courses_classes_students
+	set student_score = 1
+	from
+		contents.courses_classes_activities as a
+		join
+		contents.courses_classes_activities_students as b
+		on (a.id_activity = b.id_activity),
+		classes.courses_classes_students as c
+	where
+		c.id_course_class_student = b.id_course_class_student
+		and 
+		a.scheduled_date <= b.delivery_date;
