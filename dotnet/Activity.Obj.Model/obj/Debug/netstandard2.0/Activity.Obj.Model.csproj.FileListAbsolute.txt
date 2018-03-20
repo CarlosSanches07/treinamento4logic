@@ -1,0 +1,8 @@
+C:\Users\carlos.roberto\Documents\treinamento\dotnet\Activity.Obj.Model\bin\Debug\netstandard2.0\Activity.Obj.Model.deps.json
+C:\Users\carlos.roberto\Documents\treinamento\dotnet\Activity.Obj.Model\bin\Debug\netstandard2.0\Activity.Obj.Model.dll
+C:\Users\carlos.roberto\Documents\treinamento\dotnet\Activity.Obj.Model\bin\Debug\netstandard2.0\Activity.Obj.Model.pdb
+C:\Users\carlos.roberto\Documents\treinamento\dotnet\Activity.Obj.Model\obj\Debug\netstandard2.0\Activity.Obj.Model.csproj.CoreCompileInputs.cache
+C:\Users\carlos.roberto\Documents\treinamento\dotnet\Activity.Obj.Model\obj\Debug\netstandard2.0\Activity.Obj.Model.AssemblyInfoInputs.cache
+C:\Users\carlos.roberto\Documents\treinamento\dotnet\Activity.Obj.Model\obj\Debug\netstandard2.0\Activity.Obj.Model.AssemblyInfo.cs
+C:\Users\carlos.roberto\Documents\treinamento\dotnet\Activity.Obj.Model\obj\Debug\netstandard2.0\Activity.Obj.Model.dll
+C:\Users\carlos.roberto\Documents\treinamento\dotnet\Activity.Obj.Model\obj\Debug\netstandard2.0\Activity.Obj.Model.pdb
