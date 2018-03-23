@@ -8,18 +8,27 @@ namespace Models {
 	  public DateTime EstimatedEndDate;
 	  public Nullable<DateTime> RealEndDate;
 	  public Person Responsible;
+	  public Task[] TaskList;
+	  public Person[] Users;
 
-	  public static Project GetProject() {
+	  public static Project GetProject( Int32 id
+	  																, String title
+	  																, String comments
+	  																, String code
+	  																, DateTime startDate
+	  																, DateTime estimatedEndDate
+	  																, Person responsible) 
+	  {
 	  	return new Project {
-	  		Id = 12,
+	  		Id = id,
 	  		Removed = false,
-	  		Title = "Test",
-	  		Comments = "aaaahamdaksd",
-	  		Code = "#a123" ,
-	  		StartDate = new DateTime(2018,01, 01),
-	  		EstimatedEndDate = new DateTime(2018, 02, 01),
+	  		Title = title,
+	  		Comments = comments,
+	  		Code = code,
+	  		StartDate = startDate,
+	  		EstimatedEndDate = estimatedEndDate,
 	  		RealEndDate = null,
-	  		Responsible = Person.getPerson(),
+	  		Responsible = responsible,
 	  	};
 	  }
 

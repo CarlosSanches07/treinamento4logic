@@ -7,14 +7,19 @@ namespace Models {
 	  public Person Father;
 	  public String Email;
 
-	  public static Person getPerson() {
+	  public static Person getPerson( Int32 id
+	  															, String title
+	  															, String comments
+	  															,	DateTime bitrh
+	  															, Person father
+	  															,	String email) {
 	  	return new Person{
-	  		Id 				= 14,
-	  		Title 		= "João",
-	  		Comments 	= "aishdqa",
-	  		Birth 		= new DateTime(2000, 02, 14),
-	  		Father 		= new Person(),
-	  		Email 		= "iadsosdo@aisodad.com"
+	  		Id 				= id,
+	  		Title 		= title,
+	  		Comments 	= comments,
+	  		Birth 		= bitrh,
+	  		Father 		= father,
+	  		Email 		= email
 	  	};
 	  }
 

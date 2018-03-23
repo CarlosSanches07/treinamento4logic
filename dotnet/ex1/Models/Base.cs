@@ -16,8 +16,7 @@ namespace Models {
 
 		public void SetRemoved() {
 			Removed = true;
-		}
-
+		}	
 
 	}
 
