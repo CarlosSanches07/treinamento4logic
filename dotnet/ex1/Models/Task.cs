@@ -6,12 +6,12 @@ namespace Models {
 	  public float WorkHours;
 	  public ETaskType Type;
 
-		public static Task getTask( Int32 id
-																, String title
-																, String comments
-																,	Person responsible
-																, float  workHours
-																,	ETaskType type)
+		public static Task getTask ( Int32 id
+															 , String title
+															 , String comments
+															 , Person responsible
+															 , float  workHours
+															 , ETaskType type)
 		{
 			return new Task {
 				Id 						= id,
@@ -25,12 +25,12 @@ namespace Models {
 
 		public override void Print() {
 	  	Console.WriteLine
-	  		("Id: "							+ Id
-	  		+"Title: " 					+ Title
-	  		+"Comments: " 			+ Comments
-	  		+"Responsible: "		+ Responsible.Title
-	  		+"WorkHours: "		 	+ WorkHours
-	  		+"Type: "				 		+ Type
+	  		("\nId: "							+ Id
+	  		+"\nTitle: " 					+ Title
+	  		+"\nComments: " 			+ Comments
+	  		+"\nResponsible: "		+ Responsible.Title
+	  		+"\nWorkHours: "		 	+ WorkHours
+	  		+"\nType: "				 		+ Type
 	  		);
 	  } 
 	}
