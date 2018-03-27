@@ -25,12 +25,12 @@ namespace Models {
 
 	  public override void Print() {
 	  	Console.WriteLine
-	  		("Id: "				+ Id
-	  		+"Title: " 		+ Title
-	  		+"Comments: " + Comments
-	  		+"Birth: " 		+ Birth
-	  		+"Father: " 	+ Father
-	  		+"Email: " 		+ Email
+	  		("Id: "					+ Id
+	  		+"\nTitle: " 		+ Title
+	  		+"\nComments: " + Comments
+	  		+"\nBirth: " 		+ Birth
+	  		+"\nFather: " 	+ Father
+	  		+"\nEmail: " 		+ Email
 	  		);
 	  } 
 	}
