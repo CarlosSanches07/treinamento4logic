@@ -1,13 +1,15 @@
 ﻿using Models;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace app {
 
     class Program {
 
-    	public static Project[] ProjectList = new Project[10];
-        public static Task[] TaskList = new Task[10];
-        public static Person[] PersonList = new Person[10];
+    	public static List<Project> ProjectList = new List<Project>();
+        public static List<Task> TaskList = new List<Task>();
+        public static List<Person> PersonList = new List<Person>();
 
         static void Main(string[] args) {
             Int32 a = 5;
@@ -38,12 +40,7 @@ namespace app {
                             Console.Clear();
                             switch (b) {
                                 case 1:
-                                    var index = Program.FindFreeIndex(PersonList);
-                                    if (index != -1){   
-                                        PersonList[index] = Program.CreatePerson();
-                                    } else {
-                                        Console.WriteLine("User list is full, please make sure that your list have some free space.");
-                                    }
+                                    PersonList.Add(Program.CreatePerson());
                                     break;
                                 case 2:
                                     ListPersons(PersonList);
@@ -74,12 +71,7 @@ namespace app {
                             Console.Clear();
                             switch (b) {
                                 case 1:
-                                    var index = Program.FindFreeIndex(TaskList);
-                                    if (index != -1){   
-                                        TaskList[index] = Program.CreateTask(PersonList);
-                                    } else {
-                                        Console.WriteLine("Task list is full, please make sure that your list have some free space.");
-                                    }
+                                    TaskList.Add(Program.CreateTask());
                                     break;
                                 case 2:
                                     ListTasks(TaskList);
@@ -110,12 +102,7 @@ namespace app {
                             Console.Clear();
                             switch (b) {
                                 case 1:
-                                    var index = Program.FindFreeIndex(ProjectList);
-                                    if (index != -1){   
-                                        ProjectList[index] = Program.CreateProject(PersonList);
-                                    } else {
-                                        Console.WriteLine("Project list is full, please make sure that your list have some free space.");
-                                    }
+                                    ProjectList.Add(Program.CreateProject(PersonList));
                                     break;
                                 case 2:
                                     ListProjects(ProjectList);
@@ -188,7 +175,7 @@ namespace app {
 
         /*Projects*/
 
-        public static Project CreateProject (Person[] persons) {
+        public static Project CreateProject (List<Person> persons) {
             Console.WriteLine("____________ Create Project ____________");
             Console.WriteLine("\n\n Please Name your project: ");
             String title = Console.ReadLine();
@@ -203,37 +190,83 @@ namespace app {
             Program.ListPersons(persons);
             Int32 responsible = Int32.Parse(Console.ReadLine());
             Person p = new Person();
-            for (var i = 0;i < persons.Length && persons[i] != null; i++){
-                if(persons[i].Id == responsible){
-                    p = persons[i];
+            var index = persons.FindIndex( item => item.Id == responsible );
+            if(index == -1){
+                Console.WriteLine("\n\tSorry this Id does not match"); 
+            }else {
+                p = persons[index];
+            }
+            Console.WriteLine("\n\nPlease insert users that will be part of this project team: \n\t");
+            Program.ListPersons(persons);
+            Console.WriteLine("type the user id, or 0 to exit team selection");
+            Int32 i = 1777;
+            List<Person> team = new List<Person>();
+            while(i != 0){
+                i = Int32.Parse(Console.ReadLine());
+                if(i != 0){
+                    Person u = null;
+                    var ind = persons.FindIndex( item => item.Id == i );
+                    if(ind == -1){
+                        Console.WriteLine("\n\tSorry this Id does not match"); 
+                    }else {
+                        u = persons[ind];
+                        team.Add(u);
+                    }
                 }
             }
-            var id = 1;
-            return Project.GetProject(id, title, comments, code, start, estimated, p); 
+            Dictionary<Person, List<Task>> taskList = null;
+            var id = Program.GenId(Program.ProjectList);
+            Console.WriteLine("Do you want to add some tasks to your project ?: ");
+            Console.WriteLine("\n\t1. Yes\n\t2. No");
+            Int32 AddTaks = Int32.Parse(Console.ReadLine());
+            List<Task> tasks = new List<Task>();
+            switch(AddTaks) {
+                case 1:
+                    if(TaskList == null) {
+                        Console.WriteLine("\n\nPlease create some tasks");
+                    } else {
+                        Program.ListTasks(Program.TaskList);
+                        Console.WriteLine("Type the Task Id that you want to add, or 0 to exit");
+                        i = 788;
+                        while ( i != 0 ) {
+                            i = Int32.Parse(Console.ReadLine());
+                            var ind = Program.TaskList.FindIndex(item => item.Id == i);
+                            tasks.Add(Program.TaskList[ind]);
+                        }
+                        Person resp = null;
+                        Console.WriteLine("Who is the responsible for these tasks ?: ");
+                        Program.ListPersons(Program.PersonList);
+                        Int32 personId = Int32.Parse(Console.ReadLine());
+                        var inde = Program.PersonList.FindIndex(item => item.Id == personId);
+                        resp = Program.PersonList[inde];
+                        taskList = new Dictionary<Person, List<Task>>();
+                        taskList.Add(resp, tasks);
+                    }
+                    break;
+                case 2: 
+                    break;
+                default:
+                    break;               
+            }
+
+            return Project.GetProject(id, title, comments, code, start, estimated, taskList, team, p); 
         }
 
-        public static void ListProjects(Project[] proj){
+        public static void ListProjects(List<Project> proj){
             if(proj[0] == null){
                 Console.WriteLine("Empty List");
                 return;
             }
             Console.WriteLine("Project List: ");
-            for(var i = 0; i < proj.Length && proj[i] != null; i++){
-                if(!proj[i].Removed)
-                    Console.WriteLine("\n\tId: {0}\tTitle: {1}", proj[i].Id, proj[i].Title);
-            }
+            proj.ForEach(item => Console.WriteLine("\n\tId: {0}\tTitle: {1}", item.Id, item.Title));
         }
 
-        public static void UpdateProject(Project[] proj) {
+        public static void UpdateProject(List<Project> proj) {
             Console.WriteLine("____________ Update Project ____________");
             Program.ListProjects(proj);
             Console.WriteLine("\n\nPlase type the project id that you want to update: ");
             Int32 Id = Int32.Parse(Console.ReadLine());
-            int index = 0;
-            for (var i = 0; i < proj.Length && proj[i] != null; i++) {
-                if(proj[i].Id == Id)
-                    index = i;
-            }
+            int index = proj.FindIndex(item => item.Id == Id);
             Console.Clear();
             Console.WriteLine("Project Selected : \n\n");
             proj[index].Print();
@@ -257,16 +290,12 @@ namespace app {
             }
         }
 
-        public static void DeleteProject(Project[] proj) {
+        public static void DeleteProject(List<Project> proj) {
              Console.WriteLine("____________ Delete Project ____________");
             Program.ListProjects(proj);
             Console.WriteLine("\n\nPlase type the project id that you want to delete: ");
             Int32 Id = Int32.Parse(Console.ReadLine());
-            int index = 0;
-            for (var i = 0; i < proj.Length; i++) {
-                if(proj[i].Id == Id)
-                    index = i;
-            }
+            int index = proj.FindIndex(item => item.Id == Id);
             Console.Clear();
             Console.WriteLine("Project Selected : \n\n");
             proj[index].Print();
@@ -307,34 +336,28 @@ namespace app {
             }
             Console.WriteLine("\n\n What is the User email ?:");
             String email = Console.ReadLine();
-            var id = Program.GenId(PersonList);
+            var id = Program.GenId(Program.PersonList);
             return Person.getPerson(id, title, comments, birth, null, email); 
         }
 
-        public static void ListPersons(Person[] persons) {
-            if(persons[0] == null) {
+        public static void ListPersons(List<Person> persons) {
+            if(persons.Count < 0) {
                 Console.WriteLine("List is empty");
                 return;
             }
             Console.WriteLine("Users List: ");
-            for(var i = 0; persons[i] != null && i < persons.Length -1; i++){
-                if (!persons[i].Removed)
-                    Console.WriteLine("\n\tId: {0}\tTitle: {1}", persons[i].Id, persons[i].Title);
-            }
+            persons.ForEach(item => {
+                if(!item.Removed)
+                    Console.WriteLine("\n\tId: {0}\tTitle: {1}", item.Id, item.Title);
+            });
         }
 
-        public static void UpdatePerson(Person[] persons) {
+        public static void UpdatePerson(List<Person> persons) {
             Console.WriteLine("____________ Update User ____________");
             Program.ListPersons(persons);
             Console.WriteLine("\n\nPlase type the user id that you want to update: ");
             Int32 Id = Int32.Parse(Console.ReadLine());
-            int index = 0;
-            for (var i = 0; i < persons.Length && persons[i] != null; i++) {
-                if(persons[i].Id == Id){
-                    index = i;
-                    break;
-                }
-            }
+            int index = persons.FindIndex( item => item.Id == Id);
             Console.Clear();
             Console.WriteLine("User Selected : \n\n");
             persons[index].Print();
@@ -358,16 +381,12 @@ namespace app {
             }
         }
 
-        public static void DeletePerson(Person[] persons) {
+        public static void DeletePerson(List<Person> persons) {
             Console.WriteLine("____________ Delete User ____________");
             Program.ListPersons(persons);
             Console.WriteLine("\n\nPlase type the user id that you want to delete: ");
             Int32 Id = Int32.Parse(Console.ReadLine());
-            int index = 0;
-            for (var i = 0; i < persons.Length; i++) {
-                if(persons[i].Id == Id)
-                    index = i;
-            }
+            int index = persons.FindIndex( item => item.Id == Id);
             Console.Clear();
             Console.WriteLine("User Selected : \n\n");
             persons[index].Print();
@@ -392,54 +411,41 @@ namespace app {
 
         /*Task*/
 
-        public static Task CreateTask(Person[] persons){
+        public static Task CreateTask(){
             Console.WriteLine("____________ Create Task ____________");
             Console.WriteLine("\n\n What is the Task name ?: ");
             String title = Console.ReadLine();
             Console.WriteLine("\n\n Give me a little description about this Task: ");
             String comments = Console.ReadLine();
-            Console.WriteLine("\n\nPlease select a user to be responsible for this task(type his id): ");
-            Program.ListPersons(persons);
-            Int32 responsible = Int32.Parse(Console.ReadLine());
-            Person p = new Person();
-            for (var i = 0;i < persons.Length && persons[i] != null; i++){
-                if(persons[i].Id == responsible){
-                    p = persons[i];
-                }
-            }
             Console.WriteLine("\n\nWhat is the workload of this task ?: ");
             float workload = float.Parse(Console.ReadLine());
-            var id = 1;
+            var id = Program.GenId(Program.TaskList);
             Console.WriteLine("\nWhat is the task type ?:");
             Console.WriteLine("\n\t1. Code");
             Console.WriteLine("\n\t2. Test case");
             Console.WriteLine("\n\t3. Bug\n");
             var type = Int32.Parse(Console.ReadLine()) -1;
-            return Task.getTask(id, title, comments, p, workload, (ETaskType) type);
+            return Task.getTask(id, title, comments, workload, (ETaskType) type);
         }
 
-        public static void ListTasks(Task[] tasks) {
-            if(tasks[0] == null) {
+        public static void ListTasks(List<Task> tasks) {
+            if(tasks.Count < 0) {
                 Console.WriteLine("List is empty");
                 return;
             }
             Console.WriteLine("Task List: ");
-            for(var i = 0; tasks[i] != null && i < tasks.Length -1; i++){
-                if(!tasks[i].Removed)
-                    Console.WriteLine("\n\tId: {0}\tTitle: {1}", tasks[i].Id, tasks[i].Title);
-            }
+            tasks.ForEach(item => {
+                if(!item.Removed)
+                    Console.WriteLine("\n\tId: {0}\tTitle: {1}", item.Id, item.Title);
+            });
         }
 
-        public static void UpdateTask(Task[] tasks) {
+        public static void UpdateTask(List<Task> tasks) {
             Console.WriteLine("____________ Update Task ____________");
             Program.ListTasks(tasks);
             Console.WriteLine("\n\nPlase type the task id that you want to update: ");
             Int32 Id = Int32.Parse(Console.ReadLine());
-            int index = 0;
-            for (var i = 0; i < tasks.Length && tasks[i] != null; i++) {
-                if(tasks[i].Id == Id)
-                    index = i;
-            }
+            int index = tasks.FindIndex( item => item.Id == Id);
             Console.Clear();
             Console.WriteLine("Task Selected : \n\n");
             tasks[index].Print();   
@@ -467,16 +473,12 @@ namespace app {
             } 
         }
 
-        public static void DeleteTask(Task[] tasks) {
+        public static void DeleteTask(List<Task> tasks) {
             Console.WriteLine("____________ Delete Task ____________");
             Program.ListTasks(tasks);
             Console.WriteLine("\n\nPlase type the task id that you want to delete: ");
             Int32 Id = Int32.Parse(Console.ReadLine());
-            int index = 0;
-            for (var i = 0; i < tasks.Length && tasks[i] != null; i++) {
-                if(tasks[i].Id == Id)
-                    index = i;
-            }
+            int index = tasks.FindIndex( item => item.Id == Id );
             Console.Clear();
             Console.WriteLine("Task Selected : \n\n");
             tasks[index].Print();
@@ -500,22 +502,9 @@ namespace app {
 
         }
 
-        public static Int32 FindFreeIndex(object[] array) {
-            for (var i = 0; i < array.Length; i++) {
-                if (array[i] == null)
-                    return i;
-            }
-            return -1;
-        }
-
-        public static Int32 GenId(object[] array) {
-            var i = 0;
-            for(i = i; array[i] != null; i++){
-            }
-            i = (i - array.Length) * -1;
-            return (i > 0) ? i : i*-1;
+        public static Int32 GenId(dynamic array) {
+            return  array.Count;
         }
 
     }
-
 }
