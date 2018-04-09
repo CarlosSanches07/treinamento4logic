@@ -337,7 +337,7 @@ namespace app {
             Console.WriteLine("\n\n What is the User email ?:");
             String email = Console.ReadLine();
             var id = Program.GenId(Program.PersonList);
-            return Person.getPerson(id, title, comments, birth, null, email); 
+            return Person.getPerson(id, title, comments, birth, email); 
         }
 
         public static void ListPersons(List<Person> persons) {

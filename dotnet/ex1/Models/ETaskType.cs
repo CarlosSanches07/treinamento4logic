@@ -1,7 +1,7 @@
 ﻿	using System;
 
 	public enum ETaskType {
-		Codificacao,
-		Caso_de_teste,
-		Defeito
+		Codificacao = 0,
+		Caso_de_teste = 1,
+		Defeito = 2
 	}
